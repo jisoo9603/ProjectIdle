@@ -35,7 +35,21 @@ public class FindPasswordPage extends JFrame {
 		background.setLocation(0, 0);
         background.setSize(800, 500);
         
+        ImageIcon pwdResult = new ImageIcon("img/pwdResult");
+        JLabel resultPassword = new JLabel(pwdResult);
+        resultPassword.setSize(452, 169);
+        resultPassword.setLocation(400, 400);
+        resultPassword.setVisible(false);
         
+        JLabel msgPwd = new JLabel("");
+        
+        JButton closeBtn = new JButton();
+//      closeBtn.setBorderPainted(false);
+//      closeBtn.setContentAreaFilled(false);
+//      closeBtn.setFocusPainted(false);
+        closeBtn.setSize(100, 30);
+        closeBtn.setLocation(400, 350);
+        closeBtn.setVisible(false);
 
 		JTextField id = new JTextField();
 
@@ -56,14 +70,24 @@ public class FindPasswordPage extends JFrame {
 		btn.setLocation(640, 220);
 		btn.setFocusPainted(false);
 		btn.setBorderPainted(false);
-		btn.addActionListener(new ActionListener() {
+//		btn.addActionListener(new ActionListener() {}
 		
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				myPage.dispose();
-				new GameMain();
-			}
-		});
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				
+//				String message;
+//				if() {
+//					message = "당신의 비밀번호는 " + + " 입니다.";
+//				} else {
+//					message = "일치하는 정보가 없습니다.";
+//				}
+//				System.out.println(message);
+//				resultPassword.setText(message);
+//				
+//				resultPassword.setVisible(true);
+//				
+//			}
+//		});
 		
 		
 		// 패널로 화면에 노출
@@ -71,6 +95,7 @@ public class FindPasswordPage extends JFrame {
 		panel.add(email);
 		panel.add(btn);
 		panel.add(background);
+		panel.add(resultPassword);
 
 
 		myPage.add(panel);
