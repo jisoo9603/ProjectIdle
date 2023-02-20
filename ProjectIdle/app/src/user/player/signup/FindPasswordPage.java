@@ -1,4 +1,4 @@
-package com.idel.gui;
+package user.player.signup;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;

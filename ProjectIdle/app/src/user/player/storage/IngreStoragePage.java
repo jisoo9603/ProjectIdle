@@ -1,4 +1,4 @@
-package com.idel.gui;
+package user.player.storage;
 
 import java.awt.Font;
 import java.awt.Image;

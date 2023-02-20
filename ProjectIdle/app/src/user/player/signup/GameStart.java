@@ -1,4 +1,4 @@
-package test;
+package user.player.signup;
 
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -12,11 +12,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Gamestart extends JFrame {
+public class GameStart extends JFrame {
 	
     private JFrame myPage;
 	
-	public Gamestart() {
+	public GameStart() {
 			
 	      this.myPage = this;
 	      myPage.setSize(800, 500);

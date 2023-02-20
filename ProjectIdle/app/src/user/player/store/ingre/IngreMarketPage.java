@@ -1,4 +1,4 @@
-package com.idel.gui;
+package user.player.store.ingre;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -11,6 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import user.player.signup.LoginPage;
 
 public class IngreMarketPage extends JFrame {
 

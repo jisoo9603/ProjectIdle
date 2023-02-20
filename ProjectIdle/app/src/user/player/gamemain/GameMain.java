@@ -1,4 +1,4 @@
-package com.idel.gui;
+package user.player.gamemain;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import user.player.realplay.PlayMain;
 
 public class GameMain extends JFrame {
 
@@ -51,14 +53,6 @@ public class GameMain extends JFrame {
 		store.setLocation(511, 87);
 		store.setFocusPainted(false);
 		store.setBorderPainted(false);
-		store.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				myPage.dispose();
-				new ResultPasswordPage();
-			}
-		});
 		
 		JButton storage = new JButton();
 

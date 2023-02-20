@@ -1,4 +1,4 @@
-package com.idel.gui;
+package user.player.signup;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -12,7 +12,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.idel.gui.IngreMarketPage;
+import user.player.info.UserInfoPage;
+import user.player.storage.StoragePage;
+import user.player.store.ingre.IngreMarketPage;
 
 public class LoginPage extends JFrame {
 
