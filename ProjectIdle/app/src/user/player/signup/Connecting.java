@@ -1,4 +1,4 @@
-package test;
+package user.player.signup;
 
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -72,7 +72,7 @@ public class Connecting extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				myPage.dispose();
-				new Gamestart();
+				new GameStart();
 	
 				
 				

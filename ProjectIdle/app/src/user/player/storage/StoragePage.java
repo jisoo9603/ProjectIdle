@@ -1,4 +1,4 @@
-package com.idel.gui;
+package user.player.storage;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -9,6 +9,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import user.player.signup.LoginPage;
+import user.player.store.receip.RecipeStoragePage;
 
 public class StoragePage extends JFrame {
 

@@ -1,4 +1,4 @@
-package com.idel.gui;
+package user.player.info;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -11,10 +11,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class UserDeleteCheckPage extends JFrame {
+import user.player.signup.LoginPage;
+
+public class UserDeletePage extends JFrame {
 	private JFrame myPage;
 
-	public UserDeleteCheckPage() {
+	public UserDeletePage() {
 
 		this.myPage = this;
 
@@ -61,21 +63,15 @@ public class UserDeleteCheckPage extends JFrame {
 		infoTextShadow.setSize(infoText.getWidth(), infoText.getHeight());
 		infoTextShadow.setLocation(infoText.getX() + 2, infoText.getY() + 2);
 
-		String message = "정말로 탈퇴 하시겠습니까?";
+		String message = "탈퇴 되었습니다.";
 		JLabel checkText = new JLabel(message);
 		checkText.setHorizontalAlignment(JLabel.CENTER);
 		checkText.setFont(labelfont);
 		checkText.setForeground(new Color(255, 0, 0));
-		checkText.setSize(400, 30);
-		checkText.setLocation(210, 235);
+		checkText.setSize(300, 30);
+		checkText.setLocation(260, 235);
 
 		panel.add(checkText);
-
-		int btnW = 90;
-		int btnH = 30;
-		int fix = btnW + 70;
-		int btnX = 160 + btnW + 100;
-		int btnY = 130 + (30 + 30) * 4;
 
 		// 닫기 버튼
 		JButton closeBtn = new JButton("닫기");
@@ -84,8 +80,8 @@ public class UserDeleteCheckPage extends JFrame {
 		closeBtn.setFocusPainted(false);
 		closeBtn.setFont(labelfont);
 		closeBtn.setForeground(btnColor);
-		closeBtn.setSize(90, btnH);
-		closeBtn.setLocation(btnX - fix, btnY);
+		closeBtn.setSize(90, 30);
+		closeBtn.setLocation(540, 370);
 
 		JLabel closeBtnShadow = new JLabel(closeBtn.getText());
 		closeBtnShadow.setHorizontalAlignment(JLabel.CENTER);
@@ -93,38 +89,12 @@ public class UserDeleteCheckPage extends JFrame {
 		closeBtnShadow.setSize(closeBtn.getWidth(), closeBtn.getHeight());
 		closeBtnShadow.setLocation(closeBtn.getX() + 2, closeBtn.getY() + 2);
 
-		// 회원탈퇴 버튼
-		JButton signOutBtn = new JButton("회원탈퇴");
-		signOutBtn.setBorderPainted(false);
-		signOutBtn.setContentAreaFilled(false);
-		signOutBtn.setFocusPainted(false);
-		signOutBtn.setFont(labelfont);
-		signOutBtn.setForeground(fontColor);
-		signOutBtn.setSize(150, btnH);
-		signOutBtn.setLocation(btnX + fix, btnY);
-
-		JLabel signOutBtnShadow = new JLabel(signOutBtn.getText());
-		signOutBtnShadow.setHorizontalAlignment(JLabel.CENTER);
-		signOutBtnShadow.setFont(labelfont);
-		signOutBtnShadow.setSize(signOutBtn.getWidth(), signOutBtn.getHeight());
-		signOutBtnShadow.setLocation(signOutBtn.getX() + 2, signOutBtn.getY() + 2);
-
 		closeBtn.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myPage.dispose();
-				new UserInfoPage();
-
-			}
-		});
-
-		signOutBtn.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				myPage.dispose();
-				new UserDeletePage();
+				new LoginPage();
 
 			}
 		});
@@ -137,9 +107,6 @@ public class UserDeleteCheckPage extends JFrame {
 
 		panel.add(closeBtn);
 		panel.add(closeBtnShadow);
-
-		panel.add(signOutBtn);
-		panel.add(signOutBtnShadow);
 
 		panel.add(boardLabel);
 		panel.add(backgroundLabel);
