@@ -29,25 +29,25 @@ public class ResultPasswordPage extends JFrame {
 		
 		JLabel background = new JLabel(img);
 		background.setLocation(0, 0);
-        background.setSize(800, 500);
-        
+		background.setSize(800, 500);
+
 		JTextField id = new JTextField();
 
 		id.setSize(330, 30);
 		id.setLocation(150, 200);
-		
+
 		panel.add(id);
 		panel.add(background);
-		
-	  
-
-	      this.add(panel);
 
 
-	      
 
-	      this.setVisible(true);
-	      this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.add(panel);
+
+
+
+
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
 

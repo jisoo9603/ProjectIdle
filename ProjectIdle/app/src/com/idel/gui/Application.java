@@ -11,7 +11,7 @@ public class Application {
 
 	public static void main(String[] args) {
 
-//		new GameMain();
+//		new GameMain(); 
 		new FindPasswordPage();
 		// 허희만
 	}
