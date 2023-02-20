@@ -70,24 +70,24 @@ public class FindPasswordPage extends JFrame {
 		btn.setLocation(640, 220);
 		btn.setFocusPainted(false);
 		btn.setBorderPainted(false);
-		btn.addActionListener(new ActionListener() {
+//		btn.addActionListener(new ActionListener() {}
 		
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				String message;
-				if() {
-					message = "당신의 비밀번호는 " + + " 입니다.";
-				} else {
-					message = "일치하는 정보가 없습니다.";
-				}
-				System.out.println(message);
-				resultPassword.setText(message);
-				
-				resultPassword.setVisible(true);
-				
-			}
-		});
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				
+//				String message;
+//				if() {
+//					message = "당신의 비밀번호는 " + + " 입니다.";
+//				} else {
+//					message = "일치하는 정보가 없습니다.";
+//				}
+//				System.out.println(message);
+//				resultPassword.setText(message);
+//				
+//				resultPassword.setVisible(true);
+//				
+//			}
+//		});
 		
 		
 		// 패널로 화면에 노출
