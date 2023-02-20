@@ -2,6 +2,8 @@ package user.player.run;
 
 import java.awt.Font;
 
+import user.player.info.UserDeleteCheckPage;
+import user.player.manager.IngreMaMain;
 import user.player.rank.RankPage;
 
 
@@ -22,9 +24,11 @@ public class Application {
 		// 	 new StoreYCash();
 		//	new StoreChoiceReceip();
 		// 	new StoreChoiceUpdate();
-		//	new IngreMaMain();
+//			new IngreMaMain();
 		//  new ManagerMainPage();
-			new RankPage();
+//			new RankPage();
+		
+		new UserDeleteCheckPage();
 	}
 
 }
