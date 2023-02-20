@@ -14,6 +14,7 @@ public class Application {
 //		new GameMain();
 		new FindPasswordPage();
 		// 허희만
+		// 박완규
 	}
 
 }
