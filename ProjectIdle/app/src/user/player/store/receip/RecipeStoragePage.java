@@ -35,9 +35,9 @@ public class RecipeStoragePage extends JFrame {
 		int btnX = 400 - btnW / 2;
 		int btnY = 0;
 
-		ImageIcon backgrond = new ImageIcon("img/storage.png");
-		ImageIcon img = new ImageIcon("img/buttonFrame.png");
-		ImageIcon back = new ImageIcon("img/back.png");
+		ImageIcon backgrond = new ImageIcon("images/storage.png");
+		ImageIcon img = new ImageIcon("images/buttonFrame.png");
+		ImageIcon back = new ImageIcon("images/back.png");
 
 		// 배경
 		JLabel background = new JLabel(backgrond);
@@ -73,9 +73,10 @@ public class RecipeStoragePage extends JFrame {
 		int recipeX = 135;
 		int recipeY = 55;
 
-		Image recipe = new ImageIcon("img/recipe1.png").getImage().getScaledInstance(recipeW, recipeH, 0);
+		Image recipe = new ImageIcon("images/recipe1.png").getImage().getScaledInstance(recipeW, recipeH, 0);
 
 		JLabel[][] ingreLabels = new JLabel[3][4];
+		JLabel[][] ingreCntLabels = new JLabel[3][4];
 
 		for (int i = 0; i < ingreLabels.length; i++) {
 			for (int k = 0; k < ingreLabels[i].length; k++) {
@@ -85,7 +86,17 @@ public class RecipeStoragePage extends JFrame {
 				panel.add(ingreLabels[i][k]);
 			}
 		}
-
+		
+		for (int i = 0; i < ingreCntLabels.length; i++) {
+			for (int k = 0; k < ingreCntLabels[i].length; k++) {
+				ingreCntLabels[i][k] = new JLabel("x1");
+				ingreCntLabels[i][k].setFont(ingreLabelFont);
+				ingreCntLabels[i][k].setHorizontalAlignment(JLabel.CENTER);
+				ingreCntLabels[i][k].setSize(recipeW, 25);
+				ingreCntLabels[i][k].setLocation(recipeX + 150 * k, recipeY + recipeH + 145 * i);
+				panel.add(ingreCntLabels[i][k]);
+			}
+		}
 		backBtn.addActionListener(new ActionListener() {
 
 			@Override

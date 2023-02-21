@@ -25,7 +25,7 @@ public class FindPasswordPage extends JFrame {
 		this.setAutoRequestFocus(false);
 		myPage.setTitle("비밀번호 찾기");
 		
-		ImageIcon img = new ImageIcon("img/FindPasswordMain.png");
+		ImageIcon img = new ImageIcon("images/FindPasswordMain.png");
 
 		JPanel panel = new JPanel();
 
@@ -35,7 +35,7 @@ public class FindPasswordPage extends JFrame {
 		background.setLocation(0, 0);
         background.setSize(800, 500);
         
-        ImageIcon pwdResult = new ImageIcon("img/pwdResult");
+        ImageIcon pwdResult = new ImageIcon("images/pwdResult");
         JLabel resultPassword = new JLabel(pwdResult);
         resultPassword.setSize(452, 169);
         resultPassword.setLocation(400, 400);

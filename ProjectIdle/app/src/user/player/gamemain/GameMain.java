@@ -9,7 +9,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import user.player.info.UserInfoPage;
 import user.player.realplay.PlayMain;
+import user.player.storage.StoragePage;
 
 public class GameMain extends JFrame {
 
@@ -22,14 +24,14 @@ public class GameMain extends JFrame {
 		
 		this.myPage = this;
 
-		ImageIcon img = new ImageIcon("img/GameMain.png");
+		ImageIcon img = new ImageIcon("images/GameMain.png");
 
 		JPanel panel = new JPanel();
 		
 		panel.setLayout(null);
 		
 		JLabel background = new JLabel(img);
-		background.setLocation(0, 0);
+		background.setLocation(0, -14);
 		background.setSize(800, 500);
 
 		JButton play = new JButton();
@@ -66,7 +68,7 @@ public class GameMain extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myPage.dispose();
-				new GameMain();
+				new StoragePage();
 			}
 		});
 		
@@ -82,7 +84,7 @@ public class GameMain extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myPage.dispose();
-				new GameMain();
+				new UserInfoPage();
 			}
 		});
 		

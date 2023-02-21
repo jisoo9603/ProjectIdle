@@ -49,7 +49,7 @@ public class LoginPage extends JFrame {
 		int pwdX = idX;
 		int pwdY = idY + labelHeight + 30;
 
-		ImageIcon back = new ImageIcon("img/background.png");
+		ImageIcon back = new ImageIcon("images/background.png");
 
 		JLabel backgroundLabel = new JLabel(back);
 		backgroundLabel.setSize(800, 500);

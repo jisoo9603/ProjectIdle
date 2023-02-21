@@ -33,9 +33,9 @@ public class IngreStoragePage extends JFrame {
 		int btnX = 400 - btnW / 2;
 		int btnY = 0;
 
-		ImageIcon backgrond = new ImageIcon("img/storage.png");
-		ImageIcon img = new ImageIcon("img/buttonFrame.png");
-		ImageIcon back = new ImageIcon("img/back.png");
+		ImageIcon backgrond = new ImageIcon("images/storage.png");
+		ImageIcon img = new ImageIcon("images/buttonFrame.png");
+		ImageIcon back = new ImageIcon("images/back.png");
 
 		// 배경
 		JLabel background = new JLabel(backgrond);
@@ -70,7 +70,7 @@ public class IngreStoragePage extends JFrame {
 		int ingreX = 135;
 		int ingreY = 55;
 
-		Image ingre = new ImageIcon("img/chicken.png").getImage().getScaledInstance(ingreW, ingreH, 0);
+		Image ingre = new ImageIcon("images/chicken.png").getImage().getScaledInstance(ingreW, ingreH, 0);
 
 		JLabel[][] ingreLabels = new JLabel[3][4];
 		JLabel[][] ingreCntLabels = new JLabel[3][4];
@@ -86,7 +86,7 @@ public class IngreStoragePage extends JFrame {
 
 		for (int i = 0; i < ingreCntLabels.length; i++) {
 			for (int k = 0; k < ingreCntLabels[i].length; k++) {
-				ingreCntLabels[i][k] = new JLabel("i*k=" + (i * k));
+				ingreCntLabels[i][k] = new JLabel("x1");
 				ingreCntLabels[i][k].setFont(ingreLabelFont);
 				ingreCntLabels[i][k].setHorizontalAlignment(JLabel.CENTER);
 				ingreCntLabels[i][k].setSize(ingreW, 25);

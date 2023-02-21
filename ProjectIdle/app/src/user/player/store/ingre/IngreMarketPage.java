@@ -32,11 +32,11 @@ public class IngreMarketPage extends JFrame {
 
 		panel.setLayout(null);
 
-		ImageIcon backgrond = new ImageIcon("img/Market.png");
-		Image backImg = new ImageIcon("img/back.png").getImage().getScaledInstance(50, 35, 0);
+		ImageIcon backgrond = new ImageIcon("images/Market.png");
+		Image backImg = new ImageIcon("images/back.png").getImage().getScaledInstance(50, 35, 0);
 		ImageIcon back = new ImageIcon(backImg);
-		ImageIcon panelImg = new ImageIcon("img/panelFrame.png");
-		Image btn = new ImageIcon("img/buttonFrame.png").getImage().getScaledInstance(146, 40, 0);
+		ImageIcon panelImg = new ImageIcon("images/panelFrame.png");
+		Image btn = new ImageIcon("images/buttonFrame.png").getImage().getScaledInstance(146, 40, 0);
 		ImageIcon btnImg = new ImageIcon(btn);
 
 		// 배경

@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import user.player.gamemain.GameMain;
+import user.player.rank.RankPage;
 import user.player.signup.LoginPage;
 
 public class UserInfoPage extends JFrame {
@@ -33,9 +35,9 @@ public class UserInfoPage extends JFrame {
 
 		panel.setLayout(null);
 
-		ImageIcon back = new ImageIcon("img/MainBackground.png");
-		ImageIcon board = new ImageIcon("img/board.png");
-		ImageIcon panelImg = new ImageIcon("img/buttonFrame.png");
+		ImageIcon back = new ImageIcon("images/MainBackground.png");
+		ImageIcon board = new ImageIcon("images/board.png");
+		ImageIcon panelImg = new ImageIcon("images/buttonFrame.png");
 
 		// 배경
 		JLabel backgroundLabel = new JLabel(back);
@@ -169,7 +171,7 @@ public class UserInfoPage extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myPage.dispose();
-				new LoginPage();
+				new GameMain();
 
 			}
 		});
@@ -180,6 +182,16 @@ public class UserInfoPage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				myPage.dispose();
 				new UserDeleteCheckPage();
+
+			}
+		});
+		
+		rankBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myPage.dispose();
+				new RankPage();
 
 			}
 		});

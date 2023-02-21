@@ -1,6 +1,10 @@
 package user.player.rank;
 
+import static user.player.run.Application.labelFont;
+
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -8,10 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import static user.player.run.Application.titleFont;
-import static user.player.run.Application.middleFont;
-import static user.player.run.Application.labelFont;
-import static user.player.run.Application.littlebigFont;
+import user.player.info.UserInfoPage;
 
 
 public class RankPage extends JFrame {
@@ -48,6 +49,15 @@ public class RankPage extends JFrame {
       close.setContentAreaFilled(false); // 버튼 투명
       close.setFocusPainted(false);
 
+      close.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myPage.dispose();
+				new UserInfoPage();
+
+			}
+		});
       // 회원가입완료 그림자 효과
       //            JLabel signUpShadow = new JLabel(signUp.getText());
       //            signUpShadow.setFont(littlebigFont);

@@ -24,7 +24,7 @@ public class PlayMain extends JFrame{
 		this.setAutoRequestFocus(false);
 		this.setTitle("영업화면");
 		
-		ImageIcon img = new ImageIcon("img/PlayMain.png");
+		ImageIcon img = new ImageIcon("images/PlayMain.png");
 		
 		JPanel panel = new JPanel();
 		
