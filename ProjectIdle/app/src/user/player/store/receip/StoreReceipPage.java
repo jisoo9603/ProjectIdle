@@ -54,24 +54,48 @@ public class StoreReceipPage extends JFrame {
 		
 		
 		Image[] recipe = new Image[] {
-				new ImageIcon("images/recipe.png").getImage().getScaledInstance(65, 65, 0)
-				
-				
+				new ImageIcon("images/recipe1.png").getImage().getScaledInstance(65, 65, 0),
+				new ImageIcon("images/recipe1.png").getImage().getScaledInstance(65, 65, 0),
+				new ImageIcon("images/recipe1.png").getImage().getScaledInstance(65, 65, 0)
 		};
 		
 		JButton[][] recipeBtn = new JButton[3][5];		//레시피 버튼
 		JLabel[][] recipeList = new JLabel[3][5];		//레시피 리스트
 		JLabel[][] recipePriceList = new JLabel[3][5];	// 레시피 가격 리스트
 		
+		// 레시피 목록 나열
 		for (int i = 0; i < recipeList.length; i++) {
 			for (int k = 0; k < recipeList[i].length; k++) {
 				recipeList[i][k] = new JLabel(new ImageIcon(recipe[(i + k) % recipe.length]));
 				recipeList[i][k].setSize(65, 65);
-				recipeList[i][k].setLocation(165 * k, 165 * i);
+				recipeList[i][k].setLocation(130 * k + 100, 100 * i + 100);
 				panel.add(recipeList[i][k]);
 			}
 		}
-
+		//레시피 버튼 나열
+		for(int i = 0; i < recipeBtn.length; i++) {
+			for(int k = 0; k < recipeBtn[i].length; k++) {
+				recipeBtn[i][k] = new JButton();
+				recipeBtn[i][k].setBorderPainted(false);
+				recipeBtn[i][k].setContentAreaFilled(false);
+				recipeBtn[i][k].setFocusPainted(false);
+				recipeBtn[i][k].setSize(65, 65);
+				recipeBtn[i][k].setLocation(recipeList[i][k].getX(), recipeList[i][k].getY());
+				panel.add(recipeBtn[i][k]);
+			}			
+		}
+		//레시피 가격 나열
+		for(int i = 0; i < recipePriceList.length; i++) {
+			for(int k = 0; k < recipePriceList[i].length; k++) {
+				recipePriceList[i][k] = new JLabel("1000원");
+				recipePriceList[i][k].setSize(65, 30);
+				recipePriceList[i][k].setLocation(recipeList[i][k].getX() + 10, recipeList[i][k].getY() + recipeList[i][k].getHeight());
+				panel.add(recipePriceList[i][k]);
+			}
+		}
+		
+		
+		
 		panel.add(btnBack);
 		panel.add(btnLeft);
 		panel.add(btnRight);
