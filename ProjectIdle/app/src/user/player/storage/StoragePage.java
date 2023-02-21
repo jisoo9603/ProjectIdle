@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import user.player.signup.LoginPage;
+import user.player.gamemain.GameMain;
 
 public class StoragePage extends JFrame {
 
@@ -33,9 +33,9 @@ public class StoragePage extends JFrame {
 		int btnX = 400 - btnW / 2;
 		int btnY = 190;
 
-		ImageIcon backgrond = new ImageIcon("img/storage.png");
-		ImageIcon img = new ImageIcon("img/buttonFrame.png");
-		ImageIcon back = new ImageIcon("img/back.png");
+		ImageIcon backgrond = new ImageIcon("images/storage.png");
+		ImageIcon img = new ImageIcon("images/buttonFrame.png");
+		ImageIcon back = new ImageIcon("images/back.png");
 
 		// 배경
 		JLabel background = new JLabel(backgrond);
@@ -86,7 +86,7 @@ public class StoragePage extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myPage.dispose();
-				new LoginPage();
+				new GameMain();
 
 			}
 		});

@@ -1,6 +1,10 @@
 package user.player.rank;
 
+import static user.player.run.Application.labelFont;
+
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -8,10 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import static user.player.run.Application.titleFont;
-import static user.player.run.Application.middleFont;
-import static user.player.run.Application.labelFont;
-import static user.player.run.Application.littlebigFont;
+import user.player.info.UserInfoPage;
 
 
 public class RankPage extends JFrame {
@@ -61,6 +62,15 @@ public class RankPage extends JFrame {
       //      btn.setSize(315, 65);
       //      btn.setContentAreaFilled(false);   
 
+		close.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myPage.dispose();
+				new UserInfoPage();
+
+			}
+		});
       // 패녈에 추가
 
       panel.add(close);
