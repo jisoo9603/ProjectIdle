@@ -1,9 +1,13 @@
 package user.player.signup;
 
+import static user.player.run.Application.labelFont;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -12,9 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import user.player.info.UserInfoPage;
-import user.player.storage.StoragePage;
-import user.player.store.ingre.IngreMarketPage;
+import user.player.signup.controller.SignUpController;
 
 public class LoginPage extends JFrame {
 
@@ -49,7 +51,7 @@ public class LoginPage extends JFrame {
 		int pwdX = idX;
 		int pwdY = idY + labelHeight + 30;
 
-		ImageIcon back = new ImageIcon("img/background.png");
+		ImageIcon back = new ImageIcon("images/background.png");
 
 		JLabel backgroundLabel = new JLabel(back);
 		backgroundLabel.setSize(800, 500);
@@ -166,35 +168,34 @@ public class LoginPage extends JFrame {
 		findPwdShadow.setSize(200, 30);
 		findPwdShadow.setLocation(X + 400 + 2, pwdY + labelHeight + 20 + 2);
 
-		loginBtn.addActionListener(new ActionListener() {
+		Color labelColor = new Color(250, 220, 120);
+		JLabel dialog = new JLabel();
+		dialog.setSize(600, 300);
+		dialog.setLocation(100, 100);
+		dialog.setOpaque(true);
+		dialog.setBackground(labelColor);
+		dialog.setVisible(false);
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				myPage.dispose();
-				new StoragePage();
+		JLabel dialogText = new JLabel("hello");
+		dialogText.setSize(dialog.getWidth(), 30);
+		dialogText.setLocation(dialog.getX(), (dialog.getY() + (dialog.getHeight() - dialogText.getHeight()) / 2));
+		dialogText.setFont(labelFont);
+		dialogText.setHorizontalAlignment(JLabel.CENTER);
+		dialogText.setVisible(false);
 
-			}
-		});
+		JButton closeBtn = new JButton("닫기");
+		closeBtn.setBorderPainted(false);
+		closeBtn.setContentAreaFilled(false);
+		closeBtn.setFocusPainted(false);
+		closeBtn.setFont(labelFont);
+		closeBtn.setSize(200, 50);
+		closeBtn.setLocation(dialog.getX() + (dialog.getWidth() - closeBtn.getWidth()) / 2,
+				(dialog.getY() + dialog.getHeight() - closeBtn.getHeight()));
+		closeBtn.setVisible(false);
 
-		signUpBtn.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				myPage.dispose();
-				new UserInfoPage();
-
-			}
-		});
-
-		findPwdBtn.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				myPage.dispose();
-				new IngreMarketPage();
-
-			}
-		});
+		panel.add(dialogText);
+		panel.add(closeBtn);
+		panel.add(dialog);
 
 		// 패녈에 추가
 		panel.add(titleLabel1);
@@ -219,6 +220,58 @@ public class LoginPage extends JFrame {
 
 		myPage.setVisible(true);
 		myPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		loginBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Map<String, String> map = new HashMap<>();
+				map.put("id", idtxt.getText());
+				map.put("pwd", pwdtxt.getText());
+
+				SignUpController signUpController = new SignUpController();
+				if (signUpController.findPlayerIdAndPwd(map) != null) {
+					myPage.dispose();
+					new Connecting();
+				} else {
+					dialog.setVisible(true);
+					dialogText.setVisible(true);
+					closeBtn.setVisible(true);
+				}
+			}
+		});
+
+		closeBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				dialog.setVisible(false);
+				dialogText.setVisible(false);
+				closeBtn.setVisible(false);
+			}
+		});
+
+		signUpBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myPage.dispose();
+				new SignUpPage();
+
+			}
+		});
+
+		findPwdBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myPage.dispose();
+				new FindPasswordPage();
+
+			}
+		});
 	}
 
 }
