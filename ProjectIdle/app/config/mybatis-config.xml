@@ -15,4 +15,7 @@
 			</dataSource>
 		</environment>
 	</environments>
+	<mappers>
+		<package name="user.player.common"/>
+	</mappers>
 </configuration>

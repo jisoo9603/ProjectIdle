@@ -11,8 +11,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import user.player.store.StoreMainPage;
-
 public class RecipeStoragePage extends JFrame {
 
 	private JFrame myPage;
@@ -92,7 +90,7 @@ public class RecipeStoragePage extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myPage.dispose();
-				new StoreMainPage();
+				new StoragePage();
 
 			}
 		});

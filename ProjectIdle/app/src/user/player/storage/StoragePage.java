@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import user.player.signup.LoginPage;
+import user.player.gamemain.GameMain;
 
 public class StoragePage extends JFrame {
 
@@ -86,7 +86,7 @@ public class StoragePage extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myPage.dispose();
-				new LoginPage();
+				new GameMain();
 
 			}
 		});

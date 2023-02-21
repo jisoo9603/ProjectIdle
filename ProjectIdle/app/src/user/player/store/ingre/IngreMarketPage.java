@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import user.player.signup.LoginPage;
+import user.player.store.StoreMainPage;
 
 public class IngreMarketPage extends JFrame {
 
@@ -271,7 +271,7 @@ public class IngreMarketPage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				myPage.dispose();
-				new LoginPage();
+				new StoreMainPage();
 
 			}
 		});
@@ -298,7 +298,7 @@ public class IngreMarketPage extends JFrame {
 				msglbl.setVisible(true);
 			}
 		});
-		
+
 		closeBtn.addActionListener(new ActionListener() {
 
 			@Override
@@ -309,8 +309,7 @@ public class IngreMarketPage extends JFrame {
 				msglbl.setVisible(false);
 
 				goldText.setText("자금 : " + gold + "원");
-				
-				
+
 			}
 		});
 
