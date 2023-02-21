@@ -1,4 +1,4 @@
-package user.player.store.receip;
+package user.player.storage;
 
 import java.awt.Font;
 import java.awt.Image;
@@ -11,11 +11,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import user.player.storage.StoragePage;
+import user.player.store.StoreMainPage;
 
 public class RecipeStoragePage extends JFrame {
 
 	private JFrame myPage;
+	private int gold;
 
 	public RecipeStoragePage() {
 		Font labelFont = new Font("DungGeunMo", Font.PLAIN, 25);
@@ -35,9 +36,9 @@ public class RecipeStoragePage extends JFrame {
 		int btnX = 400 - btnW / 2;
 		int btnY = 0;
 
-		ImageIcon backgrond = new ImageIcon("img/storage.png");
-		ImageIcon img = new ImageIcon("img/buttonFrame.png");
-		ImageIcon back = new ImageIcon("img/back.png");
+		ImageIcon backgrond = new ImageIcon("images/storage.png");
+		ImageIcon img = new ImageIcon("images/buttonFrame.png");
+		ImageIcon back = new ImageIcon("images/back.png");
 
 		// 배경
 		JLabel background = new JLabel(backgrond);
@@ -73,7 +74,7 @@ public class RecipeStoragePage extends JFrame {
 		int recipeX = 135;
 		int recipeY = 55;
 
-		Image recipe = new ImageIcon("img/recipe1.png").getImage().getScaledInstance(recipeW, recipeH, 0);
+		Image recipe = new ImageIcon("images/recipe1.png").getImage().getScaledInstance(recipeW, recipeH, 0);
 
 		JLabel[][] ingreLabels = new JLabel[3][4];
 
@@ -91,7 +92,7 @@ public class RecipeStoragePage extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myPage.dispose();
-				new StoragePage();
+				new StoreMainPage();
 
 			}
 		});
