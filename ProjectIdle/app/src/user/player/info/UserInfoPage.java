@@ -165,6 +165,16 @@ public class UserInfoPage extends JFrame {
 		signOutBtnShadow.setSize(btnW * 2 - 40, btnH);
 		signOutBtnShadow.setLocation(btnX + fix + 2, btnY + 2);
 
+		rankBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myPage.dispose();
+				new RankPage();
+
+			}
+		});
+
 		closeBtn.addActionListener(new ActionListener() {
 
 			@Override

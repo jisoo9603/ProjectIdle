@@ -5,6 +5,11 @@ import static user.player.run.Application.littlebigFont;
 import static user.player.run.Application.titleFont;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,20 +18,26 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import user.player.signup.controller.SignController;
+
 public class SignUpPage extends JFrame {
 
 	private JFrame myPage;
+	private SignController signController = new SignController();
 
 	public SignUpPage() {
 
-		// Font signUpFont = new Font("DungGeunMo", Font.BOLD, 70);
 		this.setSize(800, 500);
 		this.setLocationRelativeTo(null);
 		this.setAutoRequestFocus(false);
 
 		this.myPage = this;
 
-		ImageIcon img = new ImageIcon("images/LoginBackground.png");
+		ImageIcon img = new ImageIcon("images/background.png"); // 배경 이미지
+
+		Color labelColor = new Color(247, 243, 130);
+
+		Font textFont = new Font("DungGeunMo", Font.BOLD, 20);
 
 		JPanel panel = new JPanel();
 
@@ -36,168 +47,265 @@ public class SignUpPage extends JFrame {
 		background.setLocation(0, 0);
 		background.setSize(800, 500);
 
-		// 제목 라벨
-		// JLabel titleLabel1 = new JLabel("자바");
-		// titleLabel1.setFont(titleFont);
-		// titleLabel1.setForeground(new Color(247, 243, 130));
-		// titleLabel1.setSize(labelWidth, 120);
-		// titleLabel1.setLocation(X + 50, 100);
+		JLabel titleLabel = new JLabel("회원가입");
+		titleLabel.setFont(titleFont);
+		titleLabel.setForeground(new Color(207, 161, 255));
+		titleLabel.setSize(380, 90);
+		titleLabel.setLocation((myPage.getWidth() - titleLabel.getWidth()) / 2, 0);
 
-		JLabel titleLabel2 = new JLabel("회원가입");
-		titleLabel2.setFont(titleFont);
-		titleLabel2.setForeground(new Color(207, 161, 255));
-		titleLabel2.setSize(500, 120);
-		titleLabel2.setLocation(200, 0);
+		JLabel titleShadow = new JLabel(titleLabel.getText());
+		titleShadow.setFont(titleFont);
+		titleShadow.setSize(titleLabel.getWidth(), titleLabel.getHeight());
+		titleShadow.setLocation(titleLabel.getX() + 3, titleLabel.getY() + 3);
 
-		// 그림자 효과
-		// JLabel titleShadow1 = new JLabel("회원가입");
-		// titleShadow1.setFont(titleFont);
-		// titleShadow1.setSize(500, 120);
-		// titleShadow1.setLocation(203, 3);
+		int labelW = 200;
+		int labelH = 30;
+		int labelX = 100;
+		int labelY = 115;
 
-		JLabel titleShadow2 = new JLabel(titleLabel2.getText());
-		titleShadow2.setFont(titleFont);
-		titleShadow2.setSize(500, 120);
-		titleShadow2.setLocation(203, 3);
+		int fix = labelH + 25;
+		int i = 0;
+
+		int textW = 300;
+		int textH = labelH;
+		int textX = labelX + labelW;
 
 		// 아이디 라벨
 		JLabel idLabel = new JLabel("아이디 ");
 		idLabel.setFont(labelFont);
-		idLabel.setForeground(new Color(247, 243, 130));
-		idLabel.setSize(100, 30);
-		idLabel.setLocation(120, 120);
+		idLabel.setForeground(labelColor);
+		idLabel.setSize(labelW, labelH);
+		idLabel.setLocation(labelX, labelY + fix * i++);
 
 		// 아이디 그림자 효과
 		JLabel idShadow = new JLabel(idLabel.getText());
 		idShadow.setFont(labelFont);
-		idShadow.setSize(100, 30);
-		idShadow.setLocation(122, 122);
+		idShadow.setSize(idLabel.getWidth(), idLabel.getHeight());
+		idShadow.setLocation(idLabel.getX() + 2, idLabel.getY() + 2);
 
 		// 아이디 텍스트
-		JTextField idtxt = new JTextField(30);
-		idtxt.setSize(300, 30);
-		idtxt.setLocation(300, 120);
+		JTextField idText = new JTextField();
+		idText.setSize(textW, textH);
+		idText.setLocation(textX, idLabel.getY());
+
+		// 중복 확인 결과 메시지
+		JLabel idCheckLabel = new JLabel();
+		idCheckLabel.setFont(textFont);
+		idCheckLabel.setSize(textW, textH);
+		idCheckLabel.setLocation(textX, idLabel.getY() + textH);
+
+		// 아이디 중복 확인 버튼
+		JButton idCheckBtn = new JButton("중복확인");
+		idCheckBtn.setBorderPainted(false);
+		idCheckBtn.setContentAreaFilled(false);
+		idCheckBtn.setFocusPainted(false);
+		idCheckBtn.setSize(labelW, labelH);
+		idCheckBtn.setLocation(textX + textW, idLabel.getY());
+		idCheckBtn.setFont(labelFont);
 
 		// 비밀번호 라벨
 		JLabel pwdLabel = new JLabel("비밀번호 ");
 		pwdLabel.setFont(labelFont);
-		pwdLabel.setForeground(new Color(247, 243, 130));
-		pwdLabel.setSize(150, 30);
-		pwdLabel.setLocation(120, 170);
+		pwdLabel.setForeground(labelColor);
+		pwdLabel.setSize(labelW, labelH);
+		pwdLabel.setLocation(labelX, labelY + fix * i++);
 
 		// 비밀번호 그림자 효과
 		JLabel pwdShadow = new JLabel(pwdLabel.getText());
 		pwdShadow.setFont(labelFont);
-		pwdShadow.setSize(150, 30);
-		pwdShadow.setLocation(123, 172);
+		pwdShadow.setSize(pwdLabel.getWidth(), pwdLabel.getHeight());
+		pwdShadow.setLocation(pwdLabel.getX() + 2, pwdLabel.getY() + 2);
 
 		// 비밀번호 텍스트
-		JTextField pwdtxt = new JTextField(30);
-		pwdtxt.setSize(300, 30);
-		pwdtxt.setLocation(300, 170);
+		JTextField pwdText = new JTextField();
+		pwdText.setSize(textW, textH);
+		pwdText.setLocation(textX, pwdLabel.getY());
 
 		// 비밀번호 확인 라벨
 		JLabel pwdLabel2 = new JLabel("비밀번호 확인 ");
 		pwdLabel2.setFont(labelFont);
-		pwdLabel2.setForeground(new Color(247, 243, 130));
-		pwdLabel2.setSize(200, 30);
-		pwdLabel2.setLocation(120, 220);
+		pwdLabel2.setForeground(labelColor);
+		pwdLabel2.setSize(labelW, labelH);
+		pwdLabel2.setLocation(labelX, labelY + fix * i++);
 
 		// 비밀번호 확인 그림자 효과
 		JLabel pwdShadow2 = new JLabel(pwdLabel2.getText());
 		pwdShadow2.setFont(labelFont);
-		pwdShadow2.setSize(200, 30);
-		pwdShadow2.setLocation(123, 223);
+		pwdShadow2.setSize(pwdLabel2.getWidth(), pwdLabel2.getHeight());
+		pwdShadow2.setLocation(pwdLabel2.getX() + 2, pwdLabel2.getY() + 2);
 
 		// 비밀번호 확인 텍스트
-		JTextField pwdtxt2 = new JTextField(30);
-		pwdtxt2.setSize(300, 30);
-		pwdtxt2.setLocation(300, 220);
+		JTextField pwdText2 = new JTextField();
+		pwdText2.setSize(textW, textH);
+		pwdText2.setLocation(textX, pwdLabel2.getY());
+
+		// 일치 확인 결과 메시지
+		JLabel pwdCheckLabel = new JLabel();
+		pwdCheckLabel.setFont(textFont);
+		pwdCheckLabel.setSize(textW, textH);
+		pwdCheckLabel.setLocation(textX, pwdLabel2.getY() + textH);
+
+		// 비밀번호 확인 버튼
+		JButton pwdCheckBtn = new JButton("비밀번호확인");
+		pwdCheckBtn.setBorderPainted(false);
+		pwdCheckBtn.setContentAreaFilled(false);
+		pwdCheckBtn.setFocusPainted(false);
+		pwdCheckBtn.setSize(labelW, labelH);
+		pwdCheckBtn.setLocation(textX + textW, pwdLabel2.getY());
+		pwdCheckBtn.setFont(labelFont);
 
 		// 닉네임 라벨
-		JLabel nickLabel = new JLabel("닉네임 ");
-		nickLabel.setFont(labelFont);
-		nickLabel.setForeground(new Color(247, 243, 130));
-		nickLabel.setSize(200, 30);
-		nickLabel.setLocation(120, 270);
+		JLabel nameLabel = new JLabel("닉네임 ");
+		nameLabel.setFont(labelFont);
+		nameLabel.setForeground(labelColor);
+		nameLabel.setSize(labelW, labelH);
+		nameLabel.setLocation(labelX, labelY + fix * i++);
 
 		// 닉네임 그림자 효과
-		JLabel nickShadow = new JLabel(nickLabel.getText());
-		nickShadow.setFont(labelFont);
-		nickShadow.setSize(200, 30);
-		nickShadow.setLocation(123, 273);
+		JLabel nameShadow = new JLabel(nameLabel.getText());
+		nameShadow.setFont(labelFont);
+		nameShadow.setSize(nameLabel.getWidth(), nameLabel.getHeight());
+		nameShadow.setLocation(nameLabel.getX() + 2, nameLabel.getY() + 2);
 
 		// 닉네임 텍스트
-		JTextField nicktxt = new JTextField(30);
-		nicktxt.setSize(300, 30);
-		nicktxt.setLocation(300, 270);
+		JTextField nameText = new JTextField();
+		nameText.setSize(textW, textH);
+		nameText.setLocation(textX, nameLabel.getY());
+
+		// 중복 확인 결과 메시지
+		JLabel nameCheckLabel = new JLabel();
+		nameCheckLabel.setFont(textFont);
+		nameCheckLabel.setSize(textW, textH);
+		nameCheckLabel.setLocation(textX, nameText.getY() + textH);
+
+		// 닉네인 중복 확인 버튼
+		JButton nameCheckBtn = new JButton("중복확인");
+		nameCheckBtn.setBorderPainted(false);
+		nameCheckBtn.setContentAreaFilled(false);
+		nameCheckBtn.setFocusPainted(false);
+		nameCheckBtn.setSize(labelW, labelH);
+		nameCheckBtn.setLocation(textX + textW, nameLabel.getY());
+		nameCheckBtn.setFont(labelFont);
 
 		// 이메일 라벨
 		JLabel emailLabel = new JLabel("이메일 ");
 		emailLabel.setFont(labelFont);
-		emailLabel.setForeground(new Color(247, 243, 130));
-		emailLabel.setSize(200, 30);
-		emailLabel.setLocation(120, 320);
+		emailLabel.setForeground(labelColor);
+		emailLabel.setSize(labelW, labelH);
+		emailLabel.setLocation(labelX, labelY + fix * i++);
 
 		// 이메일 그림자 효과
 		JLabel emailShadow = new JLabel(emailLabel.getText());
 		emailShadow.setFont(labelFont);
-		emailShadow.setSize(200, 30);
-		emailShadow.setLocation(123, 323);
+		emailShadow.setSize(emailLabel.getWidth(), emailLabel.getHeight());
+		emailShadow.setLocation(emailLabel.getX() + 2, emailLabel.getY() + 2);
 
 		// 이메일 텍스트
-		JTextField emailtxt = new JTextField(30);
-		emailtxt.setSize(300, 30);
-		emailtxt.setLocation(300, 320);
+		JTextField emailText = new JTextField();
+		emailText.setSize(textW, textH);
+		emailText.setLocation(textX, emailLabel.getY());
 
 		// // 회원가입완료 버튼
 		JButton signUp = new JButton("회원가입완료");
-		signUp.setFont(littlebigFont);
-		signUp.setForeground(new Color(247, 243, 130));
-		signUp.setSize(400, 150);
-		signUp.setLocation(200, 330);
 		signUp.setBorderPainted(false);
-		signUp.setContentAreaFilled(false); // 버튼 투명
+		signUp.setContentAreaFilled(false);
 		signUp.setFocusPainted(false);
-
-		// 회원가입완료 그림자 효과
-		// JLabel signUpShadow = new JLabel(signUp.getText());
-		// signUpShadow.setFont(littlebigFont);
-		// signUpShadow.setSize(350, 150);
-		// signUpShadow.setLocation(250, 380);
-
-		// JButton btn = new JButton();
-		// btn.setLocation(250, 375);
-		// btn.setSize(315, 65);
-		// btn.setContentAreaFilled(false);
+		signUp.setFont(littlebigFont);
+		signUp.setForeground(labelColor);
+		signUp.setSize(380, 60);
+		signUp.setLocation((myPage.getWidth() - signUp.getWidth()) / 2, labelY + fix * i++);
 
 		// 패녈에 추가
-		// panel.add(titleLabel1);
-		panel.add(titleLabel2);
-		// this.add(titleShadow1);
-		panel.add(titleShadow2);
+		panel.add(titleLabel);
+		panel.add(titleShadow);
+
 		panel.add(idLabel);
 		panel.add(idShadow);
-		panel.add(idtxt);
+		panel.add(idText);
+		panel.add(idCheckLabel);
+		panel.add(idCheckBtn);
+
 		panel.add(pwdLabel);
 		panel.add(pwdShadow);
-		panel.add(pwdtxt);
+		panel.add(pwdText);
+
 		panel.add(pwdLabel2);
 		panel.add(pwdShadow2);
-		panel.add(pwdtxt2);
-		panel.add(signUp);
-		// panel.add(signUpShadow);
-		panel.add(nickLabel);
-		panel.add(nickShadow);
-		panel.add(nicktxt);
+		panel.add(pwdText2);
+		panel.add(pwdCheckLabel);
+		panel.add(pwdCheckBtn);
+
+		panel.add(nameLabel);
+		panel.add(nameShadow);
+		panel.add(nameText);
+		panel.add(nameCheckLabel);
+		panel.add(nameCheckBtn);
+
 		panel.add(emailLabel);
-		panel.add(emailtxt);
+		panel.add(emailText);
 		panel.add(emailShadow);
-		// this.add(btn);
+
+		panel.add(signUp);
+
 		panel.add(background);
+
 		this.add(panel);
+
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		idCheckBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Map<String, String> map = new HashMap<>();
+				map.put("id", idText.getText());
+
+				// signController.find
+
+			}
+		});
+
+		pwdCheckBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				if (pwdText.getText().equals("")) {
+					pwdCheckLabel.setText("비밀번호를 입력해주세요.");
+					pwdCheckLabel.setForeground(Color.RED);
+				}
+
+			}
+		});
+
+		nameCheckBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+
+		signUp.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Map<String, String> map = new HashMap<>();
+				map.put("id", idText.getText());
+				map.put("pwd", pwdText.getText());
+				map.put("name", nameText.getText());
+				map.put("email", emailText.getText());
+
+				if (signController.insertNewPlayer(map)) {
+					myPage.dispose();
+					new LoginPage();
+				}
+
+			}
+		});
 	}
 
 }

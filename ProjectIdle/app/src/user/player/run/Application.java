@@ -12,8 +12,6 @@ public class Application {
 	public static Font littlebigFont = new Font("DungGeunMo", Font.BOLD, 55);
 
 	public static void main(String[] args) {
-		
-
 
 	}
 

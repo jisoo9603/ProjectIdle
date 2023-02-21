@@ -9,25 +9,29 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import user.player.info.UserInfoPage;
 import user.player.realplay.PlayMain;
+import user.player.signup.GameStart;
+import user.player.storage.StoragePage;
+import user.player.store.StoreMainPage;
 
 public class GameMain extends JFrame {
 
-	 	private JFrame myPage;
+	private JFrame myPage;
 
-		public GameMain() {
+	public GameMain() {
 		this.setSize(800, 510);
 		this.setLocationRelativeTo(null);
 		this.setAutoRequestFocus(false);
-		
+
 		this.myPage = this;
 
 		ImageIcon img = new ImageIcon("images/GameMain.png");
 
 		JPanel panel = new JPanel();
-		
+
 		panel.setLayout(null);
-		
+
 		JLabel background = new JLabel(img);
 		background.setLocation(0, 0);
 		background.setSize(800, 500);
@@ -37,7 +41,7 @@ public class GameMain extends JFrame {
 		play.setSize(137, 45);
 		play.setLocation(68, 220);
 		play.setFocusPainted(false);
-		play.setBorderPainted(false);	
+		play.setBorderPainted(false);
 		play.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -53,7 +57,15 @@ public class GameMain extends JFrame {
 		store.setLocation(511, 87);
 		store.setFocusPainted(false);
 		store.setBorderPainted(false);
-		
+
+		store.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myPage.dispose();
+				new StoreMainPage();
+			}
+		});
 		JButton storage = new JButton();
 
 		storage.setContentAreaFilled(false);
@@ -62,31 +74,31 @@ public class GameMain extends JFrame {
 		storage.setFocusPainted(false);
 		storage.setBorderPainted(false);
 		storage.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myPage.dispose();
-				new GameMain();
+				new StoragePage();
 			}
 		});
-		
+
 		JButton mypage = new JButton();
-		//	       
+		//
 		mypage.setContentAreaFilled(false);
 		mypage.setSize(137, 45);
 		mypage.setLocation(402, 346);
 		mypage.setFocusPainted(false);
 		mypage.setBorderPainted(false);
 		mypage.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myPage.dispose();
-				new GameMain();
+				new UserInfoPage();
 			}
 		});
-		
-		//	       
+
+		//
 		JButton gameout = new JButton();
 
 		gameout.setContentAreaFilled(false);
@@ -95,11 +107,11 @@ public class GameMain extends JFrame {
 		gameout.setFocusPainted(false);
 		gameout.setBorderPainted(false);
 		gameout.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myPage.dispose();
-				new GameMain();
+				new GameStart();
 			}
 		});
 

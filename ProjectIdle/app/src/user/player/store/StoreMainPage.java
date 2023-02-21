@@ -1,20 +1,28 @@
 package user.player.store;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import user.player.gamemain.GameMain;
+import user.player.store.ingre.IngreMarketPage;
+import user.player.store.receip.StoreReceipPage;
+import user.player.store.update.StoreChoiceUpdate;
+
 public class StoreMainPage extends JFrame {
-	
+
 	private JFrame myPage;
 
 	public StoreMainPage() {
 		this.setSize(800, 500);
 		this.setLocationRelativeTo(null);
 		this.setAutoRequestFocus(false);
-		
+
 		this.myPage = this;
 
 		ImageIcon img = new ImageIcon("images/StoreMain.png");
@@ -55,17 +63,43 @@ public class StoreMainPage extends JFrame {
 		btnBack.setBorderPainted(false);
 		btnBack.setFocusPainted(false);
 
+		btnIngre.addActionListener(new ActionListener() {
 
-//		ingreBtn.addActionListener(new ActionListener() {
-//
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				myPage.dispose();
-//				new LoginPage();
-//			}
-//		});
-//
-//
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myPage.dispose();
+				new IngreMarketPage();
+			}
+		});
+
+		btnRecep.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myPage.dispose();
+				new StoreReceipPage();
+			}
+		});
+
+		btnUpdate.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myPage.dispose();
+				new StoreChoiceUpdate();
+			}
+		});
+
+		btnBack.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myPage.dispose();
+				new GameMain();
+
+			}
+		});
+
 		panel.add(btnIngre);
 		panel.add(btnRecep);
 		panel.add(btnUpdate);

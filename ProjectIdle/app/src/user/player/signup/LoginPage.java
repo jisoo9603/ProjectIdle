@@ -12,10 +12,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import user.player.info.UserInfoPage;
-import user.player.storage.StoragePage;
-import user.player.store.ingre.IngreMarketPage;
-
 public class LoginPage extends JFrame {
 
 	private JFrame myPage;
@@ -49,7 +45,7 @@ public class LoginPage extends JFrame {
 		int pwdX = idX;
 		int pwdY = idY + labelHeight + 30;
 
-		ImageIcon back = new ImageIcon("img/background.png");
+		ImageIcon back = new ImageIcon("images/background.png");
 
 		JLabel backgroundLabel = new JLabel(back);
 		backgroundLabel.setSize(800, 500);
@@ -166,36 +162,6 @@ public class LoginPage extends JFrame {
 		findPwdShadow.setSize(200, 30);
 		findPwdShadow.setLocation(X + 400 + 2, pwdY + labelHeight + 20 + 2);
 
-		loginBtn.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				myPage.dispose();
-				new StoragePage();
-
-			}
-		});
-
-		signUpBtn.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				myPage.dispose();
-				new UserInfoPage();
-
-			}
-		});
-
-		findPwdBtn.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				myPage.dispose();
-				new IngreMarketPage();
-
-			}
-		});
-
 		// 패녈에 추가
 		panel.add(titleLabel1);
 		panel.add(titleLabel2);
@@ -219,6 +185,36 @@ public class LoginPage extends JFrame {
 
 		myPage.setVisible(true);
 		myPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		loginBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myPage.dispose();
+				new Connecting();
+
+			}
+		});
+
+		signUpBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myPage.dispose();
+				new SignUpPage();
+
+			}
+		});
+
+		findPwdBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myPage.dispose();
+				new FindPasswordPage();
+
+			}
+		});
 	}
 
 }
