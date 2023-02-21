@@ -298,6 +298,7 @@ public class IngreMarketPage extends JFrame {
 				msglbl.setVisible(true);
 			}
 		});
+		
 		closeBtn.addActionListener(new ActionListener() {
 
 			@Override
@@ -308,7 +309,8 @@ public class IngreMarketPage extends JFrame {
 				msglbl.setVisible(false);
 
 				goldText.setText("자금 : " + gold + "원");
-
+				
+				
 			}
 		});
 

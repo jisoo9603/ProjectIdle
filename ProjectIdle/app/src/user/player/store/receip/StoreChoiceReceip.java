@@ -41,7 +41,6 @@ public class StoreChoiceReceip extends JFrame {
 		//btnClose.setBorderPainted(false);
 		//btnClose.setFocusPainted(false);
 
-
 		//구매취소
 		JButton btnClose = new JButton();
 		btnClose.setLocation(435,340);

@@ -1,5 +1,7 @@
 package user.player.store.receip;
 
+import java.awt.Image;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -27,7 +29,7 @@ public class StoreReceipPage extends JFrame {
 		background.setLocation(0, 0);
 		background.setSize(800, 500);
 
-
+		
 		JButton btnBack = new JButton();
 		btnBack.setLocation(5, 5);
 		btnBack.setSize(70, 40);
@@ -48,6 +50,27 @@ public class StoreReceipPage extends JFrame {
 		btnRight.setContentAreaFilled(false);
 		btnRight.setBorderPainted(false);
 		btnRight.setFocusPainted(false);
+		
+		
+		
+		Image[] recipe = new Image[] {
+				new ImageIcon("images/recipe.png").getImage().getScaledInstance(65, 65, 0)
+				
+				
+		};
+		
+		JButton[][] recipeBtn = new JButton[3][5];		//레시피 버튼
+		JLabel[][] recipeList = new JLabel[3][5];		//레시피 리스트
+		JLabel[][] recipePriceList = new JLabel[3][5];	// 레시피 가격 리스트
+		
+		for (int i = 0; i < recipeList.length; i++) {
+			for (int k = 0; k < recipeList[i].length; k++) {
+				recipeList[i][k] = new JLabel(new ImageIcon(recipe[(i + k) % recipe.length]));
+				recipeList[i][k].setSize(65, 65);
+				recipeList[i][k].setLocation(165 * k, 165 * i);
+				panel.add(recipeList[i][k]);
+			}
+		}
 
 		panel.add(btnBack);
 		panel.add(btnLeft);

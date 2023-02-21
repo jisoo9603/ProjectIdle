@@ -2,7 +2,7 @@ package user.player.run;
 
 import java.awt.Font;
 
-import user.player.realplay.PlayMain;
+
 
 public class Application {
 
@@ -12,17 +12,6 @@ public class Application {
 	public static Font littlebigFont = new Font("DungGeunMo", Font.BOLD, 55);
 
 	public static void main(String[] args) {
-		//new StoreMainPage();
-		//new SignUpPage();
-		//new StoreReceipPage();
-		//new StoreNCash();
-		//new StoreYCash();
-		//new StoreChoiceReceip();
-		//new StoreChoiceUpdate();
-		//new IngreMaMain();
-		//new ManagerMainPage();
-		//new RankPage();
-		//new UserDeleteCheckPage();
-		new PlayMain();
+
 	}
 }
