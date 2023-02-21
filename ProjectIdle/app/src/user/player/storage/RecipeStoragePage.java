@@ -11,8 +11,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import user.player.store.StoreMainPage;
-
 public class RecipeStoragePage extends JFrame {
 
 	private JFrame myPage;
@@ -77,6 +75,7 @@ public class RecipeStoragePage extends JFrame {
 		Image recipe = new ImageIcon("images/recipe1.png").getImage().getScaledInstance(recipeW, recipeH, 0);
 
 		JLabel[][] ingreLabels = new JLabel[3][4];
+		
 
 		for (int i = 0; i < ingreLabels.length; i++) {
 			for (int k = 0; k < ingreLabels[i].length; k++) {
@@ -86,13 +85,16 @@ public class RecipeStoragePage extends JFrame {
 				panel.add(ingreLabels[i][k]);
 			}
 		}
+		
+		
 
+		
 		backBtn.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myPage.dispose();
-				new StoreMainPage();
+				new StoragePage();
 
 			}
 		});
