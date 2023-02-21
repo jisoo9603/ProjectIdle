@@ -112,7 +112,7 @@ public class IngreMarketPage extends JFrame {
 		payText.setFont(labelFont);
 		payText.setHorizontalAlignment(JLabel.CENTER);
 
-		JButton payBtn = new JButton("결재하기");
+		JButton payBtn = new JButton("결제하기");
 		payBtn.setBorderPainted(false);
 		payBtn.setContentAreaFilled(false);
 		payBtn.setFocusPainted(false);
@@ -198,7 +198,7 @@ public class IngreMarketPage extends JFrame {
 				panel.add(ingreBtn[i][k]);
 			}
 		}
-
+		
 		// 재료 가격 나열
 		for (int i = 0; i < ingrePriceList.length; i++) {
 			for (int k = 0; k < ingrePriceList[i].length; k++) {

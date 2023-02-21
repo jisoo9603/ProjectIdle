@@ -2,6 +2,8 @@ package user.player.run;
 
 import java.awt.Font;
 
+import user.player.store.ingre.IngreMarketPage;
+
 public class Application {
 
 	public static Font labelFont = new Font("DungGeunMo", Font.PLAIN, 25);
@@ -10,5 +12,7 @@ public class Application {
 	public static Font littlebigFont = new Font("DungGeunMo", Font.BOLD, 55);
 
 	public static void main(String[] args) {
+		
+		new IngreMarketPage();
 	}
 }
