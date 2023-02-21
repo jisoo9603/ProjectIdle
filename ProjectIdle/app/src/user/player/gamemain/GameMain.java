@@ -22,7 +22,7 @@ public class GameMain extends JFrame {
 		
 		this.myPage = this;
 
-		ImageIcon img = new ImageIcon("img/GameMain.png");
+		ImageIcon img = new ImageIcon("images/GameMain.png");
 
 		JPanel panel = new JPanel();
 		
