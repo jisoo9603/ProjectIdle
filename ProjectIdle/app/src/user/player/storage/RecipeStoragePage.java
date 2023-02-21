@@ -75,6 +75,7 @@ public class RecipeStoragePage extends JFrame {
 		Image recipe = new ImageIcon("images/recipe1.png").getImage().getScaledInstance(recipeW, recipeH, 0);
 
 		JLabel[][] ingreLabels = new JLabel[3][4];
+		
 
 		for (int i = 0; i < ingreLabels.length; i++) {
 			for (int k = 0; k < ingreLabels[i].length; k++) {
@@ -84,7 +85,10 @@ public class RecipeStoragePage extends JFrame {
 				panel.add(ingreLabels[i][k]);
 			}
 		}
+		
+		
 
+		
 		backBtn.addActionListener(new ActionListener() {
 
 			@Override

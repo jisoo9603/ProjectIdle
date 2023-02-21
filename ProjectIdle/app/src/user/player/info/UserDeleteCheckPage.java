@@ -30,9 +30,9 @@ public class UserDeleteCheckPage extends JFrame {
 
 		panel.setLayout(null);
 
-		ImageIcon back = new ImageIcon("img/MainBackground.png");
-		ImageIcon board = new ImageIcon("img/board.png");
-		ImageIcon panelImg = new ImageIcon("img/buttonFrame.png");
+		ImageIcon back = new ImageIcon("images/MainBackground.png");
+		ImageIcon board = new ImageIcon("images/board.png");
+		ImageIcon panelImg = new ImageIcon("images/buttonFrame.png");
 
 		// 배경
 		JLabel backgroundLabel = new JLabel(back);

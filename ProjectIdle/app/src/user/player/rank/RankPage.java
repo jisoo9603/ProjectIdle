@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 
 import user.player.info.UserInfoPage;
 
+
 public class RankPage extends JFrame {
 
 	private JFrame myPage;
@@ -68,6 +69,8 @@ public class RankPage extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		close.addActionListener(new ActionListener() {
+
+
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
