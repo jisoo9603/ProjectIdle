@@ -43,7 +43,7 @@
 			 , A.PLAYER_GOLD
 			 , A.PLAYER_EXP
 		  FROM PLAYER A
-		 WHERE A.PLAYER_NAME = #{id}
+		 WHERE A.PLAYER_ID = #{id}
 		AND A.PLAYER_EMAIL = #{email}
 	</select>
 

@@ -19,6 +19,7 @@ import user.player.signup.controller.SignController;
 public class FindPasswordPage extends JFrame {
 
 	private JFrame myPage;
+	private boolean isFind;
 
 	public FindPasswordPage() {
 
@@ -98,24 +99,35 @@ public class FindPasswordPage extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				Map<String, String> map = new HashMap<>();
-
-				map.put("id", id.getText());
-				map.put("email", email.getText());
-
-				SignController signController = new SignController();
-
-				String message = signController.findPwdByIdAndEmail(map);
-
-				msgPwd.setText(message);
-
 				pwdCheck.setVisible(true);
 				closeBtn.setVisible(true);
 				msgPwd.setVisible(true);
 
-				// myPage.dispose();
-				// new LoginPage();
+				if (id.getText().isEmpty()) {
+					msgPwd.setText("아이디를 입력하세요.");
+					isFind = false;
+				} else if (email.getText().isEmpty()) {
+					msgPwd.setText("이메일을 입력하세요.");
+					isFind = false;
+				} else {
 
+					Map<String, String> map = new HashMap<>();
+
+					map.put("id", id.getText());
+					map.put("email", email.getText());
+
+					SignController signController = new SignController();
+
+					String message = signController.findPwdByIdAndEmail(map);
+
+					msgPwd.setText(message);
+
+					if (message.equals("일치하는 비밀번호가 없습니다.")) {
+						isFind = false;
+					} else {
+						isFind = true;
+					}
+				}
 			}
 		});
 
@@ -124,8 +136,14 @@ public class FindPasswordPage extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				myPage.dispose();
-				new LoginPage();
+				if (isFind) {
+					myPage.dispose();
+					new LoginPage();
+				} else {
+					pwdCheck.setVisible(false);
+					closeBtn.setVisible(false);
+					msgPwd.setVisible(false);
+				}
 
 			}
 		});
