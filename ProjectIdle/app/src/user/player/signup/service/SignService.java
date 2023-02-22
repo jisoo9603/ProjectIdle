@@ -43,4 +43,16 @@ public class SignService {
 		return player;
 	}
 
+	public PlayerDTO findPlayer(Map<String, String> map) {
+
+		SqlSession sqlSession = getSqlSession();
+		mapper = sqlSession.getMapper(SignMapper.class);
+
+		PlayerDTO player = mapper.selectPlayer(map);
+
+		sqlSession.close();
+
+		return player;
+	}
+
 }
