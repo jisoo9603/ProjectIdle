@@ -9,8 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import user.player.gamemain.GameMain;
-
 public class Connecting extends JFrame {
 
 	private JFrame myPage;
@@ -43,7 +41,7 @@ public class Connecting extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				myPage.dispose();
-				new GameMain();
+				// new GameMain();
 
 			}
 		});

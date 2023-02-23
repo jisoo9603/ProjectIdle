@@ -18,12 +18,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import user.player.signup.controller.SignController;
+import user.player.signup.controller.PlayerController;
 
 public class SignUpPage extends JFrame {
 
 	private JFrame myPage;
-	private SignController signController = new SignController();
+	private PlayerController signController = new PlayerController();
 
 	private String tempId, tempPwd, tempName;
 	private boolean isCreate;

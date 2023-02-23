@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="user.player.common.SignMapper">
+<mapper namespace="user.player.common.PlayerMapper">
 
-	<resultMap type="user.player.common.dto.PlayerDTO"
+	<resultMap type="PlayerDTO"
 		id="playerResultMap">
 		<id property="name" column="PLAYER_NAME" />
 		<result property="id" column="PLAYER_ID" />
@@ -12,7 +12,7 @@
 		<result property="exp" column="PLAYER_EXP" />
 	</resultMap>
 
-	<insert id="insertNewPlayer" parameterType="user.player.common.dto.PlayerDTO">
+	<insert id="insertNewPlayer" parameterType="PlayerDTO">
 		INSERT
 		  INTO PLAYER
 		(
@@ -45,6 +45,32 @@
 		  FROM PLAYER A
 		 WHERE A.PLAYER_ID = #{id}
 		AND A.PLAYER_EMAIL = #{email}
+	</select>
+	
+	<select id="selectPlayer" parameterType = "hashmap" resultMap="playerResultMap">
+		SELECT
+			   A.PLAYER_NAME
+			 , A.PLAYER_ID
+			 , A.PLAYER_PASS
+			 , A.PLAYER_EMAIL
+			 , A.PLAYER_GOLD
+			 , A.PLAYER_EXP
+		  FROM PLAYER A
+		  <trim prefix="WHERE" prefixOverrides="AND|OR">
+		  <if test="id != null">
+		  		A.PLAYER_ID=#{id}
+		  </if>
+		  <if test="email != null">
+		  	AND	A.PLAYER_EMAIL=#{email}
+		  </if>
+		  <if test="name != null">
+		  	AND	A.PLAYER_NAME=#{name}
+		  </if>
+		  
+		  </trim>
+		  
+		  
+		  
 	</select>
 
 

@@ -4,7 +4,7 @@ import java.util.Map;
 
 import user.player.common.dto.PlayerDTO;
 
-public interface SignMapper {
+public interface PlayerMapper {
 
 	int insertNewPlayer(PlayerDTO player);
 

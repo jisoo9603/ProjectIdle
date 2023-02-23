@@ -3,10 +3,10 @@ package user.player.signup.controller;
 import java.util.Map;
 
 import user.player.common.dto.PlayerDTO;
-import user.player.signup.service.SignService;
+import user.player.signup.service.PlayerService;
 
-public class SignController {
-	private SignService signService = new SignService();
+public class PlayerController {
+	private PlayerService signService = new PlayerService();
 
 	public boolean insertNewPlayer(Map<String, String> map) {
 

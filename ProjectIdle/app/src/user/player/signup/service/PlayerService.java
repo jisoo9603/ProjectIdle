@@ -6,17 +6,17 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import user.player.common.SignMapper;
+import user.player.common.PlayerMapper;
 import user.player.common.dto.PlayerDTO;
 
-public class SignService {
+public class PlayerService {
 
-	private SignMapper mapper;
+	private PlayerMapper mapper;
 
 	public boolean insertNewPlayer(PlayerDTO player) {
 
 		SqlSession sqlSession = getSqlSession();
-		mapper = sqlSession.getMapper(SignMapper.class);
+		mapper = sqlSession.getMapper(PlayerMapper.class);
 
 		int result = mapper.insertNewPlayer(player);
 
@@ -33,9 +33,21 @@ public class SignService {
 	public PlayerDTO findPwdByIdAndEmail(Map<String, String> map) {
 
 		SqlSession sqlSession = getSqlSession();
-		mapper = sqlSession.getMapper(SignMapper.class);
+		mapper = sqlSession.getMapper(PlayerMapper.class);
 
 		PlayerDTO player = mapper.selectPwdByIdAndEmail(map);
+
+		sqlSession.close();
+
+		return player;
+	}
+
+	public PlayerDTO findPlayer(Map<String, String> map) {
+
+		SqlSession sqlSession = getSqlSession();
+		mapper = sqlSession.getMapper(PlayerMapper.class);
+
+		PlayerDTO player = mapper.selectPlayer(map);
 
 		sqlSession.close();
 

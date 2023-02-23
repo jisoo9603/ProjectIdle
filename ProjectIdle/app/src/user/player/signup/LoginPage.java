@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 
 import user.player.common.dto.PlayerDTO;
 import user.player.gamemain.GameMain;
-import user.player.signup.controller.SignController;
+import user.player.signup.controller.PlayerController;
 
 public class LoginPage extends JFrame {
 
@@ -240,7 +240,7 @@ public class LoginPage extends JFrame {
 					map.put("id", idText.getText());
 					map.put("pass", pwdText.getText());
 
-					SignController signController = new SignController();
+					PlayerController signController = new PlayerController();
 
 					PlayerDTO player = signController.loginPlayer(map);
 					if (player != null) {
