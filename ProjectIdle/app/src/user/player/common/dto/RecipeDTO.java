@@ -18,5 +18,5 @@ public class RecipeDTO {
 	private int recipePrice;
 	private int foodPrice;
 	private int exp;
-
+	
 }
