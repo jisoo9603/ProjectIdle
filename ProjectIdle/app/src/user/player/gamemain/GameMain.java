@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import user.player.common.dto.PlayerDTO;
 import user.player.info.UserInfoPage;
 import user.player.realplay.PlayMain;
 import user.player.signup.GameStart;
@@ -19,7 +20,7 @@ public class GameMain extends JFrame {
 
 	private JFrame myPage;
 
-	public GameMain() {
+	public GameMain(PlayerDTO player) {
 		this.setSize(800, 510);
 		this.setLocationRelativeTo(null);
 		this.setAutoRequestFocus(false);
@@ -42,6 +43,7 @@ public class GameMain extends JFrame {
 		play.setLocation(68, 220);
 		play.setFocusPainted(false);
 		play.setBorderPainted(false);
+
 		play.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

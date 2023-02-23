@@ -78,8 +78,6 @@ public class ManagerMainPage extends JFrame {
       receipM.setBorderPainted(false); 
       receipM.setContentAreaFilled(false); // 버튼 투명
       receipM.setFocusPainted(false);
-
-      
       
     //확장권버튼
       JButton updateM = new JButton();

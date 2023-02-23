@@ -1,9 +1,13 @@
 package user.player.signup;
 
+import static user.player.run.Application.labelFont;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -12,9 +16,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import user.player.common.dto.PlayerDTO;
+import user.player.gamemain.GameMain;
+import user.player.signup.controller.SignController;
+
 public class LoginPage extends JFrame {
 
 	private JFrame myPage;
+	private boolean isLogin;
 
 	public LoginPage() {
 
@@ -89,9 +98,9 @@ public class LoginPage extends JFrame {
 		idShadow.setLocation(idX + 2, idY + 2);
 
 		// 아이디 텍스트
-		JTextField idtxt = new JTextField(20);
-		idtxt.setSize(textWidth, textHeight);
-		idtxt.setLocation(idX + labelWidth - 50, idY);
+		JTextField idText = new JTextField(20);
+		idText.setSize(textWidth, textHeight);
+		idText.setLocation(idX + labelWidth - 50, idY);
 
 		// 비밀번호 라벨
 		JLabel pwdLabel = new JLabel("비밀번호 : ");
@@ -107,9 +116,9 @@ public class LoginPage extends JFrame {
 		pwdShadow.setLocation(pwdX + 2, pwdY + 2);
 
 		// 비밀번호 텍스트
-		JTextField pwdtxt = new JTextField(20);
-		pwdtxt.setSize(textWidth, textHeight);
-		pwdtxt.setLocation(pwdX + labelWidth - 50, pwdY);
+		JTextField pwdText = new JTextField(20);
+		pwdText.setSize(textWidth, textHeight);
+		pwdText.setLocation(pwdX + labelWidth - 50, pwdY);
 
 		// 로그인 버튼
 		JButton loginBtn = new JButton("Login");
@@ -162,17 +171,45 @@ public class LoginPage extends JFrame {
 		findPwdShadow.setSize(200, 30);
 		findPwdShadow.setLocation(X + 400 + 2, pwdY + labelHeight + 20 + 2);
 
-		// 패녈에 추가
+		// 결과 확인 라벨
+		JLabel resultLabel = new JLabel();
+		resultLabel.setSize(600, 300);
+		resultLabel.setLocation(100, 100);
+		resultLabel.setOpaque(true);
+		resultLabel.setBackground(new Color(250, 220, 120));
+
+		// 결과 확인 텍스트
+		JLabel resultText = new JLabel();
+		resultText.setSize(resultLabel.getWidth(), 30);
+		resultText.setLocation(resultLabel.getX(), resultLabel.getY() + resultLabel.getHeight() / 2);
+		resultText.setHorizontalAlignment(JLabel.CENTER);
+		resultText.setFont(labelFont);
+
+		// 결과확인 창 닫기
+		JButton closeBtn = new JButton("닫기");
+		closeBtn.setSize(100, 50);
+		closeBtn.setLocation(resultLabel.getX() + (resultLabel.getWidth() - closeBtn.getWidth()) / 2,
+				resultLabel.getY() + resultLabel.getHeight() - closeBtn.getHeight());
+		resultLabel.setVisible(false);
+		resultText.setVisible(false);
+		closeBtn.setVisible(false);
+
+		// 패널에 추가
+
+		panel.add(closeBtn);
+		panel.add(resultText);
+		panel.add(resultLabel);
+
 		panel.add(titleLabel1);
 		panel.add(titleLabel2);
 		panel.add(titleShadow1);
 		panel.add(titleShadow2);
 		panel.add(idLabel);
 		panel.add(idShadow);
-		panel.add(idtxt);
+		panel.add(idText);
 		panel.add(pwdLabel);
 		panel.add(pwdShadow);
-		panel.add(pwdtxt);
+		panel.add(pwdText);
 		panel.add(loginBtn);
 		panel.add(loginShadow);
 		panel.add(signUpBtn);
@@ -190,9 +227,46 @@ public class LoginPage extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				myPage.dispose();
-				new Connecting();
 
+				resultLabel.setVisible(true);
+				resultText.setVisible(true);
+				closeBtn.setVisible(true);
+
+				if (idText.getText().isEmpty() || pwdText.getText().isEmpty()) {
+					resultText.setText("미입력된 정보가 있습니다.");
+				} else {
+
+					Map<String, String> map = new HashMap<>();
+					map.put("id", idText.getText());
+					map.put("pass", pwdText.getText());
+
+					SignController signController = new SignController();
+
+					PlayerDTO player = signController.loginPlayer(map);
+					if (player != null) {
+						myPage.dispose();
+						new GameMain(player);
+					} else {
+						resultText.setText("로그인 정보가 틀렸습니다.");
+					}
+				}
+
+			}
+		});
+
+		closeBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				resultLabel.setVisible(false);
+				resultText.setVisible(false);
+				closeBtn.setVisible(false);
+
+				if (isLogin) {
+					myPage.dispose();
+					new Connecting();
+				}
 			}
 		});
 

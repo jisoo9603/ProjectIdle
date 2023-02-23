@@ -10,4 +10,6 @@ public interface SignMapper {
 
 	PlayerDTO selectPwdByIdAndEmail(Map<String, String> map);
 
+	PlayerDTO selectPlayer(Map<String, String> map);
+
 }

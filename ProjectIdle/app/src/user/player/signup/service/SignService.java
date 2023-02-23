@@ -25,7 +25,6 @@ public class SignService {
 		} else {
 			sqlSession.rollback();
 		}
-
 		sqlSession.close();
 
 		return result > 0 ? true : false;
