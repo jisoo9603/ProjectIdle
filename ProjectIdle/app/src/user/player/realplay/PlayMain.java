@@ -15,7 +15,6 @@ import user.player.gamemain.GameMain;
 import user.player.store.ingre.IngreMarketPage;
 
 
-
 public class PlayMain extends JFrame{
 	Font labelFont = new Font("DungGeunMo", Font.PLAIN, 25);
 		
@@ -29,6 +28,10 @@ public class PlayMain extends JFrame{
 		this.setLocationRelativeTo(null);
 		this.setAutoRequestFocus(false);
 		this.setTitle("영업화면");
+		
+		String order1 = "떡볶이";
+		String order2 = "라면";
+		String order3 = "김밥";
 		
 		ImageIcon img = new ImageIcon("images/PlayMain.png");
 		
@@ -71,21 +74,21 @@ public class PlayMain extends JFrame{
 			}
 		});
 		
-		JButton cook1 = new JButton();
+		JButton cook1 = new JButton(order1);
 		cook1.setSize(130, 80);
 		cook1.setLocation(25, 70);
 		cook1.setContentAreaFilled(false);
 		cook1.setFocusPainted(false);
 		cook1.setBorderPainted(false);
 		
-		JButton cook2 = new JButton();
+		JButton cook2 = new JButton(order2);
 		cook2.setSize(130, 80);
 		cook2.setLocation(200, 70);
 		cook2.setContentAreaFilled(false);
 		cook2.setFocusPainted(false);
 		cook2.setBorderPainted(false);
 		
-		JButton cook3 = new JButton();
+		JButton cook3 = new JButton(order3);
 		cook3.setSize(130, 80);
 		cook3.setLocation(395, 70);
 		cook3.setContentAreaFilled(false);
@@ -109,26 +112,75 @@ public class PlayMain extends JFrame{
 		closeBtn.setFont(labelFont);
 		closeBtn.setVisible(false);
 		
-		JLabel msglbl = new JLabel(" 떡볶슨 ");
-		msglbl.setSize(board.getWidth(), 30);
-		msglbl.setLocation(board.getX()-100, board.getY() + (board.getHeight() - msglbl.getHeight()) / 2);
-		msglbl.setFont(labelFont);
-		msglbl.setHorizontalAlignment(JLabel.CENTER);
-		msglbl.setVisible(false);
+		JLabel msglbl1 = new JLabel(order1);
+		msglbl1.setSize(board.getWidth(), 30);
+		msglbl1.setLocation(board.getX()-100, board.getY() + (board.getHeight() - msglbl1.getHeight()) / 2);
+		msglbl1.setFont(labelFont);
+		msglbl1.setHorizontalAlignment(JLabel.CENTER);
+		msglbl1.setVisible(false);
 		
+		JLabel msglbl2 = new JLabel(order2);
+		msglbl2.setSize(board.getWidth(), 30);
+		msglbl2.setLocation(board.getX()-100, board.getY() + (board.getHeight() - msglbl1.getHeight()) / 2);
+		msglbl2.setFont(labelFont);
+		msglbl2.setHorizontalAlignment(JLabel.CENTER);
+		msglbl2.setVisible(false);
+		
+		JLabel msglbl3 = new JLabel(order3);
+		msglbl3.setSize(board.getWidth(), 30);
+		msglbl3.setLocation(board.getX()-100, board.getY() + (board.getHeight() - msglbl1.getHeight()) / 2);
+		msglbl3.setFont(labelFont);
+		msglbl3.setHorizontalAlignment(JLabel.CENTER);
+		msglbl3.setVisible(false);
+		
+		JLabel plusmade1 = new JLabel(order1); 
+		plusmade1.setSize(board.getWidth(), 30);
+		plusmade1.setLocation(430, 140);
+		plusmade1.setFont(labelFont);
+		plusmade1.setHorizontalAlignment(JLabel.CENTER);
+		plusmade1.setVisible(false);
+		
+		JLabel plusmade2 = new JLabel(order2);
+		plusmade2.setSize(board.getWidth(), 30);
+		plusmade2.setLocation(430, 140);
+		plusmade2.setFont(labelFont);
+		plusmade2.setHorizontalAlignment(JLabel.CENTER);
+		plusmade2.setVisible(false);
+		
+		JLabel plusmade3 = new JLabel(order3);
+		plusmade3.setSize(board.getWidth(), 30);
+		plusmade3.setLocation(430, 140);
+		plusmade3.setFont(labelFont);
+		plusmade3.setHorizontalAlignment(JLabel.CENTER);
+		plusmade3.setVisible(false);
+//		
+//		JLabel[][] madeList = new JLabel[5][1];
+//		
+//		for(int i = 0; i < madeList.length; i++) {
+//			for(int j = 0; j < madeList.length; j++) {
+//				madeList[i][j] = new JLabel();
+//			}
+//		}
+
 		JButton made1 = new JButton("제작하기");
 		//closeBtn.setBorderPainted(false);
 		made1.setContentAreaFilled(false);
 		made1.setFocusPainted(false);
 		made1.setSize(140, 30);
 		made1.setForeground(new Color(164, 219, 255));
-		made1.setLocation(480,  board.getY() + (board.getHeight() - msglbl.getHeight()) / 2);
+		made1.setLocation(480,  board.getY() + (board.getHeight() - msglbl1.getHeight()) / 2);
 		made1.setFont(labelFont);
 		made1.setVisible(false);
 		
+		panel.add(plusmade1);
+		panel.add(plusmade2);
+		panel.add(plusmade3);
+		
 		panel.add(made1);
     	panel.add(closeBtn);
-    	panel.add(msglbl);
+    	panel.add(msglbl1);
+    	panel.add(msglbl2);
+    	panel.add(msglbl3);
       	panel.add(board);
 		
 		panel.add(cook1);
@@ -137,7 +189,6 @@ public class PlayMain extends JFrame{
         panel.add(background);
         panel.add(goStore);
         panel.add(playOut);
-   
  
     	cook1.addActionListener(new ActionListener() {
 
@@ -146,12 +197,11 @@ public class PlayMain extends JFrame{
 				
 				board.setVisible(true);
 				closeBtn.setVisible(true);
-				msglbl.setVisible(true);
+				msglbl1.setVisible(true);
 				made1.setVisible(true);
-				
 			}
 		});
-    	
+    
     	cook2.addActionListener(new ActionListener() {
 
 			@Override
@@ -159,8 +209,8 @@ public class PlayMain extends JFrame{
 				
 				board.setVisible(true);
 				closeBtn.setVisible(true);
-				msglbl.setVisible(true);
-				
+				msglbl2.setVisible(true);
+				made1.setVisible(true);
 			}
 		});
     	
@@ -171,8 +221,8 @@ public class PlayMain extends JFrame{
 				
 				board.setVisible(true);
 				closeBtn.setVisible(true);
-				msglbl.setVisible(true);
-				
+				msglbl3.setVisible(true);
+				made1.setVisible(true);
 			}
 		});
     	closeBtn.addActionListener(new ActionListener() {
@@ -182,24 +232,28 @@ public class PlayMain extends JFrame{
 
 				board.setVisible(false);
 				closeBtn.setVisible(false);
-				msglbl.setVisible(false);
+				msglbl1.setVisible(false);
+				msglbl2.setVisible(false);
+				msglbl3.setVisible(false);
+				made1.setVisible(false);
 			}
 		});
     	
     	made1.addActionListener(new ActionListener() {
-
+    		
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
 				board.setVisible(false);
 				closeBtn.setVisible(false);
-				msglbl.setVisible(false);
-				
-				
+				msglbl1.setVisible(false);
+				msglbl2.setVisible(false);
+				msglbl3.setVisible(false);
+				made1.setVisible(false);
+				plusmade1.setVisible(true);
 			}
 		});
-    	
-    	
+ 
         this.add(panel);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

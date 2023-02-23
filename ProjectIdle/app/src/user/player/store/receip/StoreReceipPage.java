@@ -55,6 +55,12 @@ public class StoreReceipPage extends JFrame {
 		btnRight.setFocusPainted(false);
 
 		Image[] recipe = new Image[] {
+				new ImageIcon("images/recipe1.png").getImage().getScaledInstance(65, 65, 0)
+		};
+
+		JButton[][] recipeBtn = new JButton[3][5];
+		JLabel[][] recipeList = new JLabel[3][5];
+		JLabel[][] recipePriceList = new JLabel[3][5];
 
 		for (int i = 0; i < recipeList.length; i++) {
 			for (int k = 0; k < recipeList[i].length; k++) {
@@ -73,7 +79,18 @@ public class StoreReceipPage extends JFrame {
 				recipeBtn[i][k].setFocusPainted(false);
 				recipeBtn[i][k].setSize(65, 65);
 				recipeBtn[i][k].setLocation(recipeList[i][k].getX(), recipeList[i][k].getY());
+				recipeBtn[i][k].addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						myPage.dispose();
+						new StoreMainPage();
+						
+					}
+				});
+				
 				panel.add(recipeBtn[i][k]);
+				
 			}			
 		}
 		//레시피 가격 나열

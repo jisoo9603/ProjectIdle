@@ -25,7 +25,6 @@ public class SignService {
 		} else {
 			sqlSession.rollback();
 		}
-
 		sqlSession.close();
 
 		return result > 0 ? true : false;
@@ -37,18 +36,6 @@ public class SignService {
 		mapper = sqlSession.getMapper(SignMapper.class);
 
 		PlayerDTO player = mapper.selectPwdByIdAndEmail(map);
-
-		sqlSession.close();
-
-		return player;
-	}
-
-	public PlayerDTO findPlayer(Map<String, String> map) {
-
-		SqlSession sqlSession = getSqlSession();
-		mapper = sqlSession.getMapper(SignMapper.class);
-
-		PlayerDTO player = mapper.selectPlayer(map);
 
 		sqlSession.close();
 
