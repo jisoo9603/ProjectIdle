@@ -48,7 +48,7 @@ public class GameMain extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myPage.dispose();
-				new PlayMain();
+				new PlayMain(player);
 			}
 		});
 
