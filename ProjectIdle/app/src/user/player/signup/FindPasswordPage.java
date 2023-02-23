@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import user.player.signup.controller.SignController;
+import user.player.signup.controller.PlayerController;
 
 public class FindPasswordPage extends JFrame {
 
@@ -116,7 +116,7 @@ public class FindPasswordPage extends JFrame {
 					map.put("id", id.getText());
 					map.put("email", email.getText());
 
-					SignController signController = new SignController();
+					PlayerController signController = new PlayerController();
 
 					String message = signController.findPwdByIdAndEmail(map);
 

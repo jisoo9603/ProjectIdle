@@ -3,6 +3,16 @@
 <configuration>
 	<properties resource="connection-info.properties" />
 
+	<typeAliases>
+		<typeAlias type="user.player.common.dto.PlayerDTO" alias="PlayerDTO" />
+		<typeAlias type="user.player.common.dto.IngreDTO" alias="IngreDTO" />
+		<typeAlias type="user.player.common.dto.RecipeDTO" alias="RecipeDTO" />
+		<typeAlias type="user.player.common.dto.PlayerRecipeDTO" alias="PlayerRecipeDTO" />
+		<typeAlias type="user.player.common.dto.RecipeIngreDTO" alias="RecipeIngreDTO" />
+		<typeAlias type="user.player.common.dto.PlayerStoreDTO" alias="PlayerStoreDTO" />
+		<typeAlias type="user.player.common.dto.StorageDTO" alias="StorageDTO" />
+		<typeAlias type="user.player.common.dto.StoreDTO" alias="StoreDTO" />
+	</typeAliases>
 
 	<environments default="dev">
 		<environment id="dev">
@@ -16,6 +26,6 @@
 		</environment>
 	</environments>
 	<mappers>
-		<package name="user.player.common"/>
+		<package name="user.player.common" />
 	</mappers>
 </configuration>
