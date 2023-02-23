@@ -2,9 +2,6 @@ package user.player.run;
 
 import java.awt.Font;
 
-import user.player.realplay.PlayMain;
-
-
 
 public class Application {
 

@@ -37,4 +37,24 @@ public class SignController {
 		return message;
 	}
 
+	public boolean findPlayer(Map<String, String> map) {
+
+		PlayerDTO player = signService.findPlayer(map);
+
+		boolean isFind;
+		if (player == null) {
+			isFind = true;
+		} else {
+			isFind = false;
+		}
+
+		return isFind;
+	}
+
+	public PlayerDTO loginPlayer(Map<String, String> map) {
+		PlayerDTO player = signService.findPlayer(map);
+
+		return player;
+	}
+
 }

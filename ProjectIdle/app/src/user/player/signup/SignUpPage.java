@@ -25,6 +25,9 @@ public class SignUpPage extends JFrame {
 	private JFrame myPage;
 	private SignController signController = new SignController();
 
+	private String tempId, tempPwd, tempName;
+	private boolean isCreate;
+
 	public SignUpPage() {
 
 		this.setSize(800, 500);
@@ -215,7 +218,35 @@ public class SignUpPage extends JFrame {
 		signUp.setSize(380, 60);
 		signUp.setLocation((myPage.getWidth() - signUp.getWidth()) / 2, labelY + fix * i++);
 
-		// 패녈에 추가
+		// 결과 확인 라벨
+		JLabel resultLabel = new JLabel();
+		resultLabel.setSize(600, 300);
+		resultLabel.setLocation(100, 100);
+		resultLabel.setOpaque(true);
+		resultLabel.setBackground(new Color(250, 220, 120));
+
+		// 결과 확인 텍스트
+		JLabel resultText = new JLabel();
+		resultText.setSize(resultLabel.getWidth(), 30);
+		resultText.setLocation(resultLabel.getX(), resultLabel.getY() + resultLabel.getHeight() / 2);
+		resultText.setHorizontalAlignment(JLabel.CENTER);
+		resultText.setFont(labelFont);
+
+		// 결과확인 창 닫기
+		JButton closeBtn = new JButton("닫기");
+		closeBtn.setSize(100, 50);
+		closeBtn.setLocation(resultLabel.getX() + (resultLabel.getWidth() - closeBtn.getWidth()) / 2,
+				resultLabel.getY() + resultLabel.getHeight() - closeBtn.getHeight());
+		resultLabel.setVisible(false);
+		resultText.setVisible(false);
+		closeBtn.setVisible(false);
+
+		// 패널에 추가
+
+		panel.add(closeBtn);
+		panel.add(resultText);
+		panel.add(resultLabel);
+
 		panel.add(titleLabel);
 		panel.add(titleShadow);
 
@@ -262,7 +293,16 @@ public class SignUpPage extends JFrame {
 				Map<String, String> map = new HashMap<>();
 				map.put("id", idText.getText());
 
-				// signController.find
+				boolean isFind = signController.findPlayer(map);
+
+				if (isFind) {
+					idCheckLabel.setText("사용 가능한 아이디입니다.");
+					nameCheckLabel.setForeground(Color.BLACK);
+					tempId = idText.getText();
+				} else {
+					idCheckLabel.setText("이미 사용 중인 아이디입니다.");
+					idCheckLabel.setForeground(Color.RED);
+				}
 
 			}
 		});
@@ -272,9 +312,18 @@ public class SignUpPage extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				if (pwdText.getText().equals("")) {
+				if (pwdText.getText().isEmpty()) {
 					pwdCheckLabel.setText("비밀번호를 입력해주세요.");
 					pwdCheckLabel.setForeground(Color.RED);
+				} else {
+					if (pwdText.getText().equals(pwdText2.getText())) {
+						pwdCheckLabel.setText("비밀번호가 일치합니다.");
+						nameCheckLabel.setForeground(Color.BLACK);
+						tempPwd = pwdText.getText();
+					} else {
+						pwdCheckLabel.setText("비밀번호가 일치하지 않습니다.");
+						pwdCheckLabel.setForeground(Color.RED);
+					}
 				}
 
 			}
@@ -284,7 +333,18 @@ public class SignUpPage extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Map<String, String> map = new HashMap<>();
+				map.put("name", nameText.getText());
 
+				boolean isFind = signController.findPlayer(map);
+				if (isFind) {
+					nameCheckLabel.setText("사용 가능한 닉네임입니다.");
+					nameCheckLabel.setForeground(Color.BLACK);
+					tempName = nameText.getText();
+				} else {
+					nameCheckLabel.setText("이미 사용 중인 닉네임입니다.");
+					nameCheckLabel.setForeground(Color.RED);
+				}
 			}
 		});
 
@@ -293,17 +353,45 @@ public class SignUpPage extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				Map<String, String> map = new HashMap<>();
-				map.put("id", idText.getText());
-				map.put("pwd", pwdText.getText());
-				map.put("name", nameText.getText());
-				map.put("email", emailText.getText());
+				resultLabel.setVisible(true);
+				resultText.setVisible(true);
+				closeBtn.setVisible(true);
 
-				if (signController.insertNewPlayer(map)) {
+				if (idText.getText().equals(tempId) && pwdText.getText().equals(tempPwd)
+						&& nameText.getText().equals(tempName) && !emailText.getText().isEmpty()) {
+
+					Map<String, String> map = new HashMap<>();
+					map.put("id", idText.getText());
+					map.put("pwd", pwdText.getText());
+					map.put("name", nameText.getText());
+					map.put("email", emailText.getText());
+
+					isCreate = signController.insertNewPlayer(map);
+					if (isCreate) {
+						resultText.setText("회원가입이 되었습니다.");
+					} else {
+						resultText.setText("회원가입에 실패하셨습니다.");
+					}
+
+				} else {
+					resultText.setText("미입력된 정보가 있습니다.");
+				}
+			}
+		});
+
+		closeBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				resultLabel.setVisible(false);
+				resultText.setVisible(false);
+				closeBtn.setVisible(false);
+
+				if (isCreate) {
 					myPage.dispose();
 					new LoginPage();
 				}
-
 			}
 		});
 	}
