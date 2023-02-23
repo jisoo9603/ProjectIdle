@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import user.player.common.dto.PlayerDTO;
 import user.player.gamemain.GameMain;
 import user.player.store.ingre.IngreMarketPage;
 
@@ -20,7 +21,7 @@ public class PlayMain extends JFrame{
 		
 	private JFrame myPage;
 	
-	public PlayMain() {
+	public PlayMain(PlayerDTO player) {
 		
 		this.myPage = this;
 		
@@ -70,7 +71,7 @@ public class PlayMain extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myPage.dispose();
-				new GameMain();
+				new GameMain(player);
 			}
 		});
 		
