@@ -34,19 +34,6 @@
 		)
 	</insert>
 	
-	<select id="selectPwdByIdAndEmail" parameterType = "hashmap" resultMap="playerResultMap">
-		SELECT
-			   A.PLAYER_NAME
-			 , A.PLAYER_ID
-			 , A.PLAYER_PASS
-			 , A.PLAYER_EMAIL
-			 , A.PLAYER_GOLD
-			 , A.PLAYER_EXP
-		  FROM PLAYER A
-		 WHERE A.PLAYER_ID = #{id}
-		AND A.PLAYER_EMAIL = #{email}
-	</select>
-	
 	<select id="selectPlayer" parameterType = "hashmap" resultMap="playerResultMap">
 		SELECT
 			   A.PLAYER_NAME
@@ -59,18 +46,17 @@
 		  <trim prefix="WHERE" prefixOverrides="AND|OR">
 		  <if test="id != null">
 		  		A.PLAYER_ID=#{id}
+		  </if>		  
+		  <if test="pass != null">
+		  	AND	A.PLAYER_PASS=#{pass}
 		  </if>
 		  <if test="email != null">
 		  	AND	A.PLAYER_EMAIL=#{email}
 		  </if>
 		  <if test="name != null">
 		  	AND	A.PLAYER_NAME=#{name}
-		  </if>
-		  
+		  </if>		  
 		  </trim>
-		  
-		  
-		  
 	</select>
 
 

@@ -8,8 +8,6 @@ public interface PlayerMapper {
 
 	int insertNewPlayer(PlayerDTO player);
 
-	PlayerDTO selectPwdByIdAndEmail(Map<String, String> map);
-
 	PlayerDTO selectPlayer(Map<String, String> map);
 
 }
