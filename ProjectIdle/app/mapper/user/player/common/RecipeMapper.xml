@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user.player.common.RecipeMapper">
+
+<resultMap type="RecipeDTO" id="RecipeResultMap">
+		<id property="no" column="RECIPE_NO" />
+		<result property="name" column="FOOD_NAME" />
+		<result property="recipePrice" column="RECIPE_PRICE" />
+		<result property="foodPrice" column="FOOD_PRICE" />
+		<result property="exp" column="FOOD_EXP" />
+		
+		
+		
+	</resultMap>
+
+
+
+<select id="selectAllrecipe" resultMap="RecipeResultMap" >
+
+	SELECT
+		   A.RECIPE_NO
+		 , A.FOOD_NAME
+		 , A.RECIPE_PRICE
+		 , A.FOOD_PRICE
+		 , A.FOOD_EXP
+	  FROM RECIPE A
+	  
+</select>
+
+
+
+
+</mapper>
