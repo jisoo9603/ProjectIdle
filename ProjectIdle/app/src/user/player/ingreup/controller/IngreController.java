@@ -1,5 +1,6 @@
 package user.player.ingreup.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import user.player.common.dto.IngreDTO;
@@ -21,24 +22,14 @@ public class IngreController {
 
 		return isCreate;
 	}
-	
-	public String NewfindIngre(Map<String, String> map) {
 
-		IngreDTO ingre = IngreService.NewfindIngre(map);
+	public List<IngreDTO> findAllingre() {
 
-		String message;
-
-		if (ingre != null) {
-			message = "당신의 비밀번호는 " + ingre.getPass() + "입니다.";
-		} else {
-			message = "일치하는 비밀번호가 없습니다.";
-		}
-
-		return message;
-	}
-
-	public void findAllingre() {
-		// TODO Auto-generated method stub
+		
+		List<IngreDTO> ingreDTO = ingreService.findAllingre();
+		
+		return ingreDTO;
+		
 		
 	}
 
