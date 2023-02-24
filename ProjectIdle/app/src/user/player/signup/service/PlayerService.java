@@ -30,18 +30,6 @@ public class PlayerService {
 		return result > 0 ? true : false;
 	}
 
-	public PlayerDTO findPwdByIdAndEmail(Map<String, String> map) {
-
-		SqlSession sqlSession = getSqlSession();
-		mapper = sqlSession.getMapper(PlayerMapper.class);
-
-		PlayerDTO player = mapper.selectPwdByIdAndEmail(map);
-
-		sqlSession.close();
-
-		return player;
-	}
-
 	public PlayerDTO findPlayer(Map<String, String> map) {
 
 		SqlSession sqlSession = getSqlSession();

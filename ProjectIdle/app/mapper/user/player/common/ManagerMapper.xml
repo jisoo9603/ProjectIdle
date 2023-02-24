@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user.player.common.ManagerMapper">
+
+<resultMap type="IngreDTO"
+		id="ingreResultMap">
+		<id property="no" column="INGRE_NO" />
+		<result property="name" column="INGRE_NAME" />
+		<result property="price" column="INGRE_PRICE" />
+		<result property="img" column="INGRE_IMG" />
+	</resultMap>
+
+
+	<insert id="insertNewIngre" parameterType="hashmap">
+		INSERT
+		  INTO INGER A
+		(
+		  A.INGRE_NO
+		, A.INGRE_NAME
+		, A.INGRE_PRICE
+		, A.INGRE_IMG
+		)
+		VALUES
+		(
+		  SEQ_INGRE_NO.NEXTVAL
+		, #{name}
+		, #{price}
+		, #{img}
+		)
+	</insert>
+	
+	<select id="selectAllIngre" resultMap="ingreResultMap">
+		SELECT
+			   A.INGRE_NO
+			 , A.INGRE_NAME
+			 , A.INGRE_PRICE
+			 , A.INGRE_IMG
+	 	  FROM INGER A	
+	</select>
+	
+	
+	
+</mapper>

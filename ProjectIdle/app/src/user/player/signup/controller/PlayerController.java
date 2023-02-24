@@ -24,7 +24,7 @@ public class PlayerController {
 
 	public String findPwdByIdAndEmail(Map<String, String> map) {
 
-		PlayerDTO player = signService.findPwdByIdAndEmail(map);
+		PlayerDTO player = signService.findPlayer(map);
 
 		String message;
 
