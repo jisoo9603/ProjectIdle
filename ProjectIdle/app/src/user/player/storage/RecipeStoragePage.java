@@ -4,12 +4,16 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import user.player.common.dto.RecipeDTO;
+import user.player.ingreup.controller.RecipeController;
 
 public class RecipeStoragePage extends JFrame {
 
@@ -19,6 +23,7 @@ public class RecipeStoragePage extends JFrame {
 	public RecipeStoragePage() {
 		Font labelFont = new Font("DungGeunMo", Font.PLAIN, 25);
 		Font ingreLabelFont = new Font("DungGeunMo", Font.PLAIN, 20);
+		RecipeController recipeController = new RecipeController();
 
 		this.myPage = this;
 		myPage.setSize(800, 500);
@@ -72,17 +77,32 @@ public class RecipeStoragePage extends JFrame {
 		int recipeX = 135;
 		int recipeY = 55;
 
-		Image recipe = new ImageIcon("images/recipe1.png").getImage().getScaledInstance(recipeW, recipeH, 0);
-
-		JLabel[][] ingreLabels = new JLabel[3][4];
+		List<RecipeDTO> recipeList = recipeController.findAllrecipe();
 		
-
+		int index = 0;
+		Image recipe = new ImageIcon("images/recipe1.png").getImage().getScaledInstance(recipeW, recipeH, 0);
+		
+		JLabel[][] ingreLabels = new JLabel[3][4];
+		JLabel[][] ingreCntLabels = new JLabel[3][4];
+		
+		label:
 		for (int i = 0; i < ingreLabels.length; i++) {
 			for (int k = 0; k < ingreLabels[i].length; k++) {
+				if(index >= recipeList.size()) break label;
+				
 				ingreLabels[i][k] = new JLabel(new ImageIcon(recipe));
 				ingreLabels[i][k].setSize(recipeW, recipeH);
 				ingreLabels[i][k].setLocation(recipeX + 150 * k, recipeY + 145 * i);
 				panel.add(ingreLabels[i][k]);
+				
+				ingreCntLabels[i][k] = new JLabel((recipeList.get(index).getName()));
+				ingreCntLabels[i][k].setFont(ingreLabelFont);
+				ingreCntLabels[i][k].setHorizontalAlignment(JLabel.CENTER);
+				ingreCntLabels[i][k].setSize(recipeW, recipeH);
+				ingreCntLabels[i][k].setLocation(recipeX + 150 * k, recipeY +  145 * i);
+				panel.add(ingreCntLabels[i][k]);
+				index++;
+				
 			}
 		}
 		

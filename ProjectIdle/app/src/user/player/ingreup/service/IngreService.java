@@ -2,6 +2,7 @@ package user.player.ingreup.service;
 
 import static user.player.common.Template.getSqlSession;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -33,16 +34,18 @@ public class IngreService {
 		
 	}
 	
-	public IngreDTO NewfindIngre(Map<String, String> map) {
+
+	public List<IngreDTO> findAllingre() {
 
 		SqlSession sqlSession = getSqlSession();
 		mapper = sqlSession.getMapper(IngreMapper.class);
-
-		IngreDTO ingre = mapper.selectIngre(map);
+		
+		List<IngreDTO> ingreList = mapper.selectAllingre();
 
 		sqlSession.close();
 
-		return ingre;
+		return ingreList;
+		
 	}
 
 

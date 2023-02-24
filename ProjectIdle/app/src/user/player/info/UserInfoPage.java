@@ -12,13 +12,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import user.player.common.dto.PlayerDTO;
 import user.player.gamemain.GameMain;
 import user.player.rank.RankPage;
 
 public class UserInfoPage extends JFrame {
 	private JFrame myPage;
 
-	public UserInfoPage() {
+	public UserInfoPage(PlayerDTO player) {
 
 		this.myPage = this;
 
@@ -180,7 +181,7 @@ public class UserInfoPage extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myPage.dispose();
-				new GameMain();
+				new GameMain(player);
 
 			}
 		});

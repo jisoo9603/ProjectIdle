@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user.player.common.IngreMapper">
+
+<resultMap type="IngreDTO" id="IngreResultMap">
+		<id property="no" column="INGRE_NO" />
+		<result property="name" column="INGRE_NAME" />
+		<result property="price" column="INGRE_PRICE" />
+		<result property="img" column="INGRE_IMG" />
+		
+	</resultMap>
+
+
+
+<select id="selectAllingre" resultMap="IngreResultMap" >
+
+	SELECT
+		   A.INGRE_NO
+		 , A.INGRE_NAME
+		 , A.INGRE_PRICE
+		 , A.INGRE_IMAGE	
+	  FROM INGRE A
+</select>
+
+
+
+
+
+
+
+
+
+</mapper>
