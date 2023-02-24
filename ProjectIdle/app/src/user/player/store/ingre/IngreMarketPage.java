@@ -40,9 +40,6 @@ public class IngreMarketPage extends JFrame {
 		ImageIcon btnImg = new ImageIcon(btn);
 
 		// 배경
-		JLabel background = new JLabel(backgrond);
-		background.setSize(800, 500);
-		background.setLocation(0, 0);
 
 		// 이전 화면 이동
 		JLabel backLabel = new JLabel(back);
@@ -258,7 +255,7 @@ public class IngreMarketPage extends JFrame {
 
 		panel.add(backBtn);
 		panel.add(backLabel);
-		panel.add(background);
+//		panel.add(background);
 
 		myPage.add(panel);
 
@@ -272,7 +269,7 @@ public class IngreMarketPage extends JFrame {
 
 				myPage.dispose();
 				new StoreMainPage();
-
+								
 			}
 		});
 

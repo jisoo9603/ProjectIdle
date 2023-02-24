@@ -1,5 +1,6 @@
 package user.player.store.receip;
 
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +14,9 @@ import javax.swing.JPanel;
 import user.player.store.StoreMainPage;
 
 public class StoreReceipPage extends JFrame {
+	
+	Font labelFont = new Font("DungGeunMo", Font.PLAIN, 25);
+	Font textFont = new Font("DungGeunMo", Font.PLAIN, 20);
 
 	private JFrame myPage;
 
@@ -24,29 +28,73 @@ public class StoreReceipPage extends JFrame {
 		this.myPage = this;
 
 		ImageIcon img = new ImageIcon("images/StoreReceip.png");
+		
+		JLabel background = new JLabel(img);
+		background.setSize(800, 500);
+		background.setLocation(0, 0);
+		
 
 		JPanel panel = new JPanel();
 
 		panel.setLayout(null);
 
-		JLabel background = new JLabel(img);
-		background.setLocation(0, 0);
-		background.setSize(800, 500);
-
+		ImageIcon boardIcon = new ImageIcon("images/board2.png");
+		JLabel board = new JLabel(boardIcon);
+		board.setSize(boardIcon.getIconWidth(), boardIcon.getIconHeight());
+		board.setLocation((myPage.getWidth() - board.getWidth()) / 2, (myPage.getHeight() - board.getHeight()) / 2);
+		board.setVisible(false);
+		
+		JButton payBtn = new JButton("구매");
+		payBtn.setBorderPainted(false);
+		payBtn.setContentAreaFilled(false);
+		payBtn.setFocusPainted(false);
+		payBtn.setSize(board.getWidth(), 30);
+		payBtn.setLocation(board.getX() + 100, board.getY() + board.getHeight() - payBtn.getHeight() * 2);
+		payBtn.setFont(labelFont);
+		payBtn.setVisible(false);
+		
+		JButton closeBtn = new JButton("닫기");
+		closeBtn.setBorderPainted(false);
+		closeBtn.setContentAreaFilled(false);
+		closeBtn.setFocusPainted(false);
+		closeBtn.setSize(board.getWidth(), 30);
+		closeBtn.setLocation(board.getX() - 100, board.getY() + board.getHeight() - closeBtn.getHeight() * 2);
+		closeBtn.setFont(labelFont);
+		closeBtn.setVisible(false);
+		
+		JLabel msglbl = new JLabel();
+		msglbl.setSize(board.getWidth(), 30);
+		msglbl.setLocation(board.getX(), board.getY() + (board.getHeight() - msglbl.getHeight()) / 2);
+		msglbl.setFont(labelFont);
+		msglbl.setHorizontalAlignment(JLabel.CENTER);
+		msglbl.setVisible(false);
+		
+		panel.add(payBtn);
+		panel.add(msglbl);
+		panel.add(closeBtn);
+		panel.add(board);
+		
+		JLabel payLabel = new JLabel();
+		payLabel.setSize(220, 280);
+		payLabel.setLocation(25, 70);
+		
+		//뒤로가기 버튼
 		JButton btnBack = new JButton();
 		btnBack.setLocation(5, 5);
 		btnBack.setSize(70, 40);
 		btnBack.setContentAreaFilled(false);
 		btnBack.setBorderPainted(false);
 		btnBack.setFocusPainted(false);
-
+		
+		//왼쪽 페이지 넘기기 버튼
 		JButton btnLeft = new JButton();
 		btnLeft.setLocation(360, 380);
 		btnLeft.setSize(35, 35);
 		btnLeft.setContentAreaFilled(false);
 		btnLeft.setBorderPainted(false);
 		btnLeft.setFocusPainted(false);
-
+		
+		//오른쪽 페이지 넘기기 버튼
 		JButton btnRight = new JButton();
 		btnRight.setLocation(420, 380);
 		btnRight.setSize(35, 35);
@@ -83,9 +131,11 @@ public class StoreReceipPage extends JFrame {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						myPage.dispose();
-						new StoreMainPage();
 						
+						payBtn.setVisible(true);
+						msglbl.setVisible(true);
+						board.setVisible(true);
+						closeBtn.setVisible(true);
 					}
 				});
 				
@@ -102,7 +152,6 @@ public class StoreReceipPage extends JFrame {
 				panel.add(recipePriceList[i][k]);
 			}
 		}
-		
 		
 		
 		panel.add(btnBack);
@@ -122,6 +171,19 @@ public class StoreReceipPage extends JFrame {
 				new StoreMainPage();
 
 			}
+		});
+		
+		closeBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				board.setVisible(false);
+				closeBtn.setVisible(false);
+				msglbl.setVisible(false);
+				payBtn.setVisible(false);
+				
+			} 
 		});
 	}
 
