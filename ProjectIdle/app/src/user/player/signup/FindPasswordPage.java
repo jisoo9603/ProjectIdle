@@ -30,18 +30,34 @@ public class FindPasswordPage extends JFrame {
 		this.setAutoRequestFocus(false);
 		myPage.setTitle("비밀번호 찾기");
 
+		// 배경
 		ImageIcon img = new ImageIcon("images/FindPasswordMain.png");
+
+		// 결과창
+		ImageIcon pwdResult = new ImageIcon("images/pwdResult.png");
+
+		// 뒤로가기
+		ImageIcon back = new ImageIcon("images/back.png");
 
 		JPanel panel = new JPanel();
 
 		panel.setLayout(null);
 
+		// 배경
 		JLabel background = new JLabel(img);
 		background.setLocation(0, 0);
 		background.setSize(800, 500);
 
-		ImageIcon pwdResult = new ImageIcon("images/pwdResult.png");
+		// 이전 화면 이동
+		JButton backBtn = new JButton();
+		backBtn.setIcon(back);
+		backBtn.setBorderPainted(false);
+		backBtn.setContentAreaFilled(false);
+		backBtn.setFocusPainted(false);
+		backBtn.setSize(back.getIconWidth(), back.getIconHeight());
+		backBtn.setLocation(0, 0);
 
+		// 결과창
 		JLabel pwdCheck = new JLabel(pwdResult);
 		pwdCheck.setSize(pwdResult.getIconWidth(), pwdResult.getIconHeight());
 		pwdCheck.setLocation(400 - pwdCheck.getWidth() / 2, 250 - pwdCheck.getHeight() / 2);
@@ -54,6 +70,7 @@ public class FindPasswordPage extends JFrame {
 		msgPwd.setHorizontalAlignment(JLabel.CENTER);
 		msgPwd.setVisible(false);
 
+		// 닫기
 		JButton closeBtn = new JButton();
 		closeBtn.setBorderPainted(false);
 		closeBtn.setContentAreaFilled(false);
@@ -63,10 +80,12 @@ public class FindPasswordPage extends JFrame {
 				pwdCheck.getY() + pwdCheck.getHeight() - closeBtn.getHeight());
 		closeBtn.setVisible(false);
 
+		// 아이디 입력
 		JTextField id = new JTextField();
 		id.setSize(360, 30);
 		id.setLocation(210, 230);
 
+		// 이메일 입력
 		JTextField email = new JTextField();
 		email.setSize(360, 30);
 		email.setLocation(210, 300);
@@ -87,6 +106,7 @@ public class FindPasswordPage extends JFrame {
 		panel.add(id);
 		panel.add(email);
 		panel.add(btn);
+		panel.add(backBtn);
 		panel.add(background);
 
 		myPage.add(panel);
@@ -143,8 +163,21 @@ public class FindPasswordPage extends JFrame {
 					pwdCheck.setVisible(false);
 					closeBtn.setVisible(false);
 					msgPwd.setVisible(false);
+
+					id.setText("");
+					email.setText("");
 				}
 
+			}
+		});
+
+		backBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				myPage.dispose();
+				new LoginPage();
 			}
 		});
 

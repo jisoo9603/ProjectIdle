@@ -38,6 +38,9 @@ public class SignUpPage extends JFrame {
 
 		ImageIcon img = new ImageIcon("images/background.png"); // 배경 이미지
 
+		// 뒤로가기
+		ImageIcon back = new ImageIcon("images/back.png");
+
 		Color labelColor = new Color(247, 243, 130);
 
 		Font textFont = new Font("DungGeunMo", Font.BOLD, 20);
@@ -46,10 +49,21 @@ public class SignUpPage extends JFrame {
 
 		panel.setLayout(null);
 
+		// 배경화면
 		JLabel background = new JLabel(img);
 		background.setLocation(0, 0);
 		background.setSize(800, 500);
 
+		// 이전 화면 이동
+		JButton backBtn = new JButton();
+		backBtn.setIcon(back);
+		backBtn.setBorderPainted(false);
+		backBtn.setContentAreaFilled(false);
+		backBtn.setFocusPainted(false);
+		backBtn.setSize(back.getIconWidth(), back.getIconHeight());
+		backBtn.setLocation(0, 0);
+
+		// 회원가입 타이틀
 		JLabel titleLabel = new JLabel("회원가입");
 		titleLabel.setFont(titleFont);
 		titleLabel.setForeground(new Color(207, 161, 255));
@@ -277,7 +291,7 @@ public class SignUpPage extends JFrame {
 		panel.add(emailShadow);
 
 		panel.add(signUp);
-
+		panel.add(backBtn);
 		panel.add(background);
 
 		this.add(panel);
@@ -392,6 +406,16 @@ public class SignUpPage extends JFrame {
 					myPage.dispose();
 					new LoginPage();
 				}
+			}
+		});
+
+		backBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				myPage.dispose();
+				new LoginPage();
 			}
 		});
 	}
