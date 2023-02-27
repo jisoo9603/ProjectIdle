@@ -30,7 +30,6 @@ public class IngreMarketPage extends JFrame {
 
 		JPanel panel = new JPanel();
 
-		panel.setLayout(null);
 
 		ImageIcon backgrond = new ImageIcon("images/Market.png");
 		Image backImg = new ImageIcon("images/back.png").getImage().getScaledInstance(50, 35, 0);
@@ -96,7 +95,28 @@ public class IngreMarketPage extends JFrame {
 		orderText.setForeground(fontColor);
 		orderText.setHorizontalAlignment(JLabel.CENTER);
 
-		// 총 금액 및 결재
+		JLabel[][] payList = new JLabel[5][1];
+
+		for(int i = 0; i < payList.length; i++) {
+			for(int k = 0; k < payList.length; k++) {
+				payList[i][k] = new JLabel();
+				
+			}
+		}
+
+		JButton pay1 = new JButton("구매하기");
+
+		pay1.setContentAreaFilled(false);
+		pay1.setFocusPainted(false);
+		pay1.setSize(140, 30);
+		pay1.setForeground(new Color(164, 219, 255));
+		pay1.setLocation(480, 150);
+		pay1.setFont(labelFont);
+		pay1.setVisible(false);
+
+	
+
+		// 총 금액 및 결재 
 		JLabel payLabel = new JLabel();
 		payLabel.setSize(orderLabel.getWidth(), ingreLabel.getHeight() - (orderLabel.getHeight() + 10));
 		payLabel.setLocation(orderLabel.getX(), lblY + orderLabel.getHeight() + 10);
@@ -152,10 +172,6 @@ public class IngreMarketPage extends JFrame {
 		msglbl.setHorizontalAlignment(JLabel.CENTER);
 		msglbl.setVisible(false);
 
-		panel.add(msglbl);
-		panel.add(closeBtn);
-		panel.add(board);
-
 		// 재료 변수 들
 		int ingreW = 65;
 		int ingreH = ingreW;
@@ -164,9 +180,13 @@ public class IngreMarketPage extends JFrame {
 
 		// 재료 이미지
 		Image[] ingre = new Image[] {
-				new ImageIcon("images/chicken.png").getImage().getScaledInstance(ingreW, ingreH, 0),
-				new ImageIcon("images/beef.png").getImage().getScaledInstance(ingreW, ingreH, 0),
-				new ImageIcon("images/fish.png").getImage().getScaledInstance(ingreW, ingreH, 0)
+				new ImageIcon("images/ingre/rice.png").getImage().getScaledInstance(ingreW, ingreH, 0),
+				new ImageIcon("images/ingre/fish.png").getImage().getScaledInstance(ingreW, ingreH, 0),
+				new ImageIcon("images/ingre/mushroom.png").getImage().getScaledInstance(ingreW, ingreH, 0),
+				new ImageIcon("images/ingre/ramen.png").getImage().getScaledInstance(ingreW, ingreH, 0),
+				new ImageIcon("images/ingre/pork.png").getImage().getScaledInstance(ingreW, ingreH, 0)
+
+
 		};
 
 		JButton[][] ingreBtn = new JButton[3][5]; // 재료 버튼
@@ -176,9 +196,10 @@ public class IngreMarketPage extends JFrame {
 		// 재료 목록 나열
 		for (int i = 0; i < ingreList.length; i++) {
 			for (int k = 0; k < ingreList[i].length; k++) {
-				ingreList[i][k] = new JLabel(new ImageIcon(ingre[(i + k) % ingre.length]));
+				ingreList[i][k] = new JLabel();
 				ingreList[i][k].setSize(ingreW, ingreH);
 				ingreList[i][k].setLocation(ingreX + 100 * k, ingreY + 100 * i);
+				
 				panel.add(ingreList[i][k]);
 			}
 		}
@@ -192,10 +213,12 @@ public class IngreMarketPage extends JFrame {
 				ingreBtn[i][k].setFocusPainted(false);
 				ingreBtn[i][k].setSize(ingreW, ingreH);
 				ingreBtn[i][k].setLocation(ingreList[i][k].getX(), ingreList[i][k].getY());
+
+
 				panel.add(ingreBtn[i][k]);
 			}
 		}
-		
+
 		// 재료 가격 나열
 		for (int i = 0; i < ingrePriceList.length; i++) {
 			for (int k = 0; k < ingrePriceList[i].length; k++) {
@@ -220,6 +243,7 @@ public class IngreMarketPage extends JFrame {
 		JLabel[] orderList = new JLabel[4];
 		JLabel[] orderTextList = new JLabel[4];
 
+
 		for (int i = 0; i < orderList.length; i++) {
 			orderList[i] = new JLabel(new ImageIcon(order[i % order.length]));
 			orderList[i].setSize(orderW, orderH);
@@ -237,7 +261,15 @@ public class IngreMarketPage extends JFrame {
 			panel.add(orderTextList[i]);
 		}
 
+
+
 		// 패녈에 추가
+		
+		panel.add(pay1);
+		panel.setLayout(null);
+		panel.add(msglbl);
+		panel.add(closeBtn);
+		panel.add(board);
 		panel.add(goldText);
 		panel.add(goldLabel);
 
@@ -255,7 +287,7 @@ public class IngreMarketPage extends JFrame {
 
 		panel.add(backBtn);
 		panel.add(backLabel);
-//		panel.add(background);
+		//		panel.add(background);
 
 		myPage.add(panel);
 
@@ -269,7 +301,7 @@ public class IngreMarketPage extends JFrame {
 
 				myPage.dispose();
 				new StoreMainPage();
-								
+
 			}
 		});
 
@@ -306,6 +338,156 @@ public class IngreMarketPage extends JFrame {
 				msglbl.setVisible(false);
 
 				goldText.setText("자금 : " + gold + "원");
+
+			}
+		});
+		//재료 구매 내역 장바구니 이동
+		ingreBtn[1][1].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				pay1.setVisible(true);
+
+			}
+		});
+
+		ingreBtn[1][2].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				pay1.setVisible(true);
+
+			}
+		});
+
+		ingreBtn[1][3].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				pay1.setVisible(true);
+
+			}
+		});
+
+		ingreBtn[1][4].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				pay1.setVisible(true);
+
+			}
+		});
+
+		ingreBtn[1][5].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				pay1.setVisible(true);
+
+			}
+		});
+
+		ingreBtn[2][1].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				pay1.setVisible(true);
+
+			}
+		});
+
+		ingreBtn[2][2].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				pay1.setVisible(true);
+
+			}
+		});
+
+		ingreBtn[2][3].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				pay1.setVisible(true);
+
+			}
+		});
+
+		ingreBtn[2][4].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				pay1.setVisible(true);
+
+			}
+		});
+
+		ingreBtn[2][5].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				pay1.setVisible(true);
+
+			}
+		});
+
+		ingreBtn[3][1].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				pay1.setVisible(true);
+
+			}
+		});
+		
+		ingreBtn[3][2].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				pay1.setVisible(true);
+
+			}
+		});
+		
+		ingreBtn[3][3].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				pay1.setVisible(true);
+
+			}
+		});
+		
+		ingreBtn[3][4].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				pay1.setVisible(true);
+
+			}
+		});
+		
+		ingreBtn[3][5].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				pay1.setVisible(true);
 
 			}
 		});

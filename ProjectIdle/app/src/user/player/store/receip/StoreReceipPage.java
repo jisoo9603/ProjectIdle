@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import user.player.store.StoreMainPage;
 
 public class StoreReceipPage extends JFrame {
-	
+
 	Font labelFont = new Font("DungGeunMo", Font.PLAIN, 25);
 	Font textFont = new Font("DungGeunMo", Font.PLAIN, 20);
 
@@ -28,11 +28,13 @@ public class StoreReceipPage extends JFrame {
 		this.myPage = this;
 
 		ImageIcon img = new ImageIcon("images/StoreReceip.png");
-		
+		Image btn = new ImageIcon("images/buttonFrame.png").getImage().getScaledInstance(146, 40, 0);
+		ImageIcon btnImg = new ImageIcon(btn);
+
 		JLabel background = new JLabel(img);
 		background.setSize(800, 500);
 		background.setLocation(0, 0);
-		
+
 
 		JPanel panel = new JPanel();
 
@@ -43,7 +45,7 @@ public class StoreReceipPage extends JFrame {
 		board.setSize(boardIcon.getIconWidth(), boardIcon.getIconHeight());
 		board.setLocation((myPage.getWidth() - board.getWidth()) / 2, (myPage.getHeight() - board.getHeight()) / 2);
 		board.setVisible(false);
-		
+
 		JButton payBtn = new JButton("구매");
 		payBtn.setBorderPainted(false);
 		payBtn.setContentAreaFilled(false);
@@ -52,7 +54,7 @@ public class StoreReceipPage extends JFrame {
 		payBtn.setLocation(board.getX() + 100, board.getY() + board.getHeight() - payBtn.getHeight() * 2);
 		payBtn.setFont(labelFont);
 		payBtn.setVisible(false);
-		
+
 		JButton closeBtn = new JButton("닫기");
 		closeBtn.setBorderPainted(false);
 		closeBtn.setContentAreaFilled(false);
@@ -61,23 +63,23 @@ public class StoreReceipPage extends JFrame {
 		closeBtn.setLocation(board.getX() - 100, board.getY() + board.getHeight() - closeBtn.getHeight() * 2);
 		closeBtn.setFont(labelFont);
 		closeBtn.setVisible(false);
-		
+
 		JLabel msglbl = new JLabel();
 		msglbl.setSize(board.getWidth(), 30);
 		msglbl.setLocation(board.getX(), board.getY() + (board.getHeight() - msglbl.getHeight()) / 2);
 		msglbl.setFont(labelFont);
 		msglbl.setHorizontalAlignment(JLabel.CENTER);
 		msglbl.setVisible(false);
-		
+
 		panel.add(payBtn);
 		panel.add(msglbl);
 		panel.add(closeBtn);
 		panel.add(board);
-		
+
 		JLabel payLabel = new JLabel();
 		payLabel.setSize(220, 280);
 		payLabel.setLocation(25, 70);
-		
+
 		//뒤로가기 버튼
 		JButton btnBack = new JButton();
 		btnBack.setLocation(5, 5);
@@ -85,7 +87,7 @@ public class StoreReceipPage extends JFrame {
 		btnBack.setContentAreaFilled(false);
 		btnBack.setBorderPainted(false);
 		btnBack.setFocusPainted(false);
-		
+
 		//왼쪽 페이지 넘기기 버튼
 		JButton btnLeft = new JButton();
 		btnLeft.setLocation(360, 380);
@@ -93,7 +95,7 @@ public class StoreReceipPage extends JFrame {
 		btnLeft.setContentAreaFilled(false);
 		btnLeft.setBorderPainted(false);
 		btnLeft.setFocusPainted(false);
-		
+
 		//오른쪽 페이지 넘기기 버튼
 		JButton btnRight = new JButton();
 		btnRight.setLocation(420, 380);
@@ -128,19 +130,19 @@ public class StoreReceipPage extends JFrame {
 				recipeBtn[i][k].setSize(65, 65);
 				recipeBtn[i][k].setLocation(recipeList[i][k].getX(), recipeList[i][k].getY());
 				recipeBtn[i][k].addActionListener(new ActionListener() {
-					
+
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						
+
 						payBtn.setVisible(true);
 						msglbl.setVisible(true);
 						board.setVisible(true);
 						closeBtn.setVisible(true);
 					}
 				});
-				
+
 				panel.add(recipeBtn[i][k]);
-				
+
 			}			
 		}
 		//레시피 가격 나열
@@ -152,8 +154,8 @@ public class StoreReceipPage extends JFrame {
 				panel.add(recipePriceList[i][k]);
 			}
 		}
-		
-		
+
+
 		panel.add(btnBack);
 		panel.add(btnLeft);
 		panel.add(btnRight);
@@ -172,18 +174,18 @@ public class StoreReceipPage extends JFrame {
 
 			}
 		});
-		
+
 		closeBtn.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				board.setVisible(false);
 				closeBtn.setVisible(false);
 				msglbl.setVisible(false);
 				payBtn.setVisible(false);
-				
-			} 
+
+			}
 		});
 	}
 
