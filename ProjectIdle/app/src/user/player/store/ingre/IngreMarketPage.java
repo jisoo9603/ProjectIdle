@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import user.player.common.dto.PlayerDTO;
 import user.player.store.StoreMainPage;
 
 public class IngreMarketPage extends JFrame {
@@ -19,7 +20,7 @@ public class IngreMarketPage extends JFrame {
 	private JFrame myPage;
 	private int gold;
 
-	public IngreMarketPage() {
+	public IngreMarketPage(PlayerDTO player) {
 		Font labelFont = new Font("DungGeunMo", Font.PLAIN, 25);
 		Font textFont = new Font("DungGeunMo", Font.PLAIN, 20);
 
@@ -29,7 +30,6 @@ public class IngreMarketPage extends JFrame {
 		myPage.setResizable(false);
 
 		JPanel panel = new JPanel();
-
 
 		ImageIcon backgrond = new ImageIcon("images/Market.png");
 		Image backImg = new ImageIcon("images/back.png").getImage().getScaledInstance(50, 35, 0);
@@ -95,16 +95,14 @@ public class IngreMarketPage extends JFrame {
 		orderText.setForeground(fontColor);
 		orderText.setHorizontalAlignment(JLabel.CENTER);
 
-		JLabel[][] payList = new JLabel[5][1];
+		JLabel[] payList = new JLabel[5];
 
-		for(int i = 0; i < payList.length; i++) {
-			for(int k = 0; k < payList.length; k++) {
-				payList[i][k] = new JLabel();
-				
-			}
+		for (int i = 0; i < payList.length; i++) {
+			payList[i] = new JLabel();
+
 		}
 
-		JButton pay1 = new JButton("구매하기");
+		JButton pay1 = new JButton();
 
 		pay1.setContentAreaFilled(false);
 		pay1.setFocusPainted(false);
@@ -114,9 +112,7 @@ public class IngreMarketPage extends JFrame {
 		pay1.setFont(labelFont);
 		pay1.setVisible(false);
 
-	
-
-		// 총 금액 및 결재 
+		// 총 금액 및 결재
 		JLabel payLabel = new JLabel();
 		payLabel.setSize(orderLabel.getWidth(), ingreLabel.getHeight() - (orderLabel.getHeight() + 10));
 		payLabel.setLocation(orderLabel.getX(), lblY + orderLabel.getHeight() + 10);
@@ -186,7 +182,6 @@ public class IngreMarketPage extends JFrame {
 				new ImageIcon("images/ingre/ramen.png").getImage().getScaledInstance(ingreW, ingreH, 0),
 				new ImageIcon("images/ingre/pork.png").getImage().getScaledInstance(ingreW, ingreH, 0)
 
-
 		};
 
 		JButton[][] ingreBtn = new JButton[3][5]; // 재료 버튼
@@ -199,7 +194,7 @@ public class IngreMarketPage extends JFrame {
 				ingreList[i][k] = new JLabel();
 				ingreList[i][k].setSize(ingreW, ingreH);
 				ingreList[i][k].setLocation(ingreX + 100 * k, ingreY + 100 * i);
-				
+
 				panel.add(ingreList[i][k]);
 			}
 		}
@@ -213,7 +208,6 @@ public class IngreMarketPage extends JFrame {
 				ingreBtn[i][k].setFocusPainted(false);
 				ingreBtn[i][k].setSize(ingreW, ingreH);
 				ingreBtn[i][k].setLocation(ingreList[i][k].getX(), ingreList[i][k].getY());
-
 
 				panel.add(ingreBtn[i][k]);
 			}
@@ -243,7 +237,6 @@ public class IngreMarketPage extends JFrame {
 		JLabel[] orderList = new JLabel[4];
 		JLabel[] orderTextList = new JLabel[4];
 
-
 		for (int i = 0; i < orderList.length; i++) {
 			orderList[i] = new JLabel(new ImageIcon(order[i % order.length]));
 			orderList[i].setSize(orderW, orderH);
@@ -261,10 +254,8 @@ public class IngreMarketPage extends JFrame {
 			panel.add(orderTextList[i]);
 		}
 
-
-
 		// 패녈에 추가
-		
+
 		panel.add(pay1);
 		panel.setLayout(null);
 		panel.add(msglbl);
@@ -287,7 +278,7 @@ public class IngreMarketPage extends JFrame {
 
 		panel.add(backBtn);
 		panel.add(backLabel);
-		//		panel.add(background);
+		// panel.add(background);
 
 		myPage.add(panel);
 
@@ -300,7 +291,7 @@ public class IngreMarketPage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				myPage.dispose();
-				new StoreMainPage();
+				new StoreMainPage(player);
 
 			}
 		});
@@ -341,7 +332,7 @@ public class IngreMarketPage extends JFrame {
 
 			}
 		});
-		//재료 구매 내역 장바구니 이동
+		// 재료 구매 내역 장바구니 이동
 		ingreBtn[1][1].addActionListener(new ActionListener() {
 
 			@Override
@@ -451,7 +442,7 @@ public class IngreMarketPage extends JFrame {
 
 			}
 		});
-		
+
 		ingreBtn[3][2].addActionListener(new ActionListener() {
 
 			@Override
@@ -461,7 +452,7 @@ public class IngreMarketPage extends JFrame {
 
 			}
 		});
-		
+
 		ingreBtn[3][3].addActionListener(new ActionListener() {
 
 			@Override
@@ -471,7 +462,7 @@ public class IngreMarketPage extends JFrame {
 
 			}
 		});
-		
+
 		ingreBtn[3][4].addActionListener(new ActionListener() {
 
 			@Override
@@ -481,7 +472,7 @@ public class IngreMarketPage extends JFrame {
 
 			}
 		});
-		
+
 		ingreBtn[3][5].addActionListener(new ActionListener() {
 
 			@Override

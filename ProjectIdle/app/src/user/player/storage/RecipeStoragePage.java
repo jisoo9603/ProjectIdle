@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import user.player.common.dto.PlayerDTO;
 import user.player.common.dto.RecipeDTO;
 import user.player.ingreup.controller.RecipeController;
 
@@ -22,7 +23,7 @@ public class RecipeStoragePage extends JFrame {
 	private JFrame myPage;
 	private int gold = 0;
 
-	public RecipeStoragePage() {
+	public RecipeStoragePage(PlayerDTO player) {
 		Font labelFont = new Font("DungGeunMo", Font.PLAIN, 25);
 		Font ingreLabelFont = new Font("DungGeunMo", Font.PLAIN, 20);
 		RecipeController recipeController = new RecipeController();
@@ -45,7 +46,7 @@ public class RecipeStoragePage extends JFrame {
 		ImageIcon img = new ImageIcon("images/buttonFrame.png");
 		ImageIcon back = new ImageIcon("images/back.png");
 		ImageIcon ingreboard = new ImageIcon("images/storageingreboard.png");
-		
+
 		// 배경
 		JLabel background = new JLabel(backgrond);
 		background.setSize(800, 500);
@@ -62,7 +63,6 @@ public class RecipeStoragePage extends JFrame {
 		backBtn.setFocusPainted(false);
 		backBtn.setSize(70, 49);
 		backBtn.setLocation(30, 10);
-
 
 		// 재료 라벨
 		JLabel panelLabel = new JLabel();
@@ -82,21 +82,19 @@ public class RecipeStoragePage extends JFrame {
 		int recipeY = 55;
 
 		List<RecipeDTO> recipeList = recipeController.findAllrecipe();
-		
+
 		int index = 0;
 		Image recipe = new ImageIcon("images/recipe1.png").getImage().getScaledInstance(recipeW, recipeH, 0);
-		
-//		JLabel[][] ingreLabels = new JLabel[3][4];
+
+		// JLabel[][] ingreLabels = new JLabel[3][4];
 		JButton[][] ingreLabelsBtn = new JButton[3][4];
 		JLabel[][] ingreCntLabels = new JLabel[3][4];
-	
-		
-		label:
-		for (int i = 0; i < ingreLabelsBtn.length; i++) {
+
+		label: for (int i = 0; i < ingreLabelsBtn.length; i++) {
 			for (int k = 0; k < ingreLabelsBtn[i].length; k++) {
-				if(index >= recipeList.size()) break label;
-				
-				
+				if (index >= recipeList.size())
+					break label;
+
 				ingreLabelsBtn[i][k] = new JButton(new ImageIcon(recipe));
 
 				ingreLabelsBtn[i][k].setSize(recipeW, recipeH);
@@ -104,66 +102,54 @@ public class RecipeStoragePage extends JFrame {
 				ingreLabelsBtn[i][k].setBorderPainted(false);
 				ingreLabelsBtn[i][k].setContentAreaFilled(false);
 				ingreLabelsBtn[i][k].setFocusPainted(false);
-				
+
 				panel.add(ingreLabelsBtn[i][k]);
-				
-				ingreCntLabels[i][k] = new JLabel((recipeList.get(index).getNo())+"");
+
+				ingreCntLabels[i][k] = new JLabel((recipeList.get(index).getNo()) + "");
 				ingreCntLabels[i][k].setFont(ingreLabelFont);
 				ingreCntLabels[i][k].setHorizontalAlignment(JLabel.CENTER);
 				ingreCntLabels[i][k].setSize(recipeW, recipeH);
-//				ingreCntLabels[i][k].setLocation(recipeX + 150 * k, recipeY +  145 * i); 원래 위치
-				ingreCntLabels[i][k].setLocation(recipeX + 150 * k, (recipeY + 55) +  145 * i);
+				// ingreCntLabels[i][k].setLocation(recipeX + 150 * k, recipeY + 145 * i); 원래 위치
+				ingreCntLabels[i][k].setLocation(recipeX + 150 * k, (recipeY + 55) + 145 * i);
 				panel.add(ingreCntLabels[i][k]);
 				index++;
 				gold++;
-				
-		
+
 				ingreLabelsBtn[i][k].addActionListener(new ActionListener() {
-				
-					
-							@Override
-							public void actionPerformed(ActionEvent e) {
-								Map <String, String> map = new HashMap<>();
-								map.put("name", recipeList.get(gold).getName());
-								myPage.dispose();
-								new RecipeIngreStoragePage(map);
-								System.out.println("gold=" + (gold));
-				
-							}
-						});
-				
-				
-				
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Map<String, String> map = new HashMap<>();
+						map.put("name", recipeList.get(gold).getName());
+						myPage.dispose();
+						new RecipeIngreStoragePage(map, player);
+						System.out.println("gold=" + (gold));
+
+					}
+				});
+
 			}
 		}
-		
-		
-		
 
-
-		
 		backBtn.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myPage.dispose();
-				new StoragePage();
+				new StoragePage(player);
 
 			}
 		});
-		
-//		recipeLabelBtn.addActionListener(new ActionListener() {
-//
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				myPage.dispose();
-//				new RecipeIngreStoragePage();
-//
-//			}
-//		});
-		
-		
-		
+
+		// recipeLabelBtn.addActionListener(new ActionListener() {
+		//
+		// @Override
+		// public void actionPerformed(ActionEvent e) {
+		// myPage.dispose();
+		// new RecipeIngreStoragePage();
+		//
+		// }
+		// });
 
 		// 패녈에 추가
 		panel.add(backBtn);
@@ -171,9 +157,8 @@ public class RecipeStoragePage extends JFrame {
 		panel.add(ingreText);
 		panel.add(panelLabel);
 		panel.add(background);
-//		panel.add(recipeLabelBtn);
-//		panel.add(recipeLabel);
-		
+		// panel.add(recipeLabelBtn);
+		// panel.add(recipeLabel);
 
 		myPage.add(panel);
 

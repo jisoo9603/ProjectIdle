@@ -12,9 +12,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import user.player.info.UserInfoPage;
-
-
 public class RankPage extends JFrame {
 
 	private JFrame myPage;
@@ -70,12 +67,10 @@ public class RankPage extends JFrame {
 
 		close.addActionListener(new ActionListener() {
 
-
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myPage.dispose();
-				new UserInfoPage();
+				// new UserInfoPage();
 
 			}
 		});

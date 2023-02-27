@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import user.player.signup.controller.PlayerController;
@@ -134,7 +135,7 @@ public class SignUpPage extends JFrame {
 		pwdShadow.setLocation(pwdLabel.getX() + 2, pwdLabel.getY() + 2);
 
 		// 비밀번호 텍스트
-		JTextField pwdText = new JTextField();
+		JPasswordField pwdText = new JPasswordField();
 		pwdText.setSize(textW, textH);
 		pwdText.setLocation(textX, pwdLabel.getY());
 
@@ -152,7 +153,7 @@ public class SignUpPage extends JFrame {
 		pwdShadow2.setLocation(pwdLabel2.getX() + 2, pwdLabel2.getY() + 2);
 
 		// 비밀번호 확인 텍스트
-		JTextField pwdText2 = new JTextField();
+		JPasswordField pwdText2 = new JPasswordField();
 		pwdText2.setSize(textW, textH);
 		pwdText2.setLocation(textX, pwdLabel2.getY());
 
@@ -311,7 +312,7 @@ public class SignUpPage extends JFrame {
 
 				if (isFind) {
 					idCheckLabel.setText("사용 가능한 아이디입니다.");
-					nameCheckLabel.setForeground(Color.BLACK);
+					idCheckLabel.setForeground(Color.BLACK);
 					tempId = idText.getText();
 				} else {
 					idCheckLabel.setText("이미 사용 중인 아이디입니다.");
@@ -326,14 +327,17 @@ public class SignUpPage extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				if (pwdText.getText().isEmpty()) {
+				String pass1 = new String(pwdText.getPassword());
+				String pass2 = new String(pwdText2.getPassword());
+
+				if (pass1.isEmpty()) {
 					pwdCheckLabel.setText("비밀번호를 입력해주세요.");
 					pwdCheckLabel.setForeground(Color.RED);
 				} else {
-					if (pwdText.getText().equals(pwdText2.getText())) {
+					if (pass1.equals(pass2)) {
 						pwdCheckLabel.setText("비밀번호가 일치합니다.");
-						nameCheckLabel.setForeground(Color.BLACK);
-						tempPwd = pwdText.getText();
+						pwdCheckLabel.setForeground(Color.BLACK);
+						tempPwd = pass1;
 					} else {
 						pwdCheckLabel.setText("비밀번호가 일치하지 않습니다.");
 						pwdCheckLabel.setForeground(Color.RED);
@@ -371,13 +375,15 @@ public class SignUpPage extends JFrame {
 				resultText.setVisible(true);
 				closeBtn.setVisible(true);
 
-				if (idText.getText().equals(tempId) && pwdText.getText().equals(tempPwd)
-						&& nameText.getText().equals(tempName) && !emailText.getText().isEmpty()) {
+				String pass1 = new String(pwdText.getPassword());
+
+				if (idText.getText().equals(tempId) && pass1.equals(tempPwd) && nameText.getText().equals(tempName)
+						&& !emailText.getText().isEmpty()) {
 
 					Map<String, String> map = new HashMap<>();
-					map.put("id", idText.getText());
-					map.put("pwd", pwdText.getText());
-					map.put("name", nameText.getText());
+					map.put("id", tempId);
+					map.put("pwd", tempPwd);
+					map.put("name", tempName);
 					map.put("email", emailText.getText());
 
 					isCreate = signController.insertNewPlayer(map);

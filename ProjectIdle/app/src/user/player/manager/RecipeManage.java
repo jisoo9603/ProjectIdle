@@ -558,15 +558,15 @@ public class RecipeManage extends JFrame {
 
 				String messge = managerController.modifyRecipe(map);
 
-//				Map<String, String> recipeIngre = new HashMap<>();
-//				recipeIngre.put("recipe", name.getText());
-//				for (int i = 0; i < ingreList.size(); i++) {
-//
-//					if (ingreList.get(i).isSelected()) {
-//						recipeIngre.put("ingre", ingreList.get(i).getText());
-//						managerController.modifyRecipeIngre(recipeIngre);
-//					}
-//				}
+				// Map<String, String> recipeIngre = new HashMap<>();
+				// recipeIngre.put("recipe", name.getText());
+				// for (int i = 0; i < ingreList.size(); i++) {
+				//
+				// if (ingreList.get(i).isSelected()) {
+				// recipeIngre.put("ingre", ingreList.get(i).getText());
+				// managerController.modifyRecipeIngre(recipeIngre);
+				// }
+				// }
 
 				msgText.setText(messge);
 
@@ -794,6 +794,7 @@ public class RecipeManage extends JFrame {
 
 		for (int i = 0; i < recipeListIndex; i++) {
 			recipeList.get(i).setIcon(new ImageIcon());
+			recipeList.get(i).setText("");
 		}
 		recipeListIndex = 0;
 

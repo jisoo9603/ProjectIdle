@@ -10,13 +10,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import user.player.common.dto.PlayerDTO;
 import user.player.gamemain.GameMain;
 
 public class StoragePage extends JFrame {
 
 	private JFrame myPage;
 
-	public StoragePage() {
+	public StoragePage(PlayerDTO player) {
 		Font labelFont = new Font("DungGeunMo", Font.PLAIN, 25);
 
 		this.myPage = this;
@@ -86,7 +87,7 @@ public class StoragePage extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myPage.dispose();
-				new GameMain();
+				new GameMain(player);
 
 			}
 		});
@@ -96,7 +97,7 @@ public class StoragePage extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myPage.dispose();
-				new IngreStoragePage();
+				new IngreStoragePage(player);
 			}
 		});
 
@@ -105,7 +106,7 @@ public class StoragePage extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myPage.dispose();
-				new RecipeStoragePage();
+				new RecipeStoragePage(player);
 			}
 		});
 

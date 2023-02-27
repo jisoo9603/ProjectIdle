@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import user.player.common.dto.PlayerDTO;
 import user.player.gamemain.GameMain;
 import user.player.store.ingre.IngreMarketPage;
 import user.player.store.receip.StoreReceipPage;
@@ -18,7 +19,7 @@ public class StoreMainPage extends JFrame {
 
 	private JFrame myPage;
 
-	public StoreMainPage() {
+	public StoreMainPage(PlayerDTO player) {
 		this.setSize(800, 500);
 		this.setLocationRelativeTo(null);
 		this.setAutoRequestFocus(false);
@@ -68,7 +69,7 @@ public class StoreMainPage extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myPage.dispose();
-				new IngreMarketPage();
+				new IngreMarketPage(player);
 			}
 		});
 
@@ -77,7 +78,7 @@ public class StoreMainPage extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myPage.dispose();
-				new StoreReceipPage();
+				new StoreReceipPage(player);
 			}
 		});
 
@@ -86,7 +87,7 @@ public class StoreMainPage extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myPage.dispose();
-				new StoreChoiceUpdate();
+				new StoreChoiceUpdate(player);
 			}
 		});
 
@@ -95,7 +96,7 @@ public class StoreMainPage extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myPage.dispose();
-				new GameMain();
+				new GameMain(player);
 
 			}
 		});

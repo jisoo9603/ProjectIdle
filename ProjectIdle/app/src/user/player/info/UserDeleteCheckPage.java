@@ -114,7 +114,7 @@ public class UserDeleteCheckPage extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myPage.dispose();
-				new UserInfoPage();
+				// new UserInfoPage();
 
 			}
 		});

@@ -11,6 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import user.player.signup.GameStart;
+
 public class ManagerMainPage extends JFrame {
 
 	private JFrame myPage;
@@ -35,8 +37,9 @@ public class ManagerMainPage extends JFrame {
 		ImageIcon back = new ImageIcon("images/back.png");
 
 		// 목차
-//		Image btn = new ImageIcon("images/panelFrame.png").getImage().getScaledInstance(146, 40, 0);
-//		ImageIcon btnImg = new ImageIcon(btn);
+		// Image btn = new
+		// ImageIcon("images/panelFrame.png").getImage().getScaledInstance(146, 40, 0);
+		// ImageIcon btnImg = new ImageIcon(btn);
 
 		// 배경
 		JLabel background = new JLabel(backgrond);
@@ -145,6 +148,15 @@ public class ManagerMainPage extends JFrame {
 
 		myPage.setVisible(true);
 		myPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		backBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myPage.dispose();
+				new GameStart();
+			}
+		});
 
 		ingreBtn.addActionListener(new ActionListener() {
 
