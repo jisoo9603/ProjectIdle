@@ -91,7 +91,8 @@ public class IngreStoragePage extends JFrame {
 			for (int k = 0; k < ingreLabels[i].length; k++) {
 				if(index >= ingreList.size()) break label;
 				
-				ingreLabels[i][k] = new JLabel(new ImageIcon(ingreList.get(index).getImg()));
+				Image IngreeImage = new ImageIcon(ingreList.get(index).getImg()).getImage().getScaledInstance(ingreW, ingreH, 0);
+				ingreLabels[i][k] = new JLabel(new ImageIcon(IngreeImage));
 				ingreLabels[i][k].setSize(ingreW, ingreH);
 				ingreLabels[i][k].setLocation(ingreX + 150 * k, ingreY + 145 * i);
 				panel.add(ingreLabels[i][k]);

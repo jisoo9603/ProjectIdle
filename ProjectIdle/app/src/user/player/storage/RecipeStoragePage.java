@@ -4,7 +4,9 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -18,7 +20,7 @@ import user.player.ingreup.controller.RecipeController;
 public class RecipeStoragePage extends JFrame {
 
 	private JFrame myPage;
-	private int gold;
+	private int gold = 0;
 
 	public RecipeStoragePage() {
 		Font labelFont = new Font("DungGeunMo", Font.PLAIN, 25);
@@ -42,7 +44,8 @@ public class RecipeStoragePage extends JFrame {
 		ImageIcon backgrond = new ImageIcon("images/storage.png");
 		ImageIcon img = new ImageIcon("images/buttonFrame.png");
 		ImageIcon back = new ImageIcon("images/back.png");
-
+		ImageIcon ingreboard = new ImageIcon("images/storageingreboard.png");
+		
 		// 배경
 		JLabel background = new JLabel(backgrond);
 		background.setSize(800, 500);
@@ -59,6 +62,7 @@ public class RecipeStoragePage extends JFrame {
 		backBtn.setFocusPainted(false);
 		backBtn.setSize(70, 49);
 		backBtn.setLocation(30, 10);
+
 
 		// 재료 라벨
 		JLabel panelLabel = new JLabel();
@@ -82,31 +86,60 @@ public class RecipeStoragePage extends JFrame {
 		int index = 0;
 		Image recipe = new ImageIcon("images/recipe1.png").getImage().getScaledInstance(recipeW, recipeH, 0);
 		
-		JLabel[][] ingreLabels = new JLabel[3][4];
+//		JLabel[][] ingreLabels = new JLabel[3][4];
+		JButton[][] ingreLabelsBtn = new JButton[3][4];
 		JLabel[][] ingreCntLabels = new JLabel[3][4];
+	
 		
 		label:
-		for (int i = 0; i < ingreLabels.length; i++) {
-			for (int k = 0; k < ingreLabels[i].length; k++) {
+		for (int i = 0; i < ingreLabelsBtn.length; i++) {
+			for (int k = 0; k < ingreLabelsBtn[i].length; k++) {
 				if(index >= recipeList.size()) break label;
 				
-				ingreLabels[i][k] = new JLabel(new ImageIcon(recipe));
-				ingreLabels[i][k].setSize(recipeW, recipeH);
-				ingreLabels[i][k].setLocation(recipeX + 150 * k, recipeY + 145 * i);
-				panel.add(ingreLabels[i][k]);
 				
-				ingreCntLabels[i][k] = new JLabel((recipeList.get(index).getName()));
+				ingreLabelsBtn[i][k] = new JButton(new ImageIcon(recipe));
+
+				ingreLabelsBtn[i][k].setSize(recipeW, recipeH);
+				ingreLabelsBtn[i][k].setLocation(recipeX + 150 * k, recipeY + 145 * i);
+				ingreLabelsBtn[i][k].setBorderPainted(false);
+				ingreLabelsBtn[i][k].setContentAreaFilled(false);
+				ingreLabelsBtn[i][k].setFocusPainted(false);
+				
+				panel.add(ingreLabelsBtn[i][k]);
+				
+				ingreCntLabels[i][k] = new JLabel((recipeList.get(index).getNo())+"");
 				ingreCntLabels[i][k].setFont(ingreLabelFont);
 				ingreCntLabels[i][k].setHorizontalAlignment(JLabel.CENTER);
 				ingreCntLabels[i][k].setSize(recipeW, recipeH);
-				ingreCntLabels[i][k].setLocation(recipeX + 150 * k, recipeY +  145 * i);
+//				ingreCntLabels[i][k].setLocation(recipeX + 150 * k, recipeY +  145 * i); 원래 위치
+				ingreCntLabels[i][k].setLocation(recipeX + 150 * k, (recipeY + 55) +  145 * i);
 				panel.add(ingreCntLabels[i][k]);
 				index++;
+				gold++;
+				
+		
+				ingreLabelsBtn[i][k].addActionListener(new ActionListener() {
+				
+					
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								Map <String, String> map = new HashMap<>();
+								map.put("name", recipeList.get(gold).getName());
+								myPage.dispose();
+								new RecipeIngreStoragePage(map);
+								System.out.println("gold=" + (gold));
+				
+							}
+						});
+				
+				
 				
 			}
 		}
 		
 		
+		
+
 
 		
 		backBtn.addActionListener(new ActionListener() {
@@ -118,6 +151,19 @@ public class RecipeStoragePage extends JFrame {
 
 			}
 		});
+		
+//		recipeLabelBtn.addActionListener(new ActionListener() {
+//
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				myPage.dispose();
+//				new RecipeIngreStoragePage();
+//
+//			}
+//		});
+		
+		
+		
 
 		// 패녈에 추가
 		panel.add(backBtn);
@@ -125,6 +171,9 @@ public class RecipeStoragePage extends JFrame {
 		panel.add(ingreText);
 		panel.add(panelLabel);
 		panel.add(background);
+//		panel.add(recipeLabelBtn);
+//		panel.add(recipeLabel);
+		
 
 		myPage.add(panel);
 
