@@ -3,7 +3,6 @@ package user.player.run;
 import java.awt.Font;
 
 
-
 public class Application {
 
 	public static Font labelFont = new Font("DungGeunMo", Font.PLAIN, 25);
@@ -13,9 +12,6 @@ public class Application {
 
 	public static void main(String[] args) {
 
-
 	}
 
 }
-
-
