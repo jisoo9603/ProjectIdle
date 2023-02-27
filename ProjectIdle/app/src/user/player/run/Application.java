@@ -2,6 +2,7 @@ package user.player.run;
 
 import java.awt.Font;
 
+import user.player.signup.GameStart;
 
 public class Application {
 
@@ -11,6 +12,8 @@ public class Application {
 	public static Font littlebigFont = new Font("DungGeunMo", Font.BOLD, 55);
 
 	public static void main(String[] args) {
+
+		new GameStart();
 
 	}
 

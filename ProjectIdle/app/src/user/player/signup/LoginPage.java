@@ -14,10 +14,12 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import user.player.common.dto.PlayerDTO;
 import user.player.gamemain.GameMain;
+import user.player.manager.ManagerMainPage;
 import user.player.signup.controller.PlayerController;
 
 public class LoginPage extends JFrame {
@@ -116,7 +118,7 @@ public class LoginPage extends JFrame {
 		pwdShadow.setLocation(pwdX + 2, pwdY + 2);
 
 		// 비밀번호 텍스트
-		JTextField pwdText = new JTextField(20);
+		JPasswordField pwdText = new JPasswordField(20);
 		pwdText.setSize(textWidth, textHeight);
 		pwdText.setLocation(pwdX + labelWidth - 50, pwdY);
 
@@ -232,20 +234,26 @@ public class LoginPage extends JFrame {
 				resultText.setVisible(true);
 				closeBtn.setVisible(true);
 
-				if (idText.getText().isEmpty() || pwdText.getText().isEmpty()) {
+				String pass1 = new String(pwdText.getPassword());
+
+				if (idText.getText().isEmpty() || pass1.isEmpty()) {
 					resultText.setText("미입력된 정보가 있습니다.");
 				} else {
 
 					Map<String, String> map = new HashMap<>();
 					map.put("id", idText.getText());
-					map.put("pass", pwdText.getText());
+					map.put("pass", pass1);
 
 					PlayerController signController = new PlayerController();
 
 					PlayerDTO player = signController.loginPlayer(map);
 					if (player != null) {
 						myPage.dispose();
-						new GameMain(player);
+						if (player.getName().equals("관리자")) {
+							new ManagerMainPage();
+						} else {
+							new GameMain(player);
+						}
 					} else {
 						resultText.setText("로그인 정보가 틀렸습니다.");
 					}

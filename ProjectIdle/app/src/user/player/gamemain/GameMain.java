@@ -65,7 +65,7 @@ public class GameMain extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myPage.dispose();
-				new StoreMainPage();
+				new StoreMainPage(player);
 			}
 		});
 		JButton storage = new JButton();
@@ -80,7 +80,7 @@ public class GameMain extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myPage.dispose();
-				new StoragePage();
+				new StoragePage(player);
 			}
 		});
 
@@ -96,7 +96,7 @@ public class GameMain extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myPage.dispose();
-				new UserInfoPage();
+				new UserInfoPage(player);
 			}
 		});
 

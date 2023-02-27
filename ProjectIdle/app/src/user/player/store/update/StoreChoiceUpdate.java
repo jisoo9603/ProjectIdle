@@ -12,13 +12,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import user.player.common.dto.PlayerDTO;
 import user.player.store.StoreMainPage;
 
 public class StoreChoiceUpdate extends JFrame {
 
 	private JFrame myPage;
 
-	public StoreChoiceUpdate() {
+	public StoreChoiceUpdate(PlayerDTO player) {
 		this.setSize(800, 500);
 		this.setLocationRelativeTo(null);
 		this.setAutoRequestFocus(false);
@@ -126,7 +127,7 @@ public class StoreChoiceUpdate extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myPage.dispose();
-				new StoreMainPage();
+				new StoreMainPage(player);
 
 			}
 		});

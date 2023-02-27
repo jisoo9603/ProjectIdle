@@ -13,17 +13,19 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import user.player.realplay.service.PlayService;
+import user.player.common.dto.PlayerDTO;
+import user.player.gamemain.GameMain;
+import user.player.store.ingre.IngreMarketPage;
 
-public class PlayMain extends JFrame{
+public class PlayMain extends JFrame {
 	Font labelFont = new Font("DungGeunMo", Font.PLAIN, 25);
-	
+
 	private JFrame myPage;
-	
+
 	private List<JButton> totalList;
 	private int index = 0;
 
-	public PlayMain() {
+	public PlayMain(PlayerDTO player) {
 
 		this.myPage = this;
 
@@ -32,9 +34,10 @@ public class PlayMain extends JFrame{
 		this.setAutoRequestFocus(false);
 		this.setTitle("영업화면");
 
-		//메뉴 랜덤 발생
-		String[] orders = {"라면", "김밥", "떡볶이", "제육볶음", "닭도리탕"};
-
+		// 메뉴 랜덤 발생
+		String[] orders = {
+				"라면", "김밥", "떡볶이", "제육볶음", "닭도리탕"
+		};
 
 		int randomOrderIndex1 = (int) (Math.random() * orders.length);
 
@@ -57,14 +60,14 @@ public class PlayMain extends JFrame{
 		goStore.setLocation(20, 420);
 		goStore.setFocusPainted(false);
 		goStore.setBorderPainted(false);
-		//		goStore.addActionListener(new ActionListener() {
-		//			//상점이동 액션
-		//			@Override
-		//			public void actionPerformed(ActionEvent e) {
-		//				myPage.dispose();
-		//				new IngreMarketPage();
-		//			}
-		//		});
+		goStore.addActionListener(new ActionListener() {
+			// 상점이동 액션
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myPage.dispose();
+				new IngreMarketPage(player);
+			}
+		});
 
 		JButton playOut = new JButton();
 		playOut.setContentAreaFilled(false);
@@ -72,15 +75,15 @@ public class PlayMain extends JFrame{
 		playOut.setLocation(620, 420);
 		playOut.setFocusPainted(false);
 		playOut.setBorderPainted(false);
-		//		playOut.addActionListener(new ActionListener() {
-		//			
-		//			//영업종료 액션
-		//			@Override
-		//			public void actionPerformed(ActionEvent e) {
-		//				myPage.dispose();
-		//				new GameMain();
-		//			}
-		//		});
+		playOut.addActionListener(new ActionListener() {
+
+			// 영업종료 액션
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myPage.dispose();
+				new GameMain(player);
+			}
+		});
 
 		JButton cook1 = new JButton(orders[randomOrderIndex1]);
 		cook1.setSize(150, 80);
@@ -109,7 +112,7 @@ public class PlayMain extends JFrame{
 		ImageIcon boardIcon = new ImageIcon("images/board2.png");
 		JLabel board = new JLabel(boardIcon);
 		board.setSize(boardIcon.getIconWidth(), boardIcon.getIconHeight());
-		board.setLocation(140,150);
+		board.setLocation(140, 150);
 		board.setVisible(false);
 
 		JButton closeBtn = new JButton("닫기");
@@ -124,77 +127,77 @@ public class PlayMain extends JFrame{
 
 		JLabel msglbl1 = new JLabel(orders[randomOrderIndex1]);
 		msglbl1.setSize(board.getWidth(), 30);
-		msglbl1.setLocation(board.getX()-100, board.getY() + (board.getHeight() - msglbl1.getHeight()) / 2);
+		msglbl1.setLocation(board.getX() - 100, board.getY() + (board.getHeight() - msglbl1.getHeight()) / 2);
 		msglbl1.setFont(labelFont);
 		msglbl1.setHorizontalAlignment(JLabel.CENTER);
 		msglbl1.setVisible(false);
 
 		JLabel msglbl2 = new JLabel(orders[randomOrderIndex2]);
 		msglbl2.setSize(board.getWidth(), 30);
-		msglbl2.setLocation(board.getX()-100, board.getY() + (board.getHeight() - msglbl1.getHeight()) / 2);
+		msglbl2.setLocation(board.getX() - 100, board.getY() + (board.getHeight() - msglbl1.getHeight()) / 2);
 		msglbl2.setFont(labelFont);
 		msglbl2.setHorizontalAlignment(JLabel.CENTER);
 		msglbl2.setVisible(false);
 
 		JLabel msglbl3 = new JLabel(orders[randomOrderIndex3]);
 		msglbl3.setSize(board.getWidth(), 30);
-		msglbl3.setLocation(board.getX()-100, board.getY() + (board.getHeight() - msglbl1.getHeight()) / 2);
+		msglbl3.setLocation(board.getX() - 100, board.getY() + (board.getHeight() - msglbl1.getHeight()) / 2);
 		msglbl3.setFont(labelFont);
 		msglbl3.setHorizontalAlignment(JLabel.CENTER);
 		msglbl3.setVisible(false);
 
 		JButton made1 = new JButton("제작하기");
-		//closeBtn.setBorderPainted(false);
+		// closeBtn.setBorderPainted(false);
 		made1.setContentAreaFilled(false);
 		made1.setFocusPainted(false);
 		made1.setSize(140, 30);
 		made1.setForeground(new Color(164, 219, 255));
-		made1.setLocation(380,  board.getY() + (board.getHeight() - msglbl1.getHeight()) / 2);
+		made1.setLocation(380, board.getY() + (board.getHeight() - msglbl1.getHeight()) / 2);
 		made1.setFont(labelFont);
 		made1.setVisible(false);
 
 		JButton made2 = new JButton("제작하기");
-		//closeBtn.setBorderPainted(false);
+		// closeBtn.setBorderPainted(false);
 		made2.setContentAreaFilled(false);
 		made2.setFocusPainted(false);
 		made2.setSize(140, 30);
 		made2.setForeground(new Color(164, 219, 255));
-		made2.setLocation(380,  board.getY() + (board.getHeight() - msglbl1.getHeight()) / 2);
+		made2.setLocation(380, board.getY() + (board.getHeight() - msglbl1.getHeight()) / 2);
 		made2.setFont(labelFont);
 		made2.setVisible(false);
 
 		JButton made3 = new JButton("제작하기");
-		//closeBtn.setBorderPainted(false);
+		// closeBtn.setBorderPainted(false);
 		made3.setContentAreaFilled(false);
 		made3.setFocusPainted(false);
 		made3.setSize(140, 30);
 		made3.setForeground(new Color(164, 219, 255));
-		made3.setLocation(380,  board.getY() + (board.getHeight() - msglbl1.getHeight()) / 2);
+		made3.setLocation(380, board.getY() + (board.getHeight() - msglbl1.getHeight()) / 2);
 		made3.setFont(labelFont);
 		made3.setVisible(false);
-		
+
 		totalList = new ArrayList<>();
-		
+
 		JButton[] madeLabel = new JButton[5];
-		for(int i = 0; i < madeLabel.length ; i++) {
+		for (int i = 0; i < madeLabel.length; i++) {
 			madeLabel[i] = new JButton();
 			madeLabel[i].setFont(labelFont);
-			madeLabel[i].setSize(120,40);
-			madeLabel[i].setLocation(510 + madeLabel[i].getWidth(),50 * i +130);
+			madeLabel[i].setSize(120, 40);
+			madeLabel[i].setLocation(510 + madeLabel[i].getWidth(), 50 * i + 130);
 			madeLabel[i].setBorderPainted(false);
 			madeLabel[i].setContentAreaFilled(false);
 			madeLabel[i].setFocusPainted(false);
 			totalList.add(madeLabel[i]);
-			
+
 		}
-		
+
 		for (JButton label : totalList) {
 			panel.add(label);
 		}
 		System.out.println(totalList.size());
-	
-		//		panel.add(plusmade2);
-		//		panel.add(plusmade3);
+
+		// panel.add(plusmade2);
+		// panel.add(plusmade3);
 
 		panel.add(made1);
 		panel.add(made2);
@@ -211,7 +214,6 @@ public class PlayMain extends JFrame{
 		panel.add(background);
 		panel.add(goStore);
 		panel.add(playOut);
-		
 
 		cook1.addActionListener(new ActionListener() {
 
@@ -268,19 +270,19 @@ public class PlayMain extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				if(index < totalList.size()) {
+
+				if (index < totalList.size()) {
 					totalList.get(index).setText(msglbl1.getText());
 				}
-				index ++;
-				
+				index++;
+
 				board.setVisible(false);
 				closeBtn.setVisible(false);
 				msglbl1.setVisible(false);
 				msglbl2.setVisible(false);
 				msglbl3.setVisible(false);
 				made1.setVisible(false);
-				//plusmade1.setVisible(true);
+				// plusmade1.setVisible(true);
 			}
 		});
 
@@ -288,13 +290,13 @@ public class PlayMain extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				if(index < totalList.size()) {
+
+				if (index < totalList.size()) {
 					totalList.get(index).setText(msglbl2.getText());
 				}
-				index ++;
+				index++;
 
-				//plusmade1.setText(msglbl2.getText());
+				// plusmade1.setText(msglbl2.getText());
 
 				board.setVisible(false);
 				closeBtn.setVisible(false);
@@ -302,22 +304,21 @@ public class PlayMain extends JFrame{
 				msglbl2.setVisible(false);
 				msglbl3.setVisible(false);
 				made2.setVisible(false);
-				//plusmade1.setVisible(true);
+				// plusmade1.setVisible(true);
 			}
 		});
-
 
 		made3.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				if(index < totalList.size()) {
+
+				if (index < totalList.size()) {
 					totalList.get(index).setText(msglbl3.getText());
 				}
-				index ++;
+				index++;
 
-				//plusmade1.setText(msglbl3.getText());
+				// plusmade1.setText(msglbl3.getText());
 
 				board.setVisible(false);
 				closeBtn.setVisible(false);
@@ -325,24 +326,20 @@ public class PlayMain extends JFrame{
 				msglbl2.setVisible(false);
 				msglbl3.setVisible(false);
 				made3.setVisible(false);
-				//plusmade1.setVisible(true);
+				// plusmade1.setVisible(true);
 			}
 		});
-
 
 		this.add(panel);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-//
-//	private static void getOrderMenu() {
-//		PlayService playService = new PlayService();
-//		
-//		playService.getOrderMenuInPlayer();
-//	}
-//	
-	
-	
-	
+	//
+	// private static void getOrderMenu() {
+	// PlayService playService = new PlayService();
+	//
+	// playService.getOrderMenuInPlayer();
+	// }
+	//
 
 }

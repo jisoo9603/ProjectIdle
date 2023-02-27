@@ -4,9 +4,6 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -15,15 +12,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import lombok.RequiredArgsConstructor;
 import user.player.common.dto.IngreDTO;
+import user.player.common.dto.PlayerDTO;
 import user.player.ingreup.controller.IngreController;
 
 public class IngreStoragePage extends JFrame {
 
 	private JFrame myPage;
 
-	public IngreStoragePage() {
+	public IngreStoragePage(PlayerDTO player) {
 		Font labelFont = new Font("DungGeunMo", Font.PLAIN, 25);
 		Font ingreLabelFont = new Font("DungGeunMo", Font.PLAIN, 20);
 		IngreController ingreController = new IngreController();
@@ -78,25 +75,26 @@ public class IngreStoragePage extends JFrame {
 		int ingreH = ingreW;
 		int ingreX = 135;
 		int ingreY = 55;
-		
-		List<IngreDTO> ingreList = ingreController.findAllingre(); 		
-		
+
+		List<IngreDTO> ingreList = ingreController.findAllingre();
+
 		int index = 0;
-		
+
 		JLabel[][] ingreLabels = new JLabel[3][4];
 		JLabel[][] ingreCntLabels = new JLabel[3][4];
 
-		label:
-		for (int i = 0; i < ingreLabels.length; i++) {
+		label: for (int i = 0; i < ingreLabels.length; i++) {
 			for (int k = 0; k < ingreLabels[i].length; k++) {
-				if(index >= ingreList.size()) break label;
-				
-				Image IngreeImage = new ImageIcon(ingreList.get(index).getImg()).getImage().getScaledInstance(ingreW, ingreH, 0);
+				if (index >= ingreList.size())
+					break label;
+
+				Image IngreeImage = new ImageIcon(ingreList.get(index).getImg()).getImage().getScaledInstance(ingreW,
+						ingreH, 0);
 				ingreLabels[i][k] = new JLabel(new ImageIcon(IngreeImage));
 				ingreLabels[i][k].setSize(ingreW, ingreH);
 				ingreLabels[i][k].setLocation(ingreX + 150 * k, ingreY + 145 * i);
 				panel.add(ingreLabels[i][k]);
-		
+
 				ingreCntLabels[i][k] = new JLabel((ingreList.get(index).getName()));
 				ingreCntLabels[i][k].setFont(ingreLabelFont);
 				ingreCntLabels[i][k].setHorizontalAlignment(JLabel.CENTER);
@@ -106,18 +104,17 @@ public class IngreStoragePage extends JFrame {
 				index++;
 			}
 		}
-		
-		
+
 		backBtn.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myPage.dispose();
-				new StoragePage();
+				new StoragePage(player);
 
 			}
 		});
-		
+
 		// 패녈에 추가
 		panel.add(backBtn);
 		panel.add(backLabel);
@@ -125,11 +122,10 @@ public class IngreStoragePage extends JFrame {
 		panel.add(panelLabel);
 		panel.add(background);
 
-
 		myPage.add(panel);
 
 		myPage.setVisible(true);
 		myPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-	
+
 }
