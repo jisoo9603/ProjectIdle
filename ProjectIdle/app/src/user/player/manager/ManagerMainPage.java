@@ -1,8 +1,9 @@
 package user.player.manager;
 
-import static user.player.run.Application.labelFont;
-
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -10,111 +11,167 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-
 public class ManagerMainPage extends JFrame {
 
-   private JFrame myPage;
+	private JFrame myPage;
 
-   public ManagerMainPage() {
+	public ManagerMainPage() {
 
-      //     Font signUpFont = new Font("DungGeunMo", Font.BOLD, 70);
-      this.setSize(800, 500);
-      this.setLocationRelativeTo(null);
-      this.setAutoRequestFocus(false);
+		this.myPage = this;
+		myPage.setSize(800, 500);
+		myPage.setLocationRelativeTo(null);
+		myPage.setResizable(false);
 
-      this.myPage = this;
+		JPanel panel = new JPanel();
 
-      ImageIcon img = new ImageIcon("images/managerMain.png");
+		panel.setLayout(null);
 
-      JPanel panel = new JPanel();
+		Font labelFont = new Font("DungGeunMo", Font.PLAIN, 40);
 
-      panel.setLayout(null);
+		// 배경
+		ImageIcon backgrond = new ImageIcon("images/Market.png");
 
-      JLabel background = new JLabel(img);
-      background.setLocation(0, 0);
-      background.setSize(800, 500);
+		// 뒤로가기
+		ImageIcon back = new ImageIcon("images/back.png");
 
-    
-      //뒤로가기버튼
-      JButton close = new JButton();
-      close.setSize(60, 40);
-      close.setLocation(10, 10);
-      close.setBorderPainted(false); 
-      close.setContentAreaFilled(false); // 버튼 투명
-      close.setFocusPainted(false);
+		// 목차
+//		Image btn = new ImageIcon("images/panelFrame.png").getImage().getScaledInstance(146, 40, 0);
+//		ImageIcon btnImg = new ImageIcon(btn);
 
-      //회원관리버튼
-      JButton userM = new JButton();
-      userM.setSize(150, 40);
-      userM.setLocation(150, 190);
-      userM.setBorderPainted(false); 
-      userM.setContentAreaFilled(false); // 버튼 투명
-      userM.setFocusPainted(false);
+		// 배경
+		JLabel background = new JLabel(backgrond);
+		background.setSize(800, 500);
+		background.setLocation(0, 0);
 
-      
-    //랭킹관리버튼
-      JButton rankM = new JButton();
-      rankM.setSize(150, 40);
-      rankM.setLocation(150, 320);
-      rankM.setBorderPainted(false); 
-      rankM.setContentAreaFilled(false); // 버튼 투명
-      rankM.setFocusPainted(false);
+		// 이전 화면 이동
+		JButton backBtn = new JButton();
+		backBtn.setIcon(back);
+		backBtn.setBorderPainted(false);
+		backBtn.setContentAreaFilled(false);
+		backBtn.setFocusPainted(false);
+		backBtn.setSize(back.getIconWidth(), back.getIconHeight());
+		backBtn.setLocation(0, 0);
 
-      
-    //재료버튼
-      JButton ingreM = new JButton();
-      ingreM.setSize(90, 40);
-      ingreM.setLocation(570, 150);
-      ingreM.setBorderPainted(false); 
-      ingreM.setContentAreaFilled(false); // 버튼 투명
-      ingreM.setFocusPainted(false);
+		// 재료 화면
+		Color labelColor = new Color(250, 220, 120);
+		Color fontColor = new Color(50, 50, 250);
 
-      
-      
-    // 레시피버튼
-      JButton receipM = new JButton();
-      receipM.setSize(90, 40);
-      receipM.setLocation(570, 250);
-      receipM.setBorderPainted(false); 
-      receipM.setContentAreaFilled(false); // 버튼 투명
-      receipM.setFocusPainted(false);
-      
-    //확장권버튼
-      JButton updateM = new JButton();
-      updateM.setSize(100, 40);
-      updateM.setLocation(560, 350);
-      updateM.setBorderPainted(false); 
-      updateM.setContentAreaFilled(false); // 버튼 투명
-      updateM.setFocusPainted(false);
+		int lblW = 300;
+		int lblH = 390;
 
-     
-      // 회원가입완료 그림자 효과
-      //            JLabel signUpShadow = new JLabel(signUp.getText());
-      //            signUpShadow.setFont(littlebigFont);
-      //            signUpShadow.setSize(350, 150);
-      //            signUpShadow.setLocation(250, 380);
+		int lblX = 70;
+		int lblY = 50;
 
+		// 관리 목록 배경
+		JLabel ingreLabel1 = new JLabel();
+		ingreLabel1.setSize(lblW, lblH);
+		ingreLabel1.setLocation(lblX, lblY);
+		ingreLabel1.setOpaque(true);
+		ingreLabel1.setBackground(labelColor);
 
+		JLabel ingreLabel2 = new JLabel();
+		ingreLabel2.setSize(lblW, lblH);
+		ingreLabel2.setLocation(lblX + lblW + 60, lblY);
+		ingreLabel2.setOpaque(true);
+		ingreLabel2.setBackground(labelColor);
 
-      //      JButton btn = new JButton();
-      //      btn.setLocation(250, 375);
-      //      btn.setSize(315, 65);
-      //      btn.setContentAreaFilled(false);   
+		// 관리 목록 버튼
+		int btnW = lblW;
+		int btnH = 60;
 
-      // 패녈에 추가
+		int btnY = lblY + 45;
 
-      panel.add(close);
-      panel.add(userM);
-      panel.add(rankM);
-      panel.add(ingreM);
-      panel.add(receipM);
-      panel.add(updateM);
-      
-   
-      panel.add(background);
-      this.add(panel);
-      this.setVisible(true);
-      this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-   }
+		int i = 0;
 
+		JButton ingreBtn = new JButton("재료 관리");
+		ingreBtn.setBorderPainted(false);
+		ingreBtn.setContentAreaFilled(false);
+		ingreBtn.setFocusPainted(false);
+		ingreBtn.setFont(labelFont);
+		ingreBtn.setForeground(fontColor);
+		ingreBtn.setSize(btnW, btnH);
+		ingreBtn.setLocation(ingreLabel2.getX(), btnY + btnH * i++);
+
+		JButton playerBtn = new JButton("회원 관리");
+		playerBtn.setBorderPainted(false);
+		playerBtn.setContentAreaFilled(false);
+		playerBtn.setFocusPainted(false);
+		playerBtn.setFont(labelFont);
+		playerBtn.setForeground(fontColor);
+		playerBtn.setSize(btnW, btnH);
+		playerBtn.setLocation(ingreLabel1.getX(), btnY + btnH * i++);
+
+		JButton recipeBtn = new JButton("레시피 관리");
+		recipeBtn.setBorderPainted(false);
+		recipeBtn.setContentAreaFilled(false);
+		recipeBtn.setFocusPainted(false);
+		recipeBtn.setFont(labelFont);
+		recipeBtn.setForeground(fontColor);
+		recipeBtn.setSize(btnW, btnH);
+		recipeBtn.setLocation(ingreLabel2.getX(), btnY + btnH * i++);
+
+		JButton rankBtn = new JButton("랭킹 관리");
+		rankBtn.setBorderPainted(false);
+		rankBtn.setContentAreaFilled(false);
+		rankBtn.setFocusPainted(false);
+		rankBtn.setFont(labelFont);
+		rankBtn.setForeground(fontColor);
+		rankBtn.setSize(btnW, btnH);
+		rankBtn.setLocation(ingreLabel1.getX(), btnY + btnH * i++);
+
+		JButton storeBtn = new JButton("가게 관리");
+		storeBtn.setBorderPainted(false);
+		storeBtn.setContentAreaFilled(false);
+		storeBtn.setFocusPainted(false);
+		storeBtn.setFont(labelFont);
+		storeBtn.setForeground(fontColor);
+		storeBtn.setSize(btnW, btnH);
+		storeBtn.setLocation(ingreLabel2.getX(), btnY + btnH * i++);
+
+		// 패녈에 추가
+		panel.add(ingreBtn);
+		panel.add(recipeBtn);
+		panel.add(storeBtn);
+		panel.add(playerBtn);
+		panel.add(rankBtn);
+
+		panel.add(ingreLabel1);
+		panel.add(ingreLabel2);
+
+		panel.add(backBtn);
+		panel.add(background);
+
+		myPage.add(panel);
+
+		myPage.setVisible(true);
+		myPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		ingreBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myPage.dispose();
+				new IngreManage();
+			}
+		});
+
+		recipeBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myPage.dispose();
+				new RecipeManage();
+			}
+		});
+
+		storeBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myPage.dispose();
+				new StoreManage();
+			}
+		});
+
+	}
 }

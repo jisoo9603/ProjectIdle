@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import lombok.RequiredArgsConstructor;
+import user.player.common.dto.IngreDTO;
 import user.player.ingreup.controller.IngreController;
 
 public class IngreStoragePage extends JFrame {
@@ -76,33 +78,31 @@ public class IngreStoragePage extends JFrame {
 		int ingreH = ingreW;
 		int ingreX = 135;
 		int ingreY = 55;
-//		필요한 것 저장해주는 변수 배열! or array list
-//		저장해주는 변수 배열! or array list
-		ingreController.findAllingre(); 
 		
+		List<IngreDTO> ingreList = ingreController.findAllingre(); 		
 		
-		Image storge = new ImageIcon("images/chicken.png").getImage().getScaledInstance(ingreW, ingreH, 0);
-
+		int index = 0;
+		
 		JLabel[][] ingreLabels = new JLabel[3][4];
 		JLabel[][] ingreCntLabels = new JLabel[3][4];
 
+		label:
 		for (int i = 0; i < ingreLabels.length; i++) {
 			for (int k = 0; k < ingreLabels[i].length; k++) {
-				ingreLabels[i][k] = new JLabel(new ImageIcon(storge));
+				if(index >= ingreList.size()) break label;
+				
+				ingreLabels[i][k] = new JLabel(new ImageIcon(ingreList.get(index).getImg()));
 				ingreLabels[i][k].setSize(ingreW, ingreH);
 				ingreLabels[i][k].setLocation(ingreX + 150 * k, ingreY + 145 * i);
 				panel.add(ingreLabels[i][k]);
-			}
-		}
-
-		for (int i = 0; i < ingreCntLabels.length; i++) {
-			for (int k = 0; k < ingreCntLabels[i].length; k++) {
-				ingreCntLabels[i][k] = new JLabel("i*k=" + (i * k));
+		
+				ingreCntLabels[i][k] = new JLabel((ingreList.get(index).getName()));
 				ingreCntLabels[i][k].setFont(ingreLabelFont);
 				ingreCntLabels[i][k].setHorizontalAlignment(JLabel.CENTER);
 				ingreCntLabels[i][k].setSize(ingreW, 25);
 				ingreCntLabels[i][k].setLocation(ingreX + 150 * k, ingreY + ingreH + 145 * i);
 				panel.add(ingreCntLabels[i][k]);
+				index++;
 			}
 		}
 		

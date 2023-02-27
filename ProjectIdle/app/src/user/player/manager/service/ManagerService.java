@@ -1,4 +1,4 @@
-package user.player.ingreup.service;
+package user.player.manager.service;
 
 import static user.player.common.Template.getSqlSession;
 
@@ -7,20 +7,18 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import user.player.common.IngreMapper;
+import user.player.common.ManagerMapper;
 import user.player.common.dto.IngreDTO;
 
+public class ManagerService {
+	private ManagerMapper mapper;
 
-public class IngreService {
-	
-	private IngreMapper mapper;
-	
-	public boolean insertNewIngre(IngreDTO ingre) {
-		
+	public boolean createNewIngre(Map<String, String> map) {
+
 		SqlSession sqlSession = getSqlSession();
-		mapper = sqlSession.getMapper(IngreMapper.class);
-		
-		int result = mapper.insertNewIngre(ingre);
+		mapper = sqlSession.getMapper(ManagerMapper.class);
+
+		int result = mapper.insertNewIngre(map);
 
 		if (result > 0) {
 			sqlSession.commit();
@@ -31,22 +29,17 @@ public class IngreService {
 		sqlSession.close();
 
 		return result > 0 ? true : false;
-		
 	}
-	
 
-	public List<IngreDTO> findAllingre() {
-
+	public List<IngreDTO> findAllIngre() {
 		SqlSession sqlSession = getSqlSession();
-		mapper = sqlSession.getMapper(IngreMapper.class);
-		
-		List<IngreDTO> ingreList = mapper.selectAllingre();
+		mapper = sqlSession.getMapper(ManagerMapper.class);
+
+		List<IngreDTO> ingreList = mapper.selectAllIngre();
 
 		sqlSession.close();
 
 		return ingreList;
-		
 	}
-
 
 }

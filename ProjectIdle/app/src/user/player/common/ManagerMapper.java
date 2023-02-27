@@ -5,11 +5,10 @@ import java.util.Map;
 
 import user.player.common.dto.IngreDTO;
 
-public interface IngreMapper {
+public interface ManagerMapper {
 
-	int insertNewIngre(IngreDTO ingre);
+	int insertNewIngre(Map<String, String> map);
 
-	List<IngreDTO> selectAllingre();
+	List<IngreDTO> selectAllIngre();
 
-	
 }

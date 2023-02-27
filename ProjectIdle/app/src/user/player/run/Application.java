@@ -2,6 +2,7 @@ package user.player.run;
 
 import java.awt.Font;
 
+import user.player.manager.IngreManage;
 
 public class Application {
 
@@ -12,6 +13,9 @@ public class Application {
 
 	public static void main(String[] args) {
 
+		new IngreManage();
 	}
 
 }
+
+
