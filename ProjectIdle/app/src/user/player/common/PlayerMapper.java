@@ -10,4 +10,5 @@ public interface PlayerMapper {
 
 	PlayerDTO selectPlayer(Map<String, String> map);
 
+
 }
