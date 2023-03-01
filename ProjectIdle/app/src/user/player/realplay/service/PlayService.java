@@ -2,26 +2,28 @@ package user.player.realplay.service;
 
 import static user.player.common.Template.getSqlSession;
 
-import java.util.Map;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import user.player.common.RealPlayMapper;
+import user.player.common.dto.PlayerDTO;
 import user.player.common.dto.PlayerRecipeDTO;
-import user.player.realplay.RealPlayMapper;
 
 public class PlayService {
 
 	private RealPlayMapper mapper;
-
-	public PlayerRecipeDTO getOrderMenuInPlayer(Map<String, String>map) {
-		SqlSession  sqlSession = getSqlSession();
-		mapper = sqlSession.getMapper(RealPlayMapper.class);
+	
+	public List<String> searchRecipeByRandomRecipeCode(PlayerDTO player) {
+		SqlSession sqlSession = getSqlSession();
+	
+		RealPlayMapper realPlayMapper = sqlSession.getMapper(RealPlayMapper.class);
 		
-		PlayerRecipeDTO playerReceip = mapper.getNewOrder(map);
-		
+		List<String> playRecipeList = realPlayMapper.searchRecipeByRandomRecipeCode(player);
 		sqlSession.close();
 		
-		return playerReceip;
+		return playRecipeList;
+		
 	}
-
+	
 }

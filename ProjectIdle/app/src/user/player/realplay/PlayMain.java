@@ -5,7 +5,10 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,19 +18,27 @@ import javax.swing.JPanel;
 
 import user.player.common.dto.PlayerDTO;
 import user.player.gamemain.GameMain;
+import user.player.realplay.controller.PlayController;
 import user.player.store.ingre.IngreMarketPage;
 
 public class PlayMain extends JFrame {
 	Font labelFont = new Font("DungGeunMo", Font.PLAIN, 25);
 
 	private JFrame myPage;
-
 	private List<JButton> totalList;
 	private int index = 0;
 
 	public PlayMain(PlayerDTO player) {
-
-		this.myPage = this;
+		
+	
+		PlayController playController = new PlayController();
+		//List<RecipeDTO> recipe = playController.searchMenuByRandomMenuCode(createRandomMenuCodeList());
+		
+//		int randomOrderIndex1 = (int) (Math.random() *recipe.size());
+//		
+//		String str=	recipe.get(randomOrderIndex1).getName();
+//		this.myPage = this;
+		
 
 		this.setSize(800, 530);
 		this.setLocationRelativeTo(null);
@@ -35,15 +46,14 @@ public class PlayMain extends JFrame {
 		this.setTitle("영업화면");
 
 		// 메뉴 랜덤 발생
-		String[] orders = {
-				"라면", "김밥", "떡볶이", "제육볶음", "닭도리탕"
-		};
+		List<String> orders = playController.searchRecipeByRandomRecipeCode(player);
 
-		int randomOrderIndex1 = (int) (Math.random() * orders.length);
+				
+		int randomOrderIndex1 = (int) (Math.random() * orders.size());
 
-		int randomOrderIndex2 = (int) (Math.random() * orders.length);
+		int randomOrderIndex2 = (int) (Math.random() * orders.size());
 
-		int randomOrderIndex3 = (int) (Math.random() * orders.length);
+		int randomOrderIndex3 = (int) (Math.random() * orders.size());
 
 		ImageIcon img = new ImageIcon("images/PlayMain.png");
 
@@ -76,7 +86,6 @@ public class PlayMain extends JFrame {
 		playOut.setFocusPainted(false);
 		playOut.setBorderPainted(false);
 		playOut.addActionListener(new ActionListener() {
-
 			// 영업종료 액션
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -85,7 +94,7 @@ public class PlayMain extends JFrame {
 			}
 		});
 
-		JButton cook1 = new JButton(orders[randomOrderIndex1]);
+		JButton cook1 = new JButton(orders.get(randomOrderIndex1));
 		cook1.setSize(150, 80);
 		cook1.setFont(labelFont);
 		cook1.setLocation(20, 70);
@@ -93,7 +102,7 @@ public class PlayMain extends JFrame {
 		cook1.setFocusPainted(false);
 		cook1.setBorderPainted(false);
 
-		JButton cook2 = new JButton(orders[randomOrderIndex2]);
+		JButton cook2 = new JButton(orders.get(randomOrderIndex2));
 		cook2.setSize(150, 80);
 		cook2.setFont(labelFont);
 		cook2.setLocation(195, 70);
@@ -101,7 +110,7 @@ public class PlayMain extends JFrame {
 		cook2.setFocusPainted(false);
 		cook2.setBorderPainted(false);
 
-		JButton cook3 = new JButton(orders[randomOrderIndex3]);
+		JButton cook3 = new JButton(orders.get(randomOrderIndex3));
 		cook3.setSize(150, 80);
 		cook3.setFont(labelFont);
 		cook3.setLocation(390, 70);
@@ -125,21 +134,21 @@ public class PlayMain extends JFrame {
 		closeBtn.setFont(labelFont);
 		closeBtn.setVisible(false);
 
-		JLabel msglbl1 = new JLabel(orders[randomOrderIndex1]);
+		JLabel msglbl1 = new JLabel(orders.get(randomOrderIndex1));
 		msglbl1.setSize(board.getWidth(), 30);
 		msglbl1.setLocation(board.getX() - 100, board.getY() + (board.getHeight() - msglbl1.getHeight()) / 2);
 		msglbl1.setFont(labelFont);
 		msglbl1.setHorizontalAlignment(JLabel.CENTER);
 		msglbl1.setVisible(false);
 
-		JLabel msglbl2 = new JLabel(orders[randomOrderIndex2]);
+		JLabel msglbl2 = new JLabel(orders.get(randomOrderIndex2));
 		msglbl2.setSize(board.getWidth(), 30);
 		msglbl2.setLocation(board.getX() - 100, board.getY() + (board.getHeight() - msglbl1.getHeight()) / 2);
 		msglbl2.setFont(labelFont);
 		msglbl2.setHorizontalAlignment(JLabel.CENTER);
 		msglbl2.setVisible(false);
 
-		JLabel msglbl3 = new JLabel(orders[randomOrderIndex3]);
+		JLabel msglbl3 = new JLabel(orders.get(randomOrderIndex3));
 		msglbl3.setSize(board.getWidth(), 30);
 		msglbl3.setLocation(board.getX() - 100, board.getY() + (board.getHeight() - msglbl1.getHeight()) / 2);
 		msglbl3.setFont(labelFont);
@@ -190,7 +199,6 @@ public class PlayMain extends JFrame {
 			totalList.add(madeLabel[i]);
 
 		}
-
 		for (JButton label : totalList) {
 			panel.add(label);
 		}
@@ -207,7 +215,6 @@ public class PlayMain extends JFrame {
 		panel.add(msglbl2);
 		panel.add(msglbl3);
 		panel.add(board);
-
 		panel.add(cook1);
 		panel.add(cook2);
 		panel.add(cook3);
@@ -216,7 +223,6 @@ public class PlayMain extends JFrame {
 		panel.add(playOut);
 
 		cook1.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
@@ -240,7 +246,6 @@ public class PlayMain extends JFrame {
 		});
 
 		cook3.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
@@ -251,7 +256,6 @@ public class PlayMain extends JFrame {
 			}
 		});
 		closeBtn.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
@@ -267,7 +271,6 @@ public class PlayMain extends JFrame {
 		});
 
 		made1.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
@@ -287,7 +290,6 @@ public class PlayMain extends JFrame {
 		});
 
 		made2.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
@@ -309,7 +311,6 @@ public class PlayMain extends JFrame {
 		});
 
 		made3.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
@@ -320,6 +321,7 @@ public class PlayMain extends JFrame {
 
 				// plusmade1.setText(msglbl3.getText());
 
+				
 				board.setVisible(false);
 				closeBtn.setVisible(false);
 				msglbl1.setVisible(false);
@@ -334,12 +336,18 @@ public class PlayMain extends JFrame {
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-	//
-	// private static void getOrderMenu() {
-	// PlayService playService = new PlayService();
-	//
-	// playService.getOrderMenuInPlayer();
-	// }
-	//
 
+	private List<Integer> createRandomMenuCodeList() {
+		System.out.println("h");
+		Set<Integer> set = new HashSet<>();
+		while(set.size() < 3) {
+			int temp = ((int)(Math.random() * 21)) + 1;
+			set.add(temp);
+		}
+		
+		List<Integer> list = new ArrayList<>(set);
+		Collections.sort(list);
+		
+		return list;
+	}
 }
