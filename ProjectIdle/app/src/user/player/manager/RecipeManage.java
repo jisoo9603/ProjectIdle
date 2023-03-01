@@ -37,6 +37,8 @@ public class RecipeManage extends JFrame {
 
 	private List<JCheckBox> ingreList;
 
+	private List<IngreDTO> recipeIngreList;
+
 	private Map<String, Integer> recipePage = new HashMap<>();
 	private int recipePageIndex = 0;
 
@@ -226,7 +228,7 @@ public class RecipeManage extends JFrame {
 
 		Map<String, Integer> ingrePage = new HashMap<>();
 		ingrePage.put("first", 1);
-		ingrePage.put("second", 15);
+		ingrePage.put("second", 100);
 
 		ingre = managerController.findAllIngre(ingrePage);
 		ingreList = new ArrayList<>();
@@ -533,41 +535,66 @@ public class RecipeManage extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				String messge;
 
 				if (tempName.equals(name.getText()) && tempRecipePrice.equals(recipePrice.getText())
 						&& tempFoodPrice.equals(foodPrice.getText()) && tempExp.equals(exp.getText())) {
-					msgText.setText("바뀐 정보가 없습니다.");
-					return;
+					messge = "바뀐 정보가 없습니다.";
+				} else {
+
+					Map<String, String> map = new HashMap<>();
+
+					map.put("no", tempNo);
+
+					if (!name.getText().isEmpty() && !tempName.equals(name.getText()))
+						map.put("name", name.getText());
+
+					if (!recipePrice.getText().isEmpty() && !tempRecipePrice.equals(recipePrice.getText()))
+						map.put("recipePrice", recipePrice.getText());
+
+					if (!foodPrice.getText().isEmpty() && !tempFoodPrice.equals(foodPrice.getText()))
+						map.put("foodPrice", foodPrice.getText());
+
+					if (!exp.getText().isEmpty() && !tempExp.equals(exp.getText()))
+						map.put("exp", exp.getText());
+
+					messge = managerController.modifyRecipe(map);
 				}
 
-				Map<String, String> map = new HashMap<>();
+				Map<String, String> recipeIngre = new HashMap<>();
+				recipeIngre.put("recipe", name.getText());
 
-				map.put("no", tempNo);
-
-				if (!name.getText().isEmpty() && !tempName.equals(name.getText()))
-					map.put("name", name.getText());
-
-				if (!recipePrice.getText().isEmpty() && !tempRecipePrice.equals(recipePrice.getText()))
-					map.put("recipePrice", recipePrice.getText());
-
-				if (!foodPrice.getText().isEmpty() && !tempFoodPrice.equals(foodPrice.getText()))
-					map.put("foodPrice", foodPrice.getText());
-
-				if (!exp.getText().isEmpty() && !tempExp.equals(exp.getText()))
-					map.put("exp", exp.getText());
-
-				String messge = managerController.modifyRecipe(map);
-
-				// Map<String, String> recipeIngre = new HashMap<>();
-				// recipeIngre.put("recipe", name.getText());
-				// for (int i = 0; i < ingreList.size(); i++) {
-				//
-				// if (ingreList.get(i).isSelected()) {
-				// recipeIngre.put("ingre", ingreList.get(i).getText());
-				// managerController.modifyRecipeIngre(recipeIngre);
-				// }
-				// }
-
+				for (int i = 0; i < ingreList.size(); i++) {
+					int isBe = 0;
+					if (ingreList.get(i).isSelected()) {
+						for (int k = 0; k < recipeIngreList.size(); k++) {
+							if (!ingreList.get(i).getText().equals(recipeIngreList.get(k).getName())) {
+								isBe += 0;
+							} else {
+								isBe += 1;
+							}
+						}
+						if (isBe == 0) {
+							recipeIngre.put("ingre", ingreList.get(i).getText());
+							managerController.createRecipeIngre(recipeIngre);
+							System.out.println("재료를 변경했습니다.");
+						}
+					} else {
+						for (int k = 0; k < recipeIngreList.size(); k++) {
+							if (ingreList.get(i).getText().equals(recipeIngreList.get(k).getName())) {
+								isBe = 0;
+								break;
+							} else {
+								isBe += 1;
+							}
+						}
+						if (isBe == 0) {
+							recipeIngre.put("ingre", ingreList.get(i).getText());
+							managerController.deleteRecipeIngre(recipeIngre);
+							System.out.println("재료를 변경했습니다.");
+						}
+					}
+				}
 				msgText.setText(messge);
 
 			}
@@ -783,6 +810,19 @@ public class RecipeManage extends JFrame {
 		foodPrice.setText(tempFoodPrice);
 		exp.setText(tempExp);
 
+		Map<String, String> map = new HashMap<>();
+		map.put("no", tempNo);
+
+		recipeIngreList = managerController.findRecipeIngre(map);
+
+		for (int i = 0; i < ingreList.size(); i++) {
+			for (int k = 0; k < recipeIngreList.size(); k++) {
+				if (ingreList.get(i).getText().equals(recipeIngreList.get(k).getName())) {
+					ingreList.get(i).setSelected(true);
+				}
+			}
+		}
+
 		isInfoPage = true;
 	}
 
@@ -795,6 +835,7 @@ public class RecipeManage extends JFrame {
 		for (int i = 0; i < recipeListIndex; i++) {
 			recipeList.get(i).setIcon(new ImageIcon());
 			recipeList.get(i).setText("");
+			recipeNameShadow.get(i).setText("");
 		}
 		recipeListIndex = 0;
 

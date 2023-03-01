@@ -139,6 +139,17 @@ public class ManagerService {
 		return recipeList;
 	}
 
+	public List<IngreDTO> findRecipeIngre(Map<String, String> recipeNo) {
+		SqlSession sqlSession = getSqlSession();
+		mapper = sqlSession.getMapper(ManagerMapper.class);
+
+		List<IngreDTO> ingreList = mapper.selectRecipeIngre(recipeNo);
+
+		sqlSession.close();
+
+		return ingreList;
+	}
+
 	public boolean modifyRecipe(Map<String, String> map) {
 		SqlSession sqlSession = getSqlSession();
 		mapper = sqlSession.getMapper(ManagerMapper.class);
@@ -154,6 +165,22 @@ public class ManagerService {
 		sqlSession.close();
 
 		return result > 0 ? true : false;
+	}
+
+	public void deleteRecipeIngre(Map<String, String> recipeIngre) {
+		SqlSession sqlSession = getSqlSession();
+		mapper = sqlSession.getMapper(ManagerMapper.class);
+
+		int result = mapper.deleteRecipeIngre(recipeIngre);
+
+		if (result > 0) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+
+		sqlSession.close();
+
 	}
 
 	public boolean deleteRecipe(Map<String, String> map) {

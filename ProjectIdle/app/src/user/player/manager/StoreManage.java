@@ -740,6 +740,7 @@ public class StoreManage extends JFrame {
 		for (int i = 0; i < storeListIndex; i++) {
 			storeList.get(i).setIcon(new ImageIcon());
 			storeList.get(i).setText("");
+			storeNameShadow.get(i).setText("");
 		}
 		storeListIndex = 0;
 
