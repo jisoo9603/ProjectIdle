@@ -11,6 +11,7 @@
       <result property="gold" column="PLAYER_GOLD" />
       <result property="exp" column="PLAYER_EXP" />
    </resultMap>
+	
 
    <insert id="insertNewPlayer" parameterType="PlayerDTO">
       INSERT
@@ -58,6 +59,7 @@
         </if>        
         </trim>
    </select>
+
 
 
 

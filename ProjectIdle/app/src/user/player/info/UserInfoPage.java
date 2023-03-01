@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,6 +15,7 @@ import javax.swing.JTextField;
 
 import user.player.common.dto.PlayerDTO;
 import user.player.gamemain.GameMain;
+import user.player.ingreup.controller.UserLevelController;
 import user.player.rank.RankPage;
 
 public class UserInfoPage extends JFrame {
@@ -21,6 +23,7 @@ public class UserInfoPage extends JFrame {
 
 	public UserInfoPage(PlayerDTO player) {
 
+	
 		this.myPage = this;
 
 		myPage.setSize(800, 500);
@@ -76,9 +79,11 @@ public class UserInfoPage extends JFrame {
 		int lblX = 160;
 		int lblY = 130;
 		int txtW = 350;
-
+		
+		String string = new UserLevelController().findUserLevel(player);
+		
 		String[] text = new String[] {
-				"내정보", "경험치", "가게이름", "자금"
+				"내이름", "경험치", "가게이름", "자금"
 		};
 		JLabel[] infoLabels = new JLabel[text.length];
 		JLabel[] infoLabelShadows = new JLabel[infoLabels.length];
@@ -101,17 +106,21 @@ public class UserInfoPage extends JFrame {
 			infoLabelShadows[i].setSize(lblW, lblH);
 			infoLabelShadows[i].setLocation(lblX + 2, lblY + (lblH + 30) * i + 2);
 			panel.add(infoLabelShadows[i]);
-		}
-
-		for (int i = 0; i < infoTexts.length; i++) {
-			infoTexts[i] = new JTextField();
+		} 
+			infoTexts[0] = new JTextField(player.getName());
+			infoTexts[1] = new JTextField(player.getExp()+ "");
+			infoTexts[2] = new JTextField(string);
+			infoTexts[3] = new JTextField(player.getGold()+"");
+		
+			for (int i = 0; i < infoTexts.length; i++) {
 			infoTexts[i].setFont(labelfont);
 			infoTexts[i].setEditable(false);
 			infoTexts[i].setSize(txtW, lblH);
 			infoTexts[i].setLocation(lblX + lblW + 20, lblY + (lblH + 30) * i);
 			panel.add(infoTexts[i]);
 		}
-
+		
+		
 		int btnW = 90;
 		int btnH = 30;
 		int fix = btnW + 70;

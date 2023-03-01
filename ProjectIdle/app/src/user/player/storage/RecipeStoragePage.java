@@ -105,7 +105,7 @@ public class RecipeStoragePage extends JFrame {
 
 				panel.add(ingreLabelsBtn[i][k]);
 
-				ingreCntLabels[i][k] = new JLabel((recipeList.get(index).getNo()) + "");
+				ingreCntLabels[i][k] = new JLabel((recipeList.get(index).getName()) + "");
 				ingreCntLabels[i][k].setFont(ingreLabelFont);
 				ingreCntLabels[i][k].setHorizontalAlignment(JLabel.CENTER);
 				ingreCntLabels[i][k].setSize(recipeW, recipeH);
