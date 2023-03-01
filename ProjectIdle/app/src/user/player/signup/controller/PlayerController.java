@@ -29,7 +29,15 @@ public class PlayerController {
 		String message;
 
 		if (player != null) {
-			message = "당신의 비밀번호는 " + player.getPass() + "입니다.";
+			String pwd = "";
+			for (int i = 0; i < player.getPass().length() / 2; i++) {
+				pwd += player.getPass().charAt(i);
+			}
+			for (int i = player.getPass().length() / 2; i < player.getPass().length(); i++) {
+				pwd += '*';
+			}
+
+			message = "당신의 비밀번호는 " + pwd + "입니다.";
 		} else {
 			message = "일치하는 비밀번호가 없습니다.";
 		}

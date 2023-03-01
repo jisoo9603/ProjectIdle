@@ -17,6 +17,16 @@
 		<result property="exp" column="FOOD_EXP" />
 	</resultMap>
 	
+	<resultMap type="RecipeIngreDTO" id="recipeIngreResultMap">
+		<id property="no" column="RECIPE_NO" />
+		<collection property="ingreList" ofType="IngreDTO">
+			<id property="no" column="INGRE_NO" />
+			<result property="name" column="INGRE_NAME" />
+			<result property="price" column="INGRE_PRICE" />
+			<result property="img" column="INGRE_IMG" />
+		</collection>
+	</resultMap>	
+	
 	<resultMap type="StoreDTO" id="storeResultMap">
 		<id property="level" column="STORE_LEVEL" />
 		<result property="name" column="STORE_NAME" />
@@ -153,6 +163,18 @@
 		)
 	</insert>
 	
+	<select id="selectRecipeIngre" parameterType="hashmap" resultMap="ingreResultMap">
+		SELECT  
+      		   A.INGRE_NO
+     		 , A.INGRE_NAME
+     		 , A.INGRE_PRICE
+    		 , A.INGRE_IMG 
+		  FROM RECIPE_INGRE B
+		  JOIN INGRE A ON (A.INGRE_NO = B.INGRE_NO)
+		 WHERE B.RECIPE_NO = #{no}
+	
+	</select>
+	
 	<select id="selectAllRecipe" parameterType="hashmap" resultMap="recipeResultMap">
 		SELECT  
       		   A.RECIPE_NO
@@ -197,6 +219,18 @@
 		 WHERE A.RECIPE_NO = #{no}
 	</delete>
 	
+	<delete id="deleteRecipeIngre" parameterType="hashmap" >
+		DELETE 
+		  FROM RECIPE_INGRE A
+		 WHERE A.RECIPE_NO = ( SELECT B.RECIPE_NO
+		  	 	   				 FROM RECIPE B
+		  		  				WHERE B.FOOD_NAME = #{recipe}
+		  	   				 )
+		   AND A.INGRE_NO = ( SELECT C.INGRE_NO
+		  	 	   			    FROM INGRE C
+		  		  			   WHERE C.INGRE_NAME = #{ingre}
+		  	   				)
+	</delete>
 	
 	<!-- 확장권 관리 -->
 	<select id="selectStoreByName" parameterType="StoreDTO" resultMap="storeResultMap">

@@ -17,5 +17,5 @@ public class RecipeStorageIngreDTO {
 
 	private String name;
 	private List<IngreDTO> ingreList;
-	private String img;	
+	private String img;
 }

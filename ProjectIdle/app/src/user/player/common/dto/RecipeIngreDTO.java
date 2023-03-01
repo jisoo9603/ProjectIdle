@@ -1,5 +1,7 @@
 package user.player.common.dto;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +16,6 @@ import lombok.ToString;
 public class RecipeIngreDTO {
 
 	private int recipeNo;
-	private int ingreNo;
+	private List<IngreDTO> ingreList;
 
 }

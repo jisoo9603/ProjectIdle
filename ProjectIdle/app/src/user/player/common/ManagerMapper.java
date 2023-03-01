@@ -29,7 +29,11 @@ public interface ManagerMapper {
 
 	List<RecipeDTO> selectAllRecipe(Map<String, Integer> recipePage);
 
+	List<IngreDTO> selectRecipeIngre(Map<String, String> recipeNo);
+
 	int modifyRecipe(Map<String, String> map);
+
+	int deleteRecipeIngre(Map<String, String> recipeIngre);
 
 	int deleteRecipe(Map<String, String> map);
 

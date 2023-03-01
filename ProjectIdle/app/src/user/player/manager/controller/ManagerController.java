@@ -100,6 +100,14 @@ public class ManagerController {
 		return recipeList;
 	}
 
+	public List<IngreDTO> findRecipeIngre(Map<String, String> recipeNo) {
+
+		List<IngreDTO> ingreList = managerService.findRecipeIngre(recipeNo);
+
+		return ingreList;
+
+	}
+
 	public String modifyRecipe(Map<String, String> map) {
 
 		boolean isModify = managerService.modifyRecipe(map);
@@ -114,8 +122,9 @@ public class ManagerController {
 		return messge;
 	}
 
-	public void modifyRecipeIngre(Map<String, String> recipeIngre) {
-//		managerService.modifyRecipeIngre(recipeIngre);
+	public void deleteRecipeIngre(Map<String, String> recipeIngre) {
+		managerService.deleteRecipeIngre(recipeIngre);
+
 	}
 
 	public String deleteRecipe(Map<String, String> map) {
