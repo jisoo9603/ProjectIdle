@@ -691,7 +691,7 @@ public class IngreManage extends JFrame {
 		while (ingreListIndex < ingre.size() && ingreListIndex < ingreList.size()) {
 
 			Image ingreImage = new ImageIcon(ingre.get(ingreListIndex).getImg()).getImage().getScaledInstance(
-					ingreList.get(ingreListIndex).getWidth(), ingreList.get(ingreListIndex).getHeight(), 0);
+			ingreList.get(ingreListIndex).getWidth(), ingreList.get(ingreListIndex).getHeight(), 0);
 			ingreList.get(ingreListIndex).setIcon(new ImageIcon(ingreImage));
 
 			ingreListIndex++;
