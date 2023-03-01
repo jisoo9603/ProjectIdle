@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "user.player.common.RealPlayMapper">
+
+<resultMap type = "PlayerRecipeDTO" id = "PlayerRecipeResultMap">
+	<id property="recipeNo" column="RECIPE_NO" />
+	<id property="PlayerName" column="PLAYER_NAME" />
+	
+		
+</resultMap>
+
+	<select id = "searchRecipeByRandomRecipeCode" parameterType = "playerDTO"  resultType = "String">
+	SELECT
+		R.FOOD_NAME
+	  FROM PLAYER_RECIPE PR
+	  JOIN RECIPE R ON (PR.RECIPE_NO = R.RECIPE_NO)
+	 WHERE PR.PLAYER_NAME = #{ name }
+	</select>
+
+</mapper>
