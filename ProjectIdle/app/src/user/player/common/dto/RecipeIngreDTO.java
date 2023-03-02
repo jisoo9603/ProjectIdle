@@ -15,7 +15,7 @@ import lombok.ToString;
 @ToString
 public class RecipeIngreDTO {
 
-	private int recipeNo;
+	private String recipeName;
 	private List<IngreDTO> ingreList;
 
 }
