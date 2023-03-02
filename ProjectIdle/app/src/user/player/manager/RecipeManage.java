@@ -435,15 +435,16 @@ public class RecipeManage extends JFrame {
 
 				if (isInfoPage) {
 					elementsVisible("check");
-				}
-
-				if (recipeListIndex < 15) {
-					return;
 				} else {
-					recipePageIndex++;
-					paging();
-				}
 
+					if (recipeListIndex < 15) {
+						return;
+					} else {
+						recipePageIndex++;
+						paging();
+					}
+
+				}
 			}
 		});
 
@@ -458,13 +459,14 @@ public class RecipeManage extends JFrame {
 					} else {
 						elementsVisible("add");
 					}
-				}
-
-				if (recipePageIndex == 0) {
-					return;
 				} else {
-					recipePageIndex--;
-					paging();
+
+					if (recipePageIndex == 0) {
+						return;
+					} else {
+						recipePageIndex--;
+						paging();
+					}
 				}
 			}
 		});
@@ -486,6 +488,7 @@ public class RecipeManage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				elementsVisible("close");
 				paging();
+				isInfoPage = false;
 			}
 		});
 
@@ -577,7 +580,7 @@ public class RecipeManage extends JFrame {
 						if (isBe == 0) {
 							recipeIngre.put("ingre", ingreList.get(i).getText());
 							managerController.createRecipeIngre(recipeIngre);
-							System.out.println("재료를 변경했습니다.");
+							messge = "재료를 변경했습니다.";
 						}
 					} else {
 						for (int k = 0; k < recipeIngreList.size(); k++) {
@@ -591,7 +594,7 @@ public class RecipeManage extends JFrame {
 						if (isBe == 0) {
 							recipeIngre.put("ingre", ingreList.get(i).getText());
 							managerController.deleteRecipeIngre(recipeIngre);
-							System.out.println("재료를 변경했습니다.");
+							messge = "재료를 변경했습니다.";
 						}
 					}
 				}
