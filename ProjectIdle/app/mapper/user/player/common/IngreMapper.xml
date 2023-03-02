@@ -9,21 +9,54 @@
 		<result property="img" column="INGRE_IMG" />
 		
 	</resultMap>
+	
+	<resultMap type="StorageDTO" id="StorageResultMap">
+		<id property="ingreNo" column="INGRE_NO" />
+		<result property="ingreCnt" column="INGRE_CNT" />
+		<result property="playerName" column="PlayerName" />
+		<result property="img" column="INGRE_IMG" />
+		
+	</resultMap>
+	
+
+<resultMap type="RecipeDTO" id="recipeResultMap">
+		<id property="no" column="RECIPE_NO" />
+		<result property="name" column="FOOD_NAME" />
+		<result property="recipePrice" column="RECIPE_PRICE" />
+		<result property="foodPrice" column="FOOD_PRICE" />
+		<result property="exp" column="FOOD_EXP" />
+	</resultMap>
+	
+<resultMap type="PlayerRecipeDTO" id="RecipeResultMap">
+		<id property="recipeNo" column="PLAYERRECIPE_RECIPENO" />
+		<result property="PlayerName" column="PLAYERRECIPE_PLAYERNAME" />		
+	</resultMap>
 
 
 
-<select id="selectAllingre" resultMap="IngreResultMap" >
+<select id="selectAllingre" parameterType="PlayerDTO" resultMap="StorageResultMap" >
 
-	SELECT
-		   A.INGRE_NO
-		 , A.INGRE_NAME
-		 , A.INGRE_PRICE
-		 , A.INGRE_IMG	
-	  FROM INGRE A
+SELECT A.INGRE_IMG,
+       B.INGRE_CNT
+  FROM INGRE A
+  JOIN STORAGE B ON ( A.INGRE_NO = B.INGRE_NO )
+ WHERE B.PLAYER_NAME = #{ name }
 </select>
 
 
 
+<select id="selectAllrecipe" parameterType = "hashmap" resultMap="recipeResultMap" >
+	SELECT
+			   A.RECIPE_NO
+			 , A.FOOD_NAME
+			 , A.RECIPE_PRICE
+			 , A.FOOD_PRICE
+			 , A.FOOD_EXP
+	 	  FROM RECIPE A
+	 	  JOIN PLAYER_RECIPE B ON (B.RECIPE_NO = A.RECIPE_NO)
+	 	 WHERE B.PLAYER_NAME = #{ name }
+	  
+</select>
 
 
 

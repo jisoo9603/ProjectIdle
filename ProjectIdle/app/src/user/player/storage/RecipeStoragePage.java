@@ -15,8 +15,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import user.player.common.dto.PlayerDTO;
+import user.player.common.dto.PlayerRecipeDTO;
 import user.player.common.dto.RecipeDTO;
-import user.player.ingreup.controller.RecipeController;
+import user.player.ingreup.controller.IngreController;
+
 
 public class RecipeStoragePage extends JFrame {
 
@@ -26,7 +28,7 @@ public class RecipeStoragePage extends JFrame {
 	public RecipeStoragePage(PlayerDTO player) {
 		Font labelFont = new Font("DungGeunMo", Font.PLAIN, 25);
 		Font ingreLabelFont = new Font("DungGeunMo", Font.PLAIN, 20);
-		RecipeController recipeController = new RecipeController();
+		IngreController recipeController = new IngreController();
 
 		this.myPage = this;
 		myPage.setSize(800, 500);
@@ -81,7 +83,9 @@ public class RecipeStoragePage extends JFrame {
 		int recipeX = 135;
 		int recipeY = 55;
 
-		List<RecipeDTO> recipeList = recipeController.findAllrecipe();
+		Map < String , String > map = new HashMap<>();
+		map.put("name", player.getName());
+		List<RecipeDTO> recipeList = recipeController.findAllrecipe(map);
 
 		int index = 0;
 		Image recipe = new ImageIcon("images/recipe1.png").getImage().getScaledInstance(recipeW, recipeH, 0);
@@ -105,7 +109,7 @@ public class RecipeStoragePage extends JFrame {
 
 				panel.add(ingreLabelsBtn[i][k]);
 
-				ingreCntLabels[i][k] = new JLabel((recipeList.get(index).getName()) + "");
+				ingreCntLabels[i][k] = new JLabel(recipeList.get(index).getName() + "");
 				ingreCntLabels[i][k].setFont(ingreLabelFont);
 				ingreCntLabels[i][k].setHorizontalAlignment(JLabel.CENTER);
 				ingreCntLabels[i][k].setSize(recipeW, recipeH);
@@ -115,18 +119,18 @@ public class RecipeStoragePage extends JFrame {
 				index++;
 				gold++;
 
-				ingreLabelsBtn[i][k].addActionListener(new ActionListener() {
-
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						Map<String, String> map = new HashMap<>();
-						map.put("name", recipeList.get(gold).getName());
-						myPage.dispose();
-						new RecipeIngreStoragePage(map, player);
-						System.out.println("gold=" + (gold));
-
-					}
-				});
+//				ingreLabelsBtn[i][k].addActionListener(new ActionListener() {
+//
+//					@Override
+//					public void actionPerformed(ActionEvent e) {
+//						Map<String, String> map = new HashMap<>();
+//						map.put("name", recipeList.get(gold).getName());
+//						myPage.dispose();
+//						new RecipeIngreStoragePage(map, player);
+//						System.out.println("gold=" + (gold));
+//
+//					}
+//				});
 
 			}
 		}
