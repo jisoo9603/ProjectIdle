@@ -36,6 +36,7 @@ public class IngreMarketPage extends JFrame {
 		Font labelFont = new Font("DungGeunMo", Font.PLAIN, 25);
 		Font textFont = new Font("DungGeunMo", Font.PLAIN, 20);
 		Font nonvisibleFont = new Font("DungGeunMo", Font.PLAIN, 0);
+		
 
 		this.myPage = this;
 		myPage.setSize(800, 500);
@@ -190,11 +191,12 @@ public class IngreMarketPage extends JFrame {
 				ingreBtn.setBorderPainted(false);
 				ingreBtn.setContentAreaFilled(false);
 				ingreBtn.setFocusPainted(false);
-				ingreBtn.setFont(nonvisibleFont);
+				ingreBtn.setFont(textFont);
+				ingreBtn.setHorizontalTextPosition(JButton.CENTER);
 				ingreBtn.setVerticalTextPosition(JButton.BOTTOM);
-				ingreBtn.setSize(90, 120);
-				ingreBtn.setLocation(lblX + (ingreBtn.getWidth() + 30) * k + 25,
-									lblY + (ingreBtn.getHeight() + 20) * i + 20);
+				ingreBtn.setSize(95, 120);
+				ingreBtn.setLocation(lblX + (ingreBtn.getWidth() + 25) * k + 25,
+									lblY + (ingreBtn.getHeight() + 20) * i + 0);
 				ingre.add(ingreBtn);
 
 				ingrePriceList[i][k] = new JLabel();
@@ -208,10 +210,6 @@ public class IngreMarketPage extends JFrame {
 
 		int orderW = 50;
 		int orderH = orderW;
-
-	
-
-		
 		
 		for (int i = 0; i < orderList.length; i++) {
 			orderList[i] = new JLabel();
@@ -427,9 +425,7 @@ public class IngreMarketPage extends JFrame {
 
 			}
 		});
-
-	
-
+		
 	}
 	private int cartCnt = 0;
 	private int paySum = 0;
@@ -459,9 +455,10 @@ public class IngreMarketPage extends JFrame {
 			if(index >= ingreList.size()) {
 				break;
 			}
-			Image ingreImg = new ImageIcon(ingreList.get(index).getImg()).getImage().getScaledInstance(btn.getWidth(),btn.getWidth(), 0);
+			Image ingreImg = new ImageIcon(ingreList.get(index).getImg()).getImage().getScaledInstance(65, 65, 0);
 			btn.setIcon(new ImageIcon(ingreImg));
 			btn.setText(ingreList.get(index).getPrice()+"원");
+			System.out.println(ingreList.get(index).getPrice());
 			index++;
 			
 		}

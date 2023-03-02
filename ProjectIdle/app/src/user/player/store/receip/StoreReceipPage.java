@@ -1,9 +1,14 @@
 package user.player.store.receip;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -12,6 +17,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import user.player.common.dto.PlayerDTO;
+import user.player.common.dto.RecipeDTO;
+import user.player.manager.controller.ManagerController;
 import user.player.store.StoreMainPage;
 
 public class StoreReceipPage extends JFrame {
@@ -19,9 +26,16 @@ public class StoreReceipPage extends JFrame {
 	Font labelFont = new Font("DungGeunMo", Font.PLAIN, 25);
 	Font textFont = new Font("DungGeunMo", Font.PLAIN, 20);
 
+	private int Recipeindex;
+	private List<JButton> Recipe;
+	private List<RecipeDTO> RecipeList;
 	private JFrame myPage;
+	private Map<String, Integer> RecipePage = new HashMap<>();
 
 	public StoreReceipPage(PlayerDTO player) {
+
+		Font nonvisibleFont = new Font("DungGeunMo", Font.PLAIN, 20);
+
 		this.setSize(800, 500);
 		this.setLocationRelativeTo(null);
 		this.setAutoRequestFocus(false);
@@ -50,8 +64,8 @@ public class StoreReceipPage extends JFrame {
 		payBtn.setBorderPainted(false);
 		payBtn.setContentAreaFilled(false);
 		payBtn.setFocusPainted(false);
-		payBtn.setSize(board.getWidth(), 30);
-		payBtn.setLocation(board.getX() + 100, board.getY() + board.getHeight() - payBtn.getHeight() * 2);
+		payBtn.setSize(100, 40);
+		payBtn.setLocation(board.getX() + 30, board.getY() + board.getHeight() - payBtn.getHeight() * 2);
 		payBtn.setFont(labelFont);
 		payBtn.setVisible(false);
 
@@ -59,8 +73,8 @@ public class StoreReceipPage extends JFrame {
 		closeBtn.setBorderPainted(false);
 		closeBtn.setContentAreaFilled(false);
 		closeBtn.setFocusPainted(false);
-		closeBtn.setSize(board.getWidth(), 30);
-		closeBtn.setLocation(board.getX() - 100, board.getY() + board.getHeight() - closeBtn.getHeight() * 2);
+		closeBtn.setSize(100, 40);
+		closeBtn.setLocation(board.getX() + 250, board.getY() + board.getHeight() - closeBtn.getHeight() * 2);
 		closeBtn.setFont(labelFont);
 		closeBtn.setVisible(false);
 
@@ -71,6 +85,32 @@ public class StoreReceipPage extends JFrame {
 		msglbl.setHorizontalAlignment(JLabel.CENTER);
 		msglbl.setVisible(false);
 
+		Color labelColor = new Color(250, 220, 120);
+
+		int lblX = 25;
+		int lblY = 60;
+
+
+		JLabel ingreLabel = new JLabel();
+		ingreLabel.setSize(500, 390);
+		ingreLabel.setLocation(lblX, lblY);
+		ingreLabel.setOpaque(true);
+		ingreLabel.setBackground(labelColor);
+
+		JLabel goldLabel = new JLabel(btnImg);
+		goldLabel.setSize(btnImg.getIconWidth(), btnImg.getIconHeight());
+		goldLabel.setLocation(170 + ingreLabel.getWidth() - btnImg.getIconWidth(),
+				(30 + ingreLabel.getY() - btnImg.getIconHeight()) / 2);
+
+		player.getGold();
+		JLabel goldText = new JLabel("자금 : " + player.getGold() + "원");
+		goldText.setSize(goldLabel.getWidth(), goldLabel.getHeight());
+		goldText.setLocation(goldLabel.getX(), goldLabel.getY());
+		goldText.setFont(textFont);
+		goldText.setHorizontalAlignment(JLabel.CENTER);
+
+		panel.add(goldText);
+		panel.add(goldLabel);
 		panel.add(payBtn);
 		panel.add(msglbl);
 		panel.add(closeBtn);
@@ -104,58 +144,36 @@ public class StoreReceipPage extends JFrame {
 		btnRight.setBorderPainted(false);
 		btnRight.setFocusPainted(false);
 
-		Image[] recipe = new Image[] {
-				new ImageIcon("images/recipe1.png").getImage().getScaledInstance(65, 65, 0)
-		};
+		Image recipe = new ImageIcon("images/recipe1.png").getImage().getScaledInstance(80, 80, 0);
 
-		JButton[][] recipeBtn = new JButton[3][5];
-		JLabel[][] recipeList = new JLabel[3][5];
-		JLabel[][] recipePriceList = new JLabel[3][5];
+		Recipe = new ArrayList<>();
 
-		for (int i = 0; i < recipeList.length; i++) {
-			for (int k = 0; k < recipeList[i].length; k++) {
-				recipeList[i][k] = new JLabel(new ImageIcon(recipe[(i + k) % recipe.length]));
-				recipeList[i][k].setSize(65, 65);
-				recipeList[i][k].setLocation(130 * k + 100, 100 * i + 100);
-				panel.add(recipeList[i][k]);
-			}
-		}
-		// 레시피 버튼 나열
-		for (int i = 0; i < recipeBtn.length; i++) {
-			for (int k = 0; k < recipeBtn[i].length; k++) {
-				recipeBtn[i][k] = new JButton();
-				recipeBtn[i][k].setBorderPainted(false);
-				recipeBtn[i][k].setContentAreaFilled(false);
-				recipeBtn[i][k].setFocusPainted(false);
-				recipeBtn[i][k].setSize(65, 65);
-				recipeBtn[i][k].setLocation(recipeList[i][k].getX(), recipeList[i][k].getY());
-				recipeBtn[i][k].addActionListener(new ActionListener() {
+		for (int i = 0; i < 3; i++) {
+			for(int k = 0; k < 5; k++) {
+				JButton RecipeBtn = new JButton();
+				RecipeBtn.setBorderPainted(false);
+				RecipeBtn.setContentAreaFilled(false);
+				RecipeBtn.setFocusPainted(false);
+				RecipeBtn.setFont(nonvisibleFont);
+				RecipeBtn.setForeground(Color.BLACK);
+				RecipeBtn.setIcon(new ImageIcon(recipe));
+				RecipeBtn.setSize(115, 90);		
+				//				RecipeBtn.setVerticalTextPosition(JButton.BOTTOM);
+				RecipeBtn.setHorizontalTextPosition(JButton.CENTER);
+				RecipeBtn.setLocation(80 +(RecipeBtn.getWidth() + 20) * k ,
+						80 + (RecipeBtn.getHeight() + 20) * i + 0);
 
-					@Override
-					public void actionPerformed(ActionEvent e) {
-
-						payBtn.setVisible(true);
-						msglbl.setVisible(true);
-						board.setVisible(true);
-						closeBtn.setVisible(true);
-					}
-				});
-
-				panel.add(recipeBtn[i][k]);
+				Recipe.add(RecipeBtn);
 
 			}
-		}
-		// 레시피 가격 나열
-		for (int i = 0; i < recipePriceList.length; i++) {
-			for (int k = 0; k < recipePriceList[i].length; k++) {
-				recipePriceList[i][k] = new JLabel("1000원");
-				recipePriceList[i][k].setSize(65, 30);
-				recipePriceList[i][k].setLocation(recipeList[i][k].getX() + 10,
-						recipeList[i][k].getY() + recipeList[i][k].getHeight());
-				panel.add(recipePriceList[i][k]);
-			}
+
 		}
 
+		Paging();
+
+		for (JButton btn2: Recipe) {
+			panel.add(btn2);
+		}
 		panel.add(btnBack);
 		panel.add(btnLeft);
 		panel.add(btnRight);
@@ -184,9 +202,261 @@ public class StoreReceipPage extends JFrame {
 				closeBtn.setVisible(false);
 				msglbl.setVisible(false);
 				payBtn.setVisible(false);
+			}
+		});
+
+		Recipe.get(0).addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Recipeindex = 0;
+				board.setVisible(true);
+				closeBtn.setVisible(true);
+				msglbl.setVisible(true);
+				payBtn.setVisible(true);
+				msglbl.setText(RecipeList.get(Recipeindex).getName() + " : " + RecipeList.get(Recipeindex).getRecipePrice() + " 원 ");
 
 			}
 		});
+
+		Recipe.get(1).addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Recipeindex = 1;
+				board.setVisible(true);
+				closeBtn.setVisible(true);
+				msglbl.setVisible(true);
+				payBtn.setVisible(true);
+				msglbl.setText(RecipeList.get(Recipeindex).getName() + " : " + RecipeList.get(Recipeindex).getRecipePrice() + " 원 ");
+			}
+		});
+
+		Recipe.get(2).addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Recipeindex = 2;
+				board.setVisible(true);
+				closeBtn.setVisible(true);
+				msglbl.setVisible(true);
+				payBtn.setVisible(true);
+				msglbl.setText(RecipeList.get(Recipeindex).getName() + " : " + RecipeList.get(Recipeindex).getRecipePrice() + " 원 ");
+			}
+		});
+
+		Recipe.get(3).addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Recipeindex = 3;
+				board.setVisible(true);
+				closeBtn.setVisible(true);
+				msglbl.setVisible(true);
+				payBtn.setVisible(true);
+				msglbl.setText(RecipeList.get(Recipeindex).getName() + " : " + RecipeList.get(Recipeindex).getRecipePrice() + " 원 ");
+			}
+		});
+
+		Recipe.get(4).addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Recipeindex = 4;
+				board.setVisible(true);
+				closeBtn.setVisible(true);
+				msglbl.setVisible(true);
+				payBtn.setVisible(true);
+				msglbl.setText(RecipeList.get(Recipeindex).getName() + " : " + RecipeList.get(Recipeindex).getRecipePrice() + " 원 ");
+			}
+		});
+
+		Recipe.get(5).addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Recipeindex = 5;
+				board.setVisible(true);
+				closeBtn.setVisible(true);
+				msglbl.setVisible(true);
+				payBtn.setVisible(true);
+				msglbl.setText(RecipeList.get(Recipeindex).getName() + " : " + RecipeList.get(Recipeindex).getRecipePrice() + " 원 ");
+			}
+		});
+
+		Recipe.get(6).addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Recipeindex = 6;
+				board.setVisible(true);
+				closeBtn.setVisible(true);
+				msglbl.setVisible(true);
+				payBtn.setVisible(true);
+				msglbl.setText(RecipeList.get(Recipeindex).getName() + " : " + RecipeList.get(Recipeindex).getRecipePrice() + " 원 ");
+			}
+		});
+
+		Recipe.get(7).addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Recipeindex = 7;
+				board.setVisible(true);
+				closeBtn.setVisible(true);
+				msglbl.setVisible(true);
+				payBtn.setVisible(true);
+				msglbl.setText(RecipeList.get(Recipeindex).getName() + " : " + RecipeList.get(Recipeindex).getRecipePrice() + " 원 ");
+			}
+		});
+
+		Recipe.get(8).addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Recipeindex = 8;
+				board.setVisible(true);
+				closeBtn.setVisible(true);
+				msglbl.setVisible(true);
+				payBtn.setVisible(true);
+				msglbl.setText(RecipeList.get(Recipeindex).getName() + " : " + RecipeList.get(Recipeindex).getRecipePrice() + " 원 ");
+			}
+		});
+
+		Recipe.get(9).addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Recipeindex = 9;
+				board.setVisible(true);
+				closeBtn.setVisible(true);
+				msglbl.setVisible(true);
+				payBtn.setVisible(true);
+				msglbl.setText(RecipeList.get(Recipeindex).getName() + " : " + RecipeList.get(Recipeindex).getRecipePrice() + " 원 ");
+			}
+		});
+
+		Recipe.get(10).addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Recipeindex = 10;
+				board.setVisible(true);
+				closeBtn.setVisible(true);
+				msglbl.setVisible(true);
+				payBtn.setVisible(true);
+				msglbl.setText(RecipeList.get(Recipeindex).getName() + " : " + RecipeList.get(Recipeindex).getRecipePrice() + " 원 ");
+			}
+		});
+
+		Recipe.get(11).addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Recipeindex = 11;
+				board.setVisible(true);
+				closeBtn.setVisible(true);
+				msglbl.setVisible(true);
+				payBtn.setVisible(true);
+				msglbl.setText(RecipeList.get(Recipeindex).getName() + " : " + RecipeList.get(Recipeindex).getRecipePrice() + " 원 ");
+			}
+		});
+
+		Recipe.get(12).addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Recipeindex = 12;
+				board.setVisible(true);
+				closeBtn.setVisible(true);
+				msglbl.setVisible(true);
+				payBtn.setVisible(true);
+				msglbl.setText(RecipeList.get(Recipeindex).getName() + " : " + RecipeList.get(Recipeindex).getRecipePrice() + " 원 ");
+			}
+		});
+
+		Recipe.get(13).addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Recipeindex = 13;
+				board.setVisible(true);
+				closeBtn.setVisible(true);
+				msglbl.setVisible(true);
+				payBtn.setVisible(true);
+				msglbl.setText(RecipeList.get(Recipeindex).getName() + " : " + RecipeList.get(Recipeindex).getRecipePrice() + " 원 ");
+			}
+		});
+
+		Recipe.get(14).addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Recipeindex = 14;
+				board.setVisible(true);
+				closeBtn.setVisible(true);
+				msglbl.setVisible(true);
+				payBtn.setVisible(true);
+				msglbl.setText(RecipeList.get(Recipeindex).getName() + " : " + RecipeList.get(Recipeindex).getRecipePrice() + " 원 ");
+			}
+		});
+
+		payBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				String message;
+				if ( RecipeList.get(Recipeindex).getRecipePrice() > player.getGold()) {
+					message = "자금이 부족합니다";
+				} else {
+
+					message = "성공적으로 구매하셨습니다.";
+					player.setGold(player.getGold() - RecipeList.get(Recipeindex).getRecipePrice());		
+					Recipe.get(Recipeindex).setEnabled(false);
+					payBtn.setVisible(false);
+				}
+				msglbl.setText(message);
+				goldText.setText("자금 : " + player.getGold() + "원");
+			}
+		});
+
+
+	}
+
+
+
+
+	public void Paging() {
+		int index = 0;
+		RecipePage.put("first", 1);
+		RecipePage.put("second", 15);
+		ManagerController managerController = new ManagerController();
+		RecipeList = managerController.findAllRecipe(RecipePage);
+
+		for(JButton btn: Recipe) {
+			if(index >= RecipeList.size()) {
+				break;
+			}
+			btn.setText(RecipeList.get(index).getName());
+			index++;
+		}
+
 	}
 
 }
