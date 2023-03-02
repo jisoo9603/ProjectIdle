@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import user.player.common.dto.PlayerDTO;
+import user.player.common.dto.RecipeIngreDTO;
 import user.player.gamemain.GameMain;
 import user.player.realplay.controller.PlayController;
 import user.player.store.ingre.IngreMarketPage;
@@ -37,7 +38,7 @@ public class PlayMain extends JFrame {
 //		int randomOrderIndex1 = (int) (Math.random() *recipe.size());
 //		
 //		String str=	recipe.get(randomOrderIndex1).getName();
-//		this.myPage = this;
+		this.myPage = this;
 		
 
 		this.setSize(800, 530);
@@ -46,8 +47,8 @@ public class PlayMain extends JFrame {
 		this.setTitle("영업화면");
 
 		// 메뉴 랜덤 발생
-		List<String> orders = playController.searchRecipeByRandomRecipeCode(player);
-
+		List<RecipeIngreDTO> orders = playController.searchRecipeByRandomRecipeCode(player);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 				
 		int randomOrderIndex1 = (int) (Math.random() * orders.size());
 
@@ -56,7 +57,7 @@ public class PlayMain extends JFrame {
 		int randomOrderIndex3 = (int) (Math.random() * orders.size());
 
 		ImageIcon img = new ImageIcon("images/PlayMain.png");
-
+ 
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 
@@ -94,7 +95,7 @@ public class PlayMain extends JFrame {
 			}
 		});
 
-		JButton cook1 = new JButton(orders.get(randomOrderIndex1));
+		JButton cook1 = new JButton(orders.get(randomOrderIndex1).getRecipeName());
 		cook1.setSize(150, 80);
 		cook1.setFont(labelFont);
 		cook1.setLocation(20, 70);
@@ -102,7 +103,7 @@ public class PlayMain extends JFrame {
 		cook1.setFocusPainted(false);
 		cook1.setBorderPainted(false);
 
-		JButton cook2 = new JButton(orders.get(randomOrderIndex2));
+		JButton cook2 = new JButton(orders.get(randomOrderIndex2).getRecipeName());
 		cook2.setSize(150, 80);
 		cook2.setFont(labelFont);
 		cook2.setLocation(195, 70);
@@ -110,10 +111,10 @@ public class PlayMain extends JFrame {
 		cook2.setFocusPainted(false);
 		cook2.setBorderPainted(false);
 
-		JButton cook3 = new JButton(orders.get(randomOrderIndex3));
+		JButton cook3 = new JButton(orders.get(randomOrderIndex3).getRecipeName());
 		cook3.setSize(150, 80);
 		cook3.setFont(labelFont);
-		cook3.setLocation(390, 70);
+		cook3.setLocation(380, 70);
 		cook3.setContentAreaFilled(false);
 		cook3.setFocusPainted(false);
 		cook3.setBorderPainted(false);
@@ -134,26 +135,68 @@ public class PlayMain extends JFrame {
 		closeBtn.setFont(labelFont);
 		closeBtn.setVisible(false);
 
-		JLabel msglbl1 = new JLabel(orders.get(randomOrderIndex1));
+		JLabel msglbl1 = new JLabel(orders.get(randomOrderIndex1).getRecipeName());
 		msglbl1.setSize(board.getWidth(), 30);
-		msglbl1.setLocation(board.getX() - 100, board.getY() + (board.getHeight() - msglbl1.getHeight()) / 2);
+		msglbl1.setLocation(board.getX() - 100, board.getY() + (board.getHeight() - msglbl1.getHeight()) / 2 - 40);
 		msglbl1.setFont(labelFont);
 		msglbl1.setHorizontalAlignment(JLabel.CENTER);
 		msglbl1.setVisible(false);
 
-		JLabel msglbl2 = new JLabel(orders.get(randomOrderIndex2));
+		JLabel msglbl2 = new JLabel(orders.get(randomOrderIndex2).getRecipeName());
 		msglbl2.setSize(board.getWidth(), 30);
-		msglbl2.setLocation(board.getX() - 100, board.getY() + (board.getHeight() - msglbl1.getHeight()) / 2);
+		msglbl2.setLocation(board.getX() - 100, board.getY() + (board.getHeight() - msglbl1.getHeight()) / 2 -40);
 		msglbl2.setFont(labelFont);
 		msglbl2.setHorizontalAlignment(JLabel.CENTER);
 		msglbl2.setVisible(false);
 
-		JLabel msglbl3 = new JLabel(orders.get(randomOrderIndex3));
+		JLabel msglbl3 = new JLabel(orders.get(randomOrderIndex3).getRecipeName());
 		msglbl3.setSize(board.getWidth(), 30);
-		msglbl3.setLocation(board.getX() - 100, board.getY() + (board.getHeight() - msglbl1.getHeight()) / 2);
+		msglbl3.setLocation(board.getX() - 100, board.getY() + (board.getHeight() - msglbl1.getHeight()) / 2 -40);
 		msglbl3.setFont(labelFont);
 		msglbl3.setHorizontalAlignment(JLabel.CENTER);
 		msglbl3.setVisible(false);
+		
+		
+		String ingreList1 ="";
+		for (int i = 0 ;  i <orders.get(randomOrderIndex1).getIngreList().size(); i++ ) {
+			ingreList1 += orders.get(randomOrderIndex1).getIngreList().get(i).getName()+" + ";
+		 }
+		
+
+		String ingreList2 ="";
+		for (int i = 0 ;  i <orders.get(randomOrderIndex2).getIngreList().size(); i++ ) {
+			ingreList2 += orders.get(randomOrderIndex2).getIngreList().get(i).getName()+" + ";
+		 }
+		
+
+		String ingreList3 ="";
+		for (int i = 0 ;  i <orders.get(randomOrderIndex3).getIngreList().size(); i++ ) {
+			ingreList3 += orders.get(randomOrderIndex3).getIngreList().get(i).getName()+" + ";
+		 }
+		
+		
+		
+		
+		JLabel recipelbl1 = new JLabel(ingreList1);
+		recipelbl1.setSize(board.getWidth(), 30);
+		recipelbl1.setLocation(board.getX() , board.getY() + (board.getHeight() - msglbl1.getHeight()) / 2 + 10);
+		recipelbl1.setFont(labelFont);
+		recipelbl1.setHorizontalAlignment(JLabel.CENTER);
+		recipelbl1.setVisible(false);
+		
+		JLabel recipelbl2 = new JLabel(ingreList2);
+		recipelbl2.setSize(board.getWidth(), 30);
+		recipelbl2.setLocation(board.getX(), board.getY() + (board.getHeight() - msglbl1.getHeight()) / 2 + 10);
+		recipelbl2.setFont(labelFont);
+		recipelbl2.setHorizontalAlignment(JLabel.CENTER);
+		recipelbl2.setVisible(false);
+		
+		JLabel recipelbl3 = new JLabel(ingreList3);
+		recipelbl3.setSize(board.getWidth(), 30);
+		recipelbl3.setLocation(board.getX() , board.getY() + (board.getHeight() - msglbl1.getHeight()) / 2 + 10);
+		recipelbl3.setFont(labelFont);
+		recipelbl3.setHorizontalAlignment(JLabel.CENTER);
+		recipelbl3.setVisible(false);
 
 		JButton made1 = new JButton("제작하기");
 		// closeBtn.setBorderPainted(false);
@@ -161,7 +204,7 @@ public class PlayMain extends JFrame {
 		made1.setFocusPainted(false);
 		made1.setSize(140, 30);
 		made1.setForeground(new Color(164, 219, 255));
-		made1.setLocation(380, board.getY() + (board.getHeight() - msglbl1.getHeight()) / 2);
+		made1.setLocation(380, board.getY() + (board.getHeight() - msglbl1.getHeight()) / 2 -40);
 		made1.setFont(labelFont);
 		made1.setVisible(false);
 
@@ -171,7 +214,7 @@ public class PlayMain extends JFrame {
 		made2.setFocusPainted(false);
 		made2.setSize(140, 30);
 		made2.setForeground(new Color(164, 219, 255));
-		made2.setLocation(380, board.getY() + (board.getHeight() - msglbl1.getHeight()) / 2);
+		made2.setLocation(380, board.getY() + (board.getHeight() - msglbl1.getHeight()) / 2 - 40);
 		made2.setFont(labelFont);
 		made2.setVisible(false);
 
@@ -181,9 +224,34 @@ public class PlayMain extends JFrame {
 		made3.setFocusPainted(false);
 		made3.setSize(140, 30);
 		made3.setForeground(new Color(164, 219, 255));
-		made3.setLocation(380, board.getY() + (board.getHeight() - msglbl1.getHeight()) / 2);
+		made3.setLocation(380, board.getY() + (board.getHeight() - msglbl1.getHeight()) / 2 - 40);
 		made3.setFont(labelFont);
 		made3.setVisible(false);
+		
+		
+		
+		
+		JLabel playerStore = new JLabel();
+		playerStore.setSize(myPage.getWidth() / 6, 45);
+		playerStore.setLocation(20, 0);
+		playerStore.setFont(labelFont);
+		playerStore.setText("포장마차");
+
+		JLabel playerGold = new JLabel();
+		playerGold.setSize(myPage.getWidth() / 4, 45);
+		playerGold.setLocation(playerStore.getWidth() * 2 + 50, 0);
+		playerGold.setFont(labelFont);
+		playerGold.setText("자금 : " + player.getGold());
+
+		JLabel playerExp = new JLabel();
+		playerExp.setSize(myPage.getWidth() / 3, 45);
+		playerExp.setLocation(playerGold.getX() + playerGold.getWidth(), 0);
+		playerExp.setFont(labelFont);
+		playerExp.setText("경험치 : " + player.getExp());
+
+		
+		
+		
 
 		totalList = new ArrayList<>();
 
@@ -191,8 +259,8 @@ public class PlayMain extends JFrame {
 		for (int i = 0; i < madeLabel.length; i++) {
 			madeLabel[i] = new JButton();
 			madeLabel[i].setFont(labelFont);
-			madeLabel[i].setSize(120, 40);
-			madeLabel[i].setLocation(510 + madeLabel[i].getWidth(), 50 * i + 130);
+			madeLabel[i].setSize(140, 40);
+			madeLabel[i].setLocation(475 + madeLabel[i].getWidth(), 50 * i + 130);
 			madeLabel[i].setBorderPainted(false);
 			madeLabel[i].setContentAreaFilled(false);
 			madeLabel[i].setFocusPainted(false);
@@ -207,6 +275,16 @@ public class PlayMain extends JFrame {
 		// panel.add(plusmade2);
 		// panel.add(plusmade3);
 
+		panel.add(recipelbl1);
+		panel.add(recipelbl2);
+		panel.add(recipelbl3);
+
+		
+		panel.add(playerGold);
+		panel.add(playerExp);
+		panel.add(playerStore);
+		
+		
 		panel.add(made1);
 		panel.add(made2);
 		panel.add(made3);
@@ -230,6 +308,7 @@ public class PlayMain extends JFrame {
 				closeBtn.setVisible(true);
 				msglbl1.setVisible(true);
 				made1.setVisible(true);
+				recipelbl1.setVisible(true);
 			}
 		});
 
@@ -242,6 +321,8 @@ public class PlayMain extends JFrame {
 				closeBtn.setVisible(true);
 				msglbl2.setVisible(true);
 				made2.setVisible(true);
+				recipelbl2.setVisible(true);
+				
 			}
 		});
 
@@ -253,6 +334,7 @@ public class PlayMain extends JFrame {
 				closeBtn.setVisible(true);
 				msglbl3.setVisible(true);
 				made3.setVisible(true);
+				recipelbl3.setVisible(true);
 			}
 		});
 		closeBtn.addActionListener(new ActionListener() {
@@ -267,6 +349,9 @@ public class PlayMain extends JFrame {
 				made1.setVisible(false);
 				made2.setVisible(false);
 				made3.setVisible(false);
+				recipelbl1.setVisible(false);
+				recipelbl2.setVisible(false);
+				recipelbl3.setVisible(false);
 			}
 		});
 
@@ -285,6 +370,7 @@ public class PlayMain extends JFrame {
 				msglbl2.setVisible(false);
 				msglbl3.setVisible(false);
 				made1.setVisible(false);
+				recipelbl1.setVisible(false);
 				// plusmade1.setVisible(true);
 			}
 		});
@@ -306,6 +392,7 @@ public class PlayMain extends JFrame {
 				msglbl2.setVisible(false);
 				msglbl3.setVisible(false);
 				made2.setVisible(false);
+				recipelbl2.setVisible(false);
 				// plusmade1.setVisible(true);
 			}
 		});
@@ -328,6 +415,7 @@ public class PlayMain extends JFrame {
 				msglbl2.setVisible(false);
 				msglbl3.setVisible(false);
 				made3.setVisible(false);
+				recipelbl3.setVisible(false);
 				// plusmade1.setVisible(true);
 			}
 		});

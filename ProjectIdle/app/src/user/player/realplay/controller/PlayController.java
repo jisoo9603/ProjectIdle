@@ -3,7 +3,7 @@ package user.player.realplay.controller;
 import java.util.List;
 
 import user.player.common.dto.PlayerDTO;
-import user.player.common.dto.PlayerRecipeDTO;
+import user.player.common.dto.RecipeIngreDTO;
 import user.player.realplay.service.PlayService;
 
 public class PlayController {
@@ -14,8 +14,8 @@ public class PlayController {
 		this.playService = new PlayService();
 	}
 
-	public List<String> searchRecipeByRandomRecipeCode(PlayerDTO player) {
-		List<String> playRecipeList = playService.searchRecipeByRandomRecipeCode(player);
+	public List<RecipeIngreDTO> searchRecipeByRandomRecipeCode(PlayerDTO player) {
+		List<RecipeIngreDTO> playRecipeList = playService.searchRecipeByRandomRecipeCode(player);
 		
 		if(playRecipeList != null) {
 			System.out.println(playRecipeList);

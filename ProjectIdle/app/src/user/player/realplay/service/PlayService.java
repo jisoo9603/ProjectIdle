@@ -8,18 +8,18 @@ import org.apache.ibatis.session.SqlSession;
 
 import user.player.common.RealPlayMapper;
 import user.player.common.dto.PlayerDTO;
-import user.player.common.dto.PlayerRecipeDTO;
+import user.player.common.dto.RecipeIngreDTO;
 
 public class PlayService {
 
 	private RealPlayMapper mapper;
 	
-	public List<String> searchRecipeByRandomRecipeCode(PlayerDTO player) {
+	public List<RecipeIngreDTO> searchRecipeByRandomRecipeCode(PlayerDTO player) {
 		SqlSession sqlSession = getSqlSession();
 	
 		RealPlayMapper realPlayMapper = sqlSession.getMapper(RealPlayMapper.class);
 		
-		List<String> playRecipeList = realPlayMapper.searchRecipeByRandomRecipeCode(player);
+		List<RecipeIngreDTO> playRecipeList = realPlayMapper.searchRecipeByRandomRecipeCode(player);
 		sqlSession.close();
 		
 		return playRecipeList;
@@ -27,3 +27,4 @@ public class PlayService {
 	}
 	
 }
+ 
