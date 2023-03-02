@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 
 import user.player.common.dto.IngreDTO;
 import user.player.common.dto.PlayerDTO;
+import user.player.common.dto.StorageDTO;
 import user.player.ingreup.controller.IngreController;
 
 public class IngreStoragePage extends JFrame {
@@ -76,7 +77,7 @@ public class IngreStoragePage extends JFrame {
 		int ingreX = 135;
 		int ingreY = 55;
 
-		List<IngreDTO> ingreList = ingreController.findAllingre();
+		List<StorageDTO> ingreList = ingreController.findAllingre(player);
 
 		int index = 0;
 
@@ -95,7 +96,7 @@ public class IngreStoragePage extends JFrame {
 				ingreLabels[i][k].setLocation(ingreX + 150 * k, ingreY + 145 * i);
 				panel.add(ingreLabels[i][k]);
 
-				ingreCntLabels[i][k] = new JLabel((ingreList.get(index).getName()));
+				ingreCntLabels[i][k] = new JLabel("X"+ingreList.get(index).getIngreCnt());
 				ingreCntLabels[i][k].setFont(ingreLabelFont);
 				ingreCntLabels[i][k].setHorizontalAlignment(JLabel.CENTER);
 				ingreCntLabels[i][k].setSize(ingreW, 25);

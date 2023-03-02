@@ -4,13 +4,15 @@ import java.util.List;
 import java.util.Map;
 
 import user.player.common.dto.IngreDTO;
+import user.player.common.dto.PlayerDTO;
+import user.player.common.dto.RecipeDTO;
+import user.player.common.dto.StorageDTO;
 import user.player.ingreup.service.IngreService;
-
 
 public class IngreController {
 	private IngreService ingreService = new IngreService();
 
-	public boolean insertNewIngre(Map<String, String>map) {
+	public boolean insertNewIngre(Map<String, String> map) {
 
 		IngreDTO ingre = new IngreDTO();
 		ingre.setNo(Integer.parseInt(map.get("no")));
@@ -23,16 +25,21 @@ public class IngreController {
 		return isCreate;
 	}
 
-	public List<IngreDTO> findAllingre() {
+	public List<StorageDTO> findAllingre(PlayerDTO player) {
 
-		
-		List<IngreDTO> ingreDTO = ingreService.findAllingre();
-		
+		List<StorageDTO> ingreDTO = ingreService.findAllingre(player);
+
 		return ingreDTO;
-		
-		
+
 	}
-	
-	
+
+	private IngreService recipeService = new IngreService();
+
+	public List<RecipeDTO> findAllrecipe(Map<String, String> map) {
+
+		List<RecipeDTO> recipeDTO = recipeService.findAllrecipe(map);
+
+		return recipeDTO;
+	}
 
 }

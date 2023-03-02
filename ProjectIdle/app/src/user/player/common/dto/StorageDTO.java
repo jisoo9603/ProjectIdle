@@ -16,5 +16,5 @@ public class StorageDTO {
 	private int ingreNo;
 	private int ingreCnt;
 	private String playerName;
-
+	private String img;
 }

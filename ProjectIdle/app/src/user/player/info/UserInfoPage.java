@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 import user.player.common.dto.PlayerDTO;
 import user.player.gamemain.GameMain;
 import user.player.ingreup.controller.UserLevelController;
-import user.player.rank.RankPage;
+//import user.player.rank.RankPage;
 
 public class UserInfoPage extends JFrame {
 	private JFrame myPage;
@@ -128,20 +128,20 @@ public class UserInfoPage extends JFrame {
 		int btnY = lblY + (lblH + 30) * infoLabels.length;
 
 		// 랭킹 버튼
-		JButton rankBtn = new JButton("랭킹");
-		rankBtn.setBorderPainted(false);
-		rankBtn.setContentAreaFilled(false);
-		rankBtn.setFocusPainted(false);
-		rankBtn.setFont(labelfont);
-		rankBtn.setForeground(btnColor);
-		rankBtn.setSize(btnW, btnH);
-		rankBtn.setLocation(btnX - fix, btnY);
-
-		JLabel rankBtnShadow = new JLabel(rankBtn.getText());
-		rankBtnShadow.setHorizontalAlignment(JLabel.CENTER);
-		rankBtnShadow.setFont(labelfont);
-		rankBtnShadow.setSize(btnW, btnH);
-		rankBtnShadow.setLocation(btnX - fix + 2, btnY + 2);
+//		JButton rankBtn = new JButton("랭킹");
+//		rankBtn.setBorderPainted(false);
+//		rankBtn.setContentAreaFilled(false);
+//		rankBtn.setFocusPainted(false);
+//		rankBtn.setFont(labelfont);
+//		rankBtn.setForeground(btnColor);
+//		rankBtn.setSize(btnW, btnH);
+//		rankBtn.setLocation(btnX - fix, btnY);
+//
+//		JLabel rankBtnShadow = new JLabel(rankBtn.getText());
+//		rankBtnShadow.setHorizontalAlignment(JLabel.CENTER);
+//		rankBtnShadow.setFont(labelfont);
+//		rankBtnShadow.setSize(btnW, btnH);
+//		rankBtnShadow.setLocation(btnX - fix + 2, btnY + 2);
 
 		// 닫기 버튼
 		JButton closeBtn = new JButton("닫기");
@@ -151,13 +151,15 @@ public class UserInfoPage extends JFrame {
 		closeBtn.setFont(labelfont);
 		closeBtn.setForeground(btnColor);
 		closeBtn.setSize(btnW, btnH);
-		closeBtn.setLocation(btnX, btnY);
+//		closeBtn.setLocation(btnX, btnY);
+		closeBtn.setLocation(btnX - fix, btnY);
 
 		JLabel closeBtnShadow = new JLabel(closeBtn.getText());
 		closeBtnShadow.setHorizontalAlignment(JLabel.CENTER);
 		closeBtnShadow.setFont(labelfont);
 		closeBtnShadow.setSize(btnW, btnH);
-		closeBtnShadow.setLocation(btnX + 2, btnY + 2);
+//		closeBtnShadow.setLocation(btnX + 2, btnY + 2);
+		closeBtnShadow.setLocation(btnX - fix, btnY);
 
 		// 회원탈퇴 버튼
 		JButton signOutBtn = new JButton("회원탈퇴");
@@ -175,15 +177,15 @@ public class UserInfoPage extends JFrame {
 		signOutBtnShadow.setSize(btnW * 2 - 40, btnH);
 		signOutBtnShadow.setLocation(btnX + fix + 2, btnY + 2);
 
-		rankBtn.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				myPage.dispose();
-				new RankPage();
-
-			}
-		});
+//		rankBtn.addActionListener(new ActionListener() {
+//
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				myPage.dispose();
+//				new RankPage();
+//
+//			}
+//		});
 
 		closeBtn.addActionListener(new ActionListener() {
 
@@ -205,15 +207,15 @@ public class UserInfoPage extends JFrame {
 			}
 		});
 		
-		rankBtn.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				myPage.dispose();
-				new RankPage();
-
-			}
-		});
+//		rankBtn.addActionListener(new ActionListener() {
+//
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				myPage.dispose();
+//				new RankPage();
+//
+//			}
+//		});
 
 		// 패널에 추가
 
@@ -221,8 +223,8 @@ public class UserInfoPage extends JFrame {
 		panel.add(infoTextShadow);
 		panel.add(infoLabel);
 
-		panel.add(rankBtn);
-		panel.add(rankBtnShadow);
+//		panel.add(rankBtn);
+//		panel.add(rankBtnShadow);
 
 		panel.add(closeBtn);
 		panel.add(closeBtnShadow);
