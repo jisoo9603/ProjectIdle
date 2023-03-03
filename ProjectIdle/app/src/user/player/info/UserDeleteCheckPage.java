@@ -11,10 +11,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import user.player.common.dto.PlayerDTO;
+import user.player.signup.controller.PlayerController;
+
 public class UserDeleteCheckPage extends JFrame {
 	private JFrame myPage;
 
-	public UserDeleteCheckPage() {
+	public UserDeleteCheckPage(PlayerDTO player) {
 
 		this.myPage = this;
 
@@ -114,7 +117,7 @@ public class UserDeleteCheckPage extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myPage.dispose();
-				// new UserInfoPage();
+				new UserInfoPage(player);
 
 			}
 		});
@@ -123,9 +126,9 @@ public class UserDeleteCheckPage extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				myPage.dispose();
-				new UserDeletePage();
 
+				PlayerController pc = new PlayerController();
+				pc.deletePlayer(player, myPage);
 			}
 		});
 

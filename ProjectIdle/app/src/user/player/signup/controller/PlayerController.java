@@ -1,9 +1,11 @@
 package user.player.signup.controller;
 
-import java.util.List;
 import java.util.Map;
 
+import javax.swing.JFrame;
+
 import user.player.common.dto.PlayerDTO;
+import user.player.info.UserDeletePage;
 import user.player.signup.service.PlayerService;
 
 public class PlayerController {
@@ -66,5 +68,14 @@ public class PlayerController {
 		return player;
 	}
 
+	public void deletePlayer(PlayerDTO player, JFrame mf) {
+		boolean isDelete = signService.deletePlayer(player);
+
+		if (isDelete) {
+			mf.dispose();
+			new UserDeletePage();
+		}
+
+	}
 
 }
