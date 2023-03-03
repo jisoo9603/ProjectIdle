@@ -91,7 +91,7 @@
 - 유저가 회원탈퇴버튼을 통해 회원을 탈퇴하면 유저 정보에 따른 게임 이력이 삭제된다.
 
 
-
+![Untitled](https://user-images.githubusercontent.com/122511847/222627039-c32ed474-ae9a-46f7-b012-a00c118dfec0.png)
 
 
 
