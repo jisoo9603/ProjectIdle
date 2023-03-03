@@ -156,6 +156,31 @@ public class PlayMain extends JFrame {
 		msglbl3.setHorizontalAlignment(JLabel.CENTER);
 		msglbl3.setVisible(false);
 		
+		ImageIcon finishIcon = new ImageIcon("images/finish.png");
+		JLabel finish1 = new JLabel(finishIcon);
+		finish1.setSize(150,100);
+		finish1.setLocation(22, 60);
+//		finish1.setForeground(new Color(164, 219, 255));
+		finish1.setFont(labelFont);
+		finish1.setHorizontalAlignment(JLabel.CENTER);
+		finish1.setVisible(false);
+		
+		
+		JLabel finish2 = new JLabel(finishIcon);
+		finish2.setSize(150,100);
+		finish2.setLocation(197, 60);
+//		finish1.setForeground(new Color(164, 219, 255));
+		finish2.setFont(labelFont);
+		finish2.setHorizontalAlignment(JLabel.CENTER);
+		finish2.setVisible(false);
+		
+		JLabel finish3 = new JLabel(finishIcon);
+		finish3.setSize(150,100);
+		finish3.setLocation(392, 60);
+//		finish1.setForeground(new Color(164, 219, 255));
+		finish3.setFont(labelFont);
+		finish3.setHorizontalAlignment(JLabel.CENTER);
+		finish3.setVisible(false);
 		
 		String ingreList1 ="";
 		for (int i = 0 ;  i <orders.get(randomOrderIndex1).getIngreList().size(); i++ ) {
@@ -198,7 +223,7 @@ public class PlayMain extends JFrame {
 		recipelbl3.setHorizontalAlignment(JLabel.CENTER);
 		recipelbl3.setVisible(false);
 
-		JButton made1 = new JButton("제작하기");
+		JButton made1 = new JButton("판매하기");
 		// closeBtn.setBorderPainted(false);
 		made1.setContentAreaFilled(false);
 		made1.setFocusPainted(false);
@@ -208,7 +233,7 @@ public class PlayMain extends JFrame {
 		made1.setFont(labelFont);
 		made1.setVisible(false);
 
-		JButton made2 = new JButton("제작하기");
+		JButton made2 = new JButton("판매하기");
 		// closeBtn.setBorderPainted(false);
 		made2.setContentAreaFilled(false);
 		made2.setFocusPainted(false);
@@ -218,7 +243,7 @@ public class PlayMain extends JFrame {
 		made2.setFont(labelFont);
 		made2.setVisible(false);
 
-		JButton made3 = new JButton("제작하기");
+		JButton made3 = new JButton("판매하기");
 		// closeBtn.setBorderPainted(false);
 		made3.setContentAreaFilled(false);
 		made3.setFocusPainted(false);
@@ -275,6 +300,9 @@ public class PlayMain extends JFrame {
 		// panel.add(plusmade2);
 		// panel.add(plusmade3);
 
+		panel.add(finish1);
+		panel.add(finish2);
+		panel.add(finish3);
 		panel.add(recipelbl1);
 		panel.add(recipelbl2);
 		panel.add(recipelbl3);
@@ -372,6 +400,7 @@ public class PlayMain extends JFrame {
 				made1.setVisible(false);
 				recipelbl1.setVisible(false);
 				// plusmade1.setVisible(true);
+				finish1.setVisible(true);
 			}
 		});
 
@@ -394,6 +423,7 @@ public class PlayMain extends JFrame {
 				made2.setVisible(false);
 				recipelbl2.setVisible(false);
 				// plusmade1.setVisible(true);
+				finish2.setVisible(true);
 			}
 		});
 
@@ -417,6 +447,7 @@ public class PlayMain extends JFrame {
 				made3.setVisible(false);
 				recipelbl3.setVisible(false);
 				// plusmade1.setVisible(true);
+				finish3.setVisible(true);
 			}
 		});
 
