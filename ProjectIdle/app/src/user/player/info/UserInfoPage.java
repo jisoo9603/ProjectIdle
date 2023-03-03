@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -23,7 +22,6 @@ public class UserInfoPage extends JFrame {
 
 	public UserInfoPage(PlayerDTO player) {
 
-	
 		this.myPage = this;
 
 		myPage.setSize(800, 500);
@@ -79,9 +77,9 @@ public class UserInfoPage extends JFrame {
 		int lblX = 160;
 		int lblY = 130;
 		int txtW = 350;
-		
+
 		String string = new UserLevelController().findUserLevel(player);
-		
+
 		String[] text = new String[] {
 				"내이름", "경험치", "가게이름", "자금"
 		};
@@ -106,21 +104,20 @@ public class UserInfoPage extends JFrame {
 			infoLabelShadows[i].setSize(lblW, lblH);
 			infoLabelShadows[i].setLocation(lblX + 2, lblY + (lblH + 30) * i + 2);
 			panel.add(infoLabelShadows[i]);
-		} 
-			infoTexts[0] = new JTextField(player.getName());
-			infoTexts[1] = new JTextField(player.getExp()+ "");
-			infoTexts[2] = new JTextField(string);
-			infoTexts[3] = new JTextField(player.getGold()+"");
-		
-			for (int i = 0; i < infoTexts.length; i++) {
+		}
+		infoTexts[0] = new JTextField(player.getName());
+		infoTexts[1] = new JTextField(player.getExp() + "");
+		infoTexts[2] = new JTextField(string);
+		infoTexts[3] = new JTextField(player.getGold() + "");
+
+		for (int i = 0; i < infoTexts.length; i++) {
 			infoTexts[i].setFont(labelfont);
 			infoTexts[i].setEditable(false);
 			infoTexts[i].setSize(txtW, lblH);
 			infoTexts[i].setLocation(lblX + lblW + 20, lblY + (lblH + 30) * i);
 			panel.add(infoTexts[i]);
 		}
-		
-		
+
 		int btnW = 90;
 		int btnH = 30;
 		int fix = btnW + 70;
@@ -128,20 +125,20 @@ public class UserInfoPage extends JFrame {
 		int btnY = lblY + (lblH + 30) * infoLabels.length;
 
 		// 랭킹 버튼
-//		JButton rankBtn = new JButton("랭킹");
-//		rankBtn.setBorderPainted(false);
-//		rankBtn.setContentAreaFilled(false);
-//		rankBtn.setFocusPainted(false);
-//		rankBtn.setFont(labelfont);
-//		rankBtn.setForeground(btnColor);
-//		rankBtn.setSize(btnW, btnH);
-//		rankBtn.setLocation(btnX - fix, btnY);
-//
-//		JLabel rankBtnShadow = new JLabel(rankBtn.getText());
-//		rankBtnShadow.setHorizontalAlignment(JLabel.CENTER);
-//		rankBtnShadow.setFont(labelfont);
-//		rankBtnShadow.setSize(btnW, btnH);
-//		rankBtnShadow.setLocation(btnX - fix + 2, btnY + 2);
+		// JButton rankBtn = new JButton("랭킹");
+		// rankBtn.setBorderPainted(false);
+		// rankBtn.setContentAreaFilled(false);
+		// rankBtn.setFocusPainted(false);
+		// rankBtn.setFont(labelfont);
+		// rankBtn.setForeground(btnColor);
+		// rankBtn.setSize(btnW, btnH);
+		// rankBtn.setLocation(btnX - fix, btnY);
+		//
+		// JLabel rankBtnShadow = new JLabel(rankBtn.getText());
+		// rankBtnShadow.setHorizontalAlignment(JLabel.CENTER);
+		// rankBtnShadow.setFont(labelfont);
+		// rankBtnShadow.setSize(btnW, btnH);
+		// rankBtnShadow.setLocation(btnX - fix + 2, btnY + 2);
 
 		// 닫기 버튼
 		JButton closeBtn = new JButton("닫기");
@@ -151,14 +148,14 @@ public class UserInfoPage extends JFrame {
 		closeBtn.setFont(labelfont);
 		closeBtn.setForeground(btnColor);
 		closeBtn.setSize(btnW, btnH);
-//		closeBtn.setLocation(btnX, btnY);
+		// closeBtn.setLocation(btnX, btnY);
 		closeBtn.setLocation(btnX - fix, btnY);
 
 		JLabel closeBtnShadow = new JLabel(closeBtn.getText());
 		closeBtnShadow.setHorizontalAlignment(JLabel.CENTER);
 		closeBtnShadow.setFont(labelfont);
 		closeBtnShadow.setSize(btnW, btnH);
-//		closeBtnShadow.setLocation(btnX + 2, btnY + 2);
+		// closeBtnShadow.setLocation(btnX + 2, btnY + 2);
 		closeBtnShadow.setLocation(btnX - fix, btnY);
 
 		// 회원탈퇴 버튼
@@ -177,15 +174,15 @@ public class UserInfoPage extends JFrame {
 		signOutBtnShadow.setSize(btnW * 2 - 40, btnH);
 		signOutBtnShadow.setLocation(btnX + fix + 2, btnY + 2);
 
-//		rankBtn.addActionListener(new ActionListener() {
-//
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				myPage.dispose();
-//				new RankPage();
-//
-//			}
-//		});
+		// rankBtn.addActionListener(new ActionListener() {
+		//
+		// @Override
+		// public void actionPerformed(ActionEvent e) {
+		// myPage.dispose();
+		// new RankPage();
+		//
+		// }
+		// });
 
 		closeBtn.addActionListener(new ActionListener() {
 
@@ -202,20 +199,20 @@ public class UserInfoPage extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myPage.dispose();
-				new UserDeleteCheckPage();
+				new UserDeleteCheckPage(player);
 
 			}
 		});
-		
-//		rankBtn.addActionListener(new ActionListener() {
-//
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				myPage.dispose();
-//				new RankPage();
-//
-//			}
-//		});
+
+		// rankBtn.addActionListener(new ActionListener() {
+		//
+		// @Override
+		// public void actionPerformed(ActionEvent e) {
+		// myPage.dispose();
+		// new RankPage();
+		//
+		// }
+		// });
 
 		// 패널에 추가
 
@@ -223,8 +220,8 @@ public class UserInfoPage extends JFrame {
 		panel.add(infoTextShadow);
 		panel.add(infoLabel);
 
-//		panel.add(rankBtn);
-//		panel.add(rankBtnShadow);
+		// panel.add(rankBtn);
+		// panel.add(rankBtnShadow);
 
 		panel.add(closeBtn);
 		panel.add(closeBtnShadow);

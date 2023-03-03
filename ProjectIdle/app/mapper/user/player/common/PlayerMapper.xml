@@ -14,7 +14,7 @@
 	
 
    <insert id="insertNewPlayer" parameterType="PlayerDTO">
-      INSERT
+	  INSERT
         INTO PLAYER
       (
         PLAYER_NAME
@@ -33,6 +33,33 @@
       , DEFAULT
       , DEFAULT
       )
+   </insert>
+   
+   <insert id="insertPlayerRecipe" parameterType="PlayerRecipeDTO">
+  	  INSERT INTO PLAYER_RECIPE VALUES (#{PlayerName},#{recipeNo})
+  	  
+   </insert>
+   
+   <insert id="insertPlayerStore" parameterType="PlayerDTO">
+  	  INSERT INTO PLAYER_STORE VALUES (#{name},1)
+   </insert>
+   
+   <insert id="insertPlayerIngre" parameterType="PlayerDTO">
+  	  	INSERT 
+		  INTO STORAGE A
+		(
+		  A.PLAYER_NAME
+		, A.INGRE_NO
+		, A.INGRE_CNT
+		) 
+		(
+		SELECT DISTINCT B.PLAYER_NAME
+		     , C.INGRE_NO
+		     , 3
+		  FROM PLAYER_RECIPE B
+		  JOIN RECIPE_INGRE  C ON ( B.RECIPE_NO = C.RECIPE_NO )
+		 WHERE B.PLAYER_NAME = #{name}
+		)
    </insert>
    
    <select id="selectPlayer" parameterType = "hashmap" resultMap="playerResultMap">
@@ -59,6 +86,10 @@
         </if>        
         </trim>
    </select>
+   
+   <delete id="deletePlayer" parameterType="PlayerDTO">
+   		DELETE FROM PLAYER WHERE PLAYER_NAME = #{name}
+   </delete>
 
 
 
